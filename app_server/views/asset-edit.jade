@@ -3,28 +3,28 @@ extends layout
 block content
     .row.page-header
         .col-lg-12
-            h1 Edit Server1
+            h1= pageHeader.title
     .row
         .col-xs-12.col-md-6
             form.form-horizontal(action="/asset", method="get", role="form")
                 .form-group
                     label.col-xs-10.col-sm-2.control-label(for="assetTag") Asset Tag:
-                    .col-xs-12.col-sm-10
+                    .col-xs-12.col-sm-8
                         input#assetTag.form-control(name="assetTag")
                 .form-group
                     label.col-xs-10.col-sm-2.control-label(for="hostName") Hostname:
-                    .col-xs-12.col-sm-10
+                    .col-xs-12.col-sm-8
                         input#hostName.form-control(name="hostName")
                 .form-group
                     label.col-xs-10.col-sm-2.control-label(for="skuModel") SKU:
-                    .col-xs-12.col-sm-2
+                    .col-xs-12.col-sm-3
                         select#skuModel.form-control.input-sm(name="skuModel")
                             option P1-G4
                             option P2-G4
                             option BD1-G4
                 .form-group
                     label.col-xs-10.col-sm-2.control-label(for="mfgName") Manufacturer:
-                    .col-xs-12.col-sm-2
+                    .col-xs-12.col-sm-3
                         select#mfgName.form-control.input-sm(name="mfgName")
                             option Dell
                             option Hyve

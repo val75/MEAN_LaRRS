@@ -3,15 +3,15 @@ extends layout
 block content
     .row.page-header
         .col-lg-12
-            h1 Server1
+            h1= pageHeader.title
             a.btn.btn-default.pull-right(type="button", href="/asset-edit") Edit Asset
     .row
         .col-xs-12.col-md-9
-            p Asset Tag: ASSET12345678
-            p Hostname: Server1
-            p SKU: P1-G4
-            p Manufacturer: Dell
-            p Location: LVS02
-            p Group: Default
-            p Asset Status: Maintenance
-            P Reservation Status: Not Available
+            p Asset Tag: #{asset.assetTag}
+            p Hostname: #{asset.hostname}
+            p SKU: #{asset.skuModel}
+            p Manufacturer: #{asset.mfgName}
+            p Location: #{asset.locName}
+            p Group: #{asset.groupName}
+            p Health Status: #{asset.healthStatus}
+            P Reservation Status: #{asset.resStatus}

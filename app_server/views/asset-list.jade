@@ -4,30 +4,21 @@ block content
     #banner.page-header
         .row
             .col-lg-6
-                h1 LaRRS
-                    small &nbsp; List of lab assets in all HWE Labs
+                h1= pageHeader.title
+                    small &nbsp; #{pageHeader.strapline}
         .row
             .col-xs-12.col-sm-8
                 .row.list-group
-                    .col-xs-12.list-group-item
-                        h4
-                            a(href="/asset") Server1
-                            span.badge.pull-right Maintenance
-                        p.assetTag ASSET12345678
-                        p
-                            span.label.label-warning P1-G4
-                            | &nbsp
-                            span.label.label-warning Dell
-                            | &nbsp
-                    .col-xs-12.list-group-item
-                        h4
-                            a(href="/asset") Server2
-                            span.badge.pull-right Free
-                        p.assetTag ASSET3456789
-                        p
-                            span.label.label-warning P2-G5
-                            | &nbsp
-                            span.label.label-warning Hyve
-                            | &nbsp
+                    each asset in assets
+                        .col-xs-12.list-group-item
+                            h4
+                                a(href="/asset")= asset.hostname
+                                span.badge.pull-right= asset.assetStatus
+                            p.assetTag= asset.assetTag
+                            p
+                                span.label.label-warning= asset.skuModel
+                                | &nbsp
+                                span.label.label-warning= asset.mfgName
+                                | &nbsp
             .col-xs-12.col-sm-4
                 p.lead LaRRS helps you reserve an asset in HWE Labs and takes care of it once it is released.

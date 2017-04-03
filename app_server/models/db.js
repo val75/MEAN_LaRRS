@@ -46,3 +46,10 @@ process.on('SIGTERM', function () {
         process.exit(0);
     });
 });
+
+require( './sku'           );
+require( './manufacturer'  );
+require( './location'      );
+require( './group'         );
+require( './health_status' );
+require( './asset'        );

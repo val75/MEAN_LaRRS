@@ -25,4 +25,4 @@ var
 
 //----------------- END MODULE SCOPE VARIABLES ---------------
 
-mongoose.model( 'HealthStatus', StatusSchema );
+mongoose.model( 'HealthStat', StatusSchema );

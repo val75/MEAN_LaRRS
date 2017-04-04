@@ -1,0 +1,20 @@
+db.skus.save({ name: 'P1-G4', notes: 'This is the P1-G4 SKU' })
+db.skus.save({ name: 'P2-G5', notes: 'This is the P2-G5 SKU' })
+
+db.manufacturers.save({ name: 'Dell', notes: 'Dell, Inc'})
+db.manufacturers.save({ name: 'Hyve', notes: 'This is for Hyve'})
+
+db.locations.save({ name: 'LVS02', notes: 'Just LVS02 for now'})
+
+db.groups.save({ name: 'Default', notes: 'Default Group, all new assets belong to it initially' })
+
+db.healthstats.save({ name: 'Healthy', notes: 'Healthy status' })
+db.healthstats.save({ name: 'Failed', notes: 'Failed status' })
+
+db.assets.save({ tag: 'ASSET12345678', hostname: 'Server1' })
+db.assets.update({ tag: 'ASSET12345678' }, { $push: { sku: { id: ObjectId("58e2bd8f0d9e5e05c57d6255"), name: 'P1-G4' } } })
+db.assets.update({ tag: 'ASSET12345678' }, { $push: { manufacturer: { id: ObjectId("58e2be180d9e5e05c57d6257"), name: 'Dell' } } })
+db.assets.update({ tag: 'ASSET12345678' }, { $push: { location: { id: ObjectId("58e2be790d9e5e05c57d6259"), name: 'LVS02' } } })
+db.assets.update({ tag: 'ASSET12345678' }, { $push: { group: { id: ObjectId("58e2bf680d9e5e05c57d625a"), name: 'Default' } } })
+db.assets.update({ tag: 'ASSET12345678' }, { $push: { healthStatus: { id: ObjectId("58e2bfdd0d9e5e05c57d625b"), name: 'Healthy' } } })
+

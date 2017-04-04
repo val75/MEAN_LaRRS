@@ -18,28 +18,29 @@ var
     Schema = mongoose.Schema,
 
     AssetSchema = new Schema({
-    tag:      { type: String },
-    hostname: { type: String },
-    sku: [{
-        id:   { type: Schema.Types.ObjectId, ref: 'Sku',          required: true },
-        name: { type: String,                                     required: true }
-    }],
-    manufacturer: [{
-        id:   { type: Schema.Types.ObjectId, ref: 'Manufacturer', required: true },
-        name: { type: String,                                     required: true }
-    }],
-    location: [{
-        id:   { type: Schema.Types.ObjectId, ref: 'Location',     required: true },
-        name: { type: String,                                     required: true }
-    }],
-    group: [{
-        id:   { type: Schema.Types.ObjectId, ref: 'Group',        required: true },
-        name: { type: String,                                     required: true }
-    }],
-    healthStatus: [{
-        id:   { type: Schema.Types.ObjectId, ref: 'HealthStatus', required: true },
-        name: { type: String,                                     required: true }
-    }]
+
+        tag:      { type: String },
+        hostname: { type: String },
+        sku: [{
+            id:   { type: Schema.Types.ObjectId, ref: 'Sku',          required: true },
+            name: { type: String,                                     required: true }
+        }],
+        manufacturer: [{
+            id:   { type: Schema.Types.ObjectId, ref: 'Manufacturer', required: true },
+            name: { type: String,                                     required: true }
+        }],
+        location: [{
+            id:   { type: Schema.Types.ObjectId, ref: 'Location',     required: true },
+            name: { type: String,                                     required: true }
+        }],
+        group: [{
+            id:   { type: Schema.Types.ObjectId, ref: 'Group',        required: true },
+            name: { type: String,                                     required: true }
+        }],
+        healthStatus: [{
+            id:   { type: Schema.Types.ObjectId, ref: 'HealthStatus', required: true },
+            name: { type: String,                                     required: true }
+        }]
 });
 
 //----------------- END MODULE SCOPE VARIABLES ---------------

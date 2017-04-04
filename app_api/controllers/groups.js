@@ -1,5 +1,5 @@
 /*
- * app_api/controllers/skus.js - Controller for SKU API
+ * app_api/controllers/groups.js - Controller for groups API
  */
 
 /*jslint        node    : true, continue : true,
@@ -15,9 +15,9 @@
 
 var
     mongoose = require('mongoose'),
-    Sku = mongoose.model('Sku'),
+    Group = mongoose.model('Group'),
 
-    sendJsonResponse, skuList, skuReadOne;
+    sendJsonResponse, groupList, groupReadOne;
 //----------------- END MODULE SCOPE VARIABLES ---------------
 
 //---------------- BEGIN UTILITY METHODS --------------
@@ -28,13 +28,13 @@ sendJsonResponse = function (res, status, content) {
 //----------------  END UTILITY METHODS  --------------
 
 //---------------- BEGIN PUBLIC METHODS --------------
-skuList = function (req, res) {
-    Sku
+groupList = function (req, res) {
+    Group
         .find()
-        .exec(function (err, skus) {
-            if (!skus) {
+        .exec(function (err, groups) {
+            if (!groups) {
                 sendJsonResponse(res, 404, {
-                    "message": "No SKUs found"
+                    "message": "No groups found"
                 });
                 return;
             } else if (err) {
@@ -42,19 +42,19 @@ skuList = function (req, res) {
                 sendJsonResponse(res, 404, err);
                 return;
             }
-            console.log(skus);
-            sendJsonResponse(res, 200, skus);
+            console.log(groups);
+            sendJsonResponse(res, 200, groups);
         });
 };
 
-skuReadOne = function (req, res) {
-    if (req.params && req.params.sku_id) {
-        Sku
-            .findById(req.params.sku_id)
-            .exec(function (err, sku) {
-                if (!sku) {
+groupReadOne = function (req, res) {
+    if (req.params && req.params.group_id) {
+        Group
+            .findById(req.params.group_id)
+            .exec(function (err, group) {
+                if (!group) {
                     sendJsonResponse(res, 404, {
-                        "message": "SKU not found"
+                        "message": "Group not found"
                     });
                     return;
                 } else if (err) {
@@ -62,19 +62,19 @@ skuReadOne = function (req, res) {
                     sendJsonResponse(res, 404, err);
                     return;
                 }
-                console.log(sku);
-                sendJsonResponse(res, 200, sku);
+                console.log(group);
+                sendJsonResponse(res, 200, group);
             });
     } else {
-        console.log('No sku_id specified');
+        console.log('No group_id specified');
         sendJsonResponse(res, 404, {
-            "message": "No sku_id in request"
+            "message": "No group_id in request"
         });
     }
 };
 
 module.exports = {
-    skuList    : skuList,
-    skuReadOne : skuReadOne
+    groupList    : groupList,
+    groupReadOne : groupReadOne
 };
 //----------------  END PUBLIC METHODS  --------------

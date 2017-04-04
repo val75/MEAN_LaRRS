@@ -1,5 +1,5 @@
 /*
- * app_api/controllers/skus.js - Controller for SKU API
+ * app_api/controllers/locations.js - Controller for Locations API
  */
 
 /*jslint        node    : true, continue : true,
@@ -15,9 +15,9 @@
 
 var
     mongoose = require('mongoose'),
-    Sku = mongoose.model('Sku'),
+    Location = mongoose.model('Location'),
 
-    sendJsonResponse, skuList, skuReadOne;
+    sendJsonResponse, locationList, locationReadOne;
 //----------------- END MODULE SCOPE VARIABLES ---------------
 
 //---------------- BEGIN UTILITY METHODS --------------
@@ -28,13 +28,13 @@ sendJsonResponse = function (res, status, content) {
 //----------------  END UTILITY METHODS  --------------
 
 //---------------- BEGIN PUBLIC METHODS --------------
-skuList = function (req, res) {
-    Sku
+locationList = function (req, res) {
+    Location
         .find()
-        .exec(function (err, skus) {
-            if (!skus) {
+        .exec(function (err, locations) {
+            if (!locations) {
                 sendJsonResponse(res, 404, {
-                    "message": "No SKUs found"
+                    "message": "No locations found"
                 });
                 return;
             } else if (err) {
@@ -42,19 +42,19 @@ skuList = function (req, res) {
                 sendJsonResponse(res, 404, err);
                 return;
             }
-            console.log(skus);
-            sendJsonResponse(res, 200, skus);
+            console.log(locations);
+            sendJsonResponse(res, 200, locations);
         });
 };
 
-skuReadOne = function (req, res) {
-    if (req.params && req.params.sku_id) {
-        Sku
-            .findById(req.params.sku_id)
-            .exec(function (err, sku) {
-                if (!sku) {
+locationReadOne = function (req, res) {
+    if (req.params && req.params.location_id) {
+        Location
+            .findById(req.params.location_id)
+            .exec(function (err, location) {
+                if (!location) {
                     sendJsonResponse(res, 404, {
-                        "message": "SKU not found"
+                        "message": "Location not found"
                     });
                     return;
                 } else if (err) {
@@ -62,19 +62,19 @@ skuReadOne = function (req, res) {
                     sendJsonResponse(res, 404, err);
                     return;
                 }
-                console.log(sku);
-                sendJsonResponse(res, 200, sku);
+                console.log(location);
+                sendJsonResponse(res, 200, location);
             });
     } else {
-        console.log('No sku_id specified');
+        console.log('No location_id specified');
         sendJsonResponse(res, 404, {
-            "message": "No sku_id in request"
+            "message": "No location_id in request"
         });
     }
 };
 
 module.exports = {
-    skuList    : skuList,
-    skuReadOne : skuReadOne
+    locationList    : locationList,
+    locationReadOne : locationReadOne
 };
 //----------------  END PUBLIC METHODS  --------------

@@ -1,5 +1,5 @@
 /*
- * app_api/controllers/skus.js - Controller for SKU API
+ * app_api/controllers/health.js - Controller for health status API
  */
 
 /*jslint        node    : true, continue : true,
@@ -15,9 +15,9 @@
 
 var
     mongoose = require('mongoose'),
-    Sku = mongoose.model('Sku'),
+    HealthStat = mongoose.model('HealthStat'),
 
-    sendJsonResponse, skuList, skuReadOne;
+    sendJsonResponse, statList, statReadOne;
 //----------------- END MODULE SCOPE VARIABLES ---------------
 
 //---------------- BEGIN UTILITY METHODS --------------
@@ -28,13 +28,13 @@ sendJsonResponse = function (res, status, content) {
 //----------------  END UTILITY METHODS  --------------
 
 //---------------- BEGIN PUBLIC METHODS --------------
-skuList = function (req, res) {
-    Sku
+statList = function (req, res) {
+    HealthStat
         .find()
-        .exec(function (err, skus) {
-            if (!skus) {
+        .exec(function (err, hstats) {
+            if (!hstats) {
                 sendJsonResponse(res, 404, {
-                    "message": "No SKUs found"
+                    "message": "No health stats found"
                 });
                 return;
             } else if (err) {
@@ -42,19 +42,19 @@ skuList = function (req, res) {
                 sendJsonResponse(res, 404, err);
                 return;
             }
-            console.log(skus);
-            sendJsonResponse(res, 200, skus);
+            console.log(hstats);
+            sendJsonResponse(res, 200, hstats);
         });
 };
 
-skuReadOne = function (req, res) {
-    if (req.params && req.params.sku_id) {
-        Sku
-            .findById(req.params.sku_id)
-            .exec(function (err, sku) {
-                if (!sku) {
+statReadOne = function (req, res) {
+    if (req.params && req.params.hstat_id) {
+        HealthStat
+            .findById(req.params.hstat_id)
+            .exec(function (err, hstat) {
+                if (!hstat) {
                     sendJsonResponse(res, 404, {
-                        "message": "SKU not found"
+                        "message": "Health Status not found"
                     });
                     return;
                 } else if (err) {
@@ -62,19 +62,19 @@ skuReadOne = function (req, res) {
                     sendJsonResponse(res, 404, err);
                     return;
                 }
-                console.log(sku);
-                sendJsonResponse(res, 200, sku);
+                console.log(hstat);
+                sendJsonResponse(res, 200, hstat);
             });
     } else {
-        console.log('No sku_id specified');
+        console.log('No hstat_id specified');
         sendJsonResponse(res, 404, {
-            "message": "No sku_id in request"
+            "message": "No hstat_id in request"
         });
     }
 };
 
 module.exports = {
-    skuList    : skuList,
-    skuReadOne : skuReadOne
+    statList    : statList,
+    statReadOne : statReadOne
 };
 //----------------  END PUBLIC METHODS  --------------

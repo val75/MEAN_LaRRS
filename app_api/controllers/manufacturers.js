@@ -1,5 +1,5 @@
 /*
- * app_api/controllers/skus.js - Controller for SKU API
+ * app_api/controllers/manufacturers.js - Controller for manufacturers API
  */
 
 /*jslint        node    : true, continue : true,
@@ -15,9 +15,9 @@
 
 var
     mongoose = require('mongoose'),
-    Sku = mongoose.model('Sku'),
+    Manufacturer = mongoose.model('Manufacturer'),
 
-    sendJsonResponse, skuList, skuReadOne;
+    sendJsonResponse, mfgList, mfgReadOne;
 //----------------- END MODULE SCOPE VARIABLES ---------------
 
 //---------------- BEGIN UTILITY METHODS --------------
@@ -28,13 +28,13 @@ sendJsonResponse = function (res, status, content) {
 //----------------  END UTILITY METHODS  --------------
 
 //---------------- BEGIN PUBLIC METHODS --------------
-skuList = function (req, res) {
-    Sku
+mfgList = function (req, res) {
+    Manufacturer
         .find()
-        .exec(function (err, skus) {
-            if (!skus) {
+        .exec(function (err, manufacturers) {
+            if (!manufacturers) {
                 sendJsonResponse(res, 404, {
-                    "message": "No SKUs found"
+                    "message": "No manufacturers found"
                 });
                 return;
             } else if (err) {
@@ -42,19 +42,19 @@ skuList = function (req, res) {
                 sendJsonResponse(res, 404, err);
                 return;
             }
-            console.log(skus);
-            sendJsonResponse(res, 200, skus);
+            console.log(manufacturers);
+            sendJsonResponse(res, 200, manufacturers)
         });
 };
 
-skuReadOne = function (req, res) {
-    if (req.params && req.params.sku_id) {
-        Sku
-            .findById(req.params.sku_id)
-            .exec(function (err, sku) {
-                if (!sku) {
+mfgReadOne = function (req, res) {
+    if (req.params && req.params.manufacturer_id) {
+        Manufacturer
+            .findById(req.params.manufacturer_id)
+            .exec(function (err, manufacturer) {
+                if (!manufacturer) {
                     sendJsonResponse(res, 404, {
-                        "message": "SKU not found"
+                        "message": "Manufacturer not found"
                     });
                     return;
                 } else if (err) {
@@ -62,19 +62,19 @@ skuReadOne = function (req, res) {
                     sendJsonResponse(res, 404, err);
                     return;
                 }
-                console.log(sku);
-                sendJsonResponse(res, 200, sku);
+                console.log(manufacturer);
+                sendJsonResponse(res, 200, manufacturer);
             });
     } else {
-        console.log('No sku_id specified');
+        console.log('No manufacturer_id specified');
         sendJsonResponse(res, 404, {
-            "message": "No sku_id in request"
+            "message": "No manufacturer_id in request"
         });
     }
 };
 
 module.exports = {
-    skuList    : skuList,
-    skuReadOne : skuReadOne
+    mfgList    : mfgList,
+    mfgReadOne : mfgReadOne
 };
 //----------------  END PUBLIC METHODS  --------------

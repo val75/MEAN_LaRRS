@@ -17,7 +17,7 @@ var
     mongoose = require('mongoose'),
     Group = mongoose.model('Group'),
 
-    sendJsonResponse, groupList, groupReadOne;
+    sendJsonResponse, groupList, groupReadOne, groupCreate, groupUpdateOne, groupDeleteOne;
 //----------------- END MODULE SCOPE VARIABLES ---------------
 
 //---------------- BEGIN UTILITY METHODS --------------
@@ -73,8 +73,80 @@ groupReadOne = function (req, res) {
     }
 };
 
+groupCreate = function (req, res) {
+    // Uniqueness for <name> is insured in the model
+    Group.create({
+        name: req.body.name,
+        notes: req.body.notes
+    }, function (err, group) {
+        if (err) {
+            sendJsonResponse(res, 400, err); // Status code 400 -> bad request
+        } else {
+            sendJsonResponse(res, 201, group); // Status code 201 -> resource created
+        }
+    });
+};
+
+groupUpdateOne = function (req, res) {
+    if (!req.params.group_id) {
+        sendJsonResponse(res, 404, {
+            "message": "No group_id"
+        });
+        return;
+    }
+    Group
+        .findById(req.params.group_id)
+        .exec(
+            function (err, group) {
+                if (!group) {
+                    sendJsonResponse(res, 404, {
+                        "message": "Group not found"
+                    });
+                    return;
+                } else if (err) {
+                    sendJsonResponse(res, 400, err);
+                    return;
+                }
+                group.name = req.body.name;
+                group.notes = req.body.notes;
+
+                group.save(function (err, group) {
+                    if (err) {
+                        sendJsonResponse(res, 404, err);
+                    } else {
+                        sendJsonResponse(res, 200, group);
+                    }
+                });
+            }
+        );
+};
+
+groupDeleteOne = function (req, res) {
+    var group_id = req.params.group_id;
+    if (group_id) {
+        Group
+            .findByIdAndRemove(group_id)
+            .exec(
+                function (err, group) {
+                    if (err) {
+                        sendJsonResponse(res, 404, err); // Status code 404 -> not found
+                        return;
+                    }
+                    sendJsonResponse(res, 204, null); // Status code 204 -> no content
+                }
+            );
+    } else {
+        sendJsonResponse(res, 404, {
+            "message": "No group_id"
+        });
+    }
+};
+
 module.exports = {
     groupList    : groupList,
-    groupReadOne : groupReadOne
+    groupReadOne : groupReadOne,
+    groupCreate : groupCreate,
+    groupUpdateOne : groupUpdateOne,
+    groupDeleteOne : groupDeleteOne
 };
 //----------------  END PUBLIC METHODS  --------------

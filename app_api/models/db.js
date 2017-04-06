@@ -52,4 +52,5 @@ require( './manufacturer'  );
 require( './location'      );
 require( './group'         );
 require( './health_status' );
-require( './asset'        );
+require( './hw_model'      );
+require( './asset'         );

@@ -27,16 +27,25 @@ var
 
 //---------------- BEGIN ROUTES CONFIGURATION --------------
 // SKUs
-router.get('/skus', ctrlSkus.skuList);
-router.get('/skus/:sku_id', ctrlSkus.skuReadOne);
+router.get(    '/skus', ctrlSkus.skuList);
+router.post(   '/skus', ctrlSkus.skuCreate);
+router.get(    '/skus/:sku_id', ctrlSkus.skuReadOne);
+router.put(    '/skus/:sku_id', ctrlSkus.skuUpdateOne);
+router.delete( '/skus/:sku_id', ctrlSkus.skuDeleteOne);
 
 // Manufacturers
-router.get('/manufacturers', ctrlMfgs.mfgList);
-router.get('/manufacturers/:manufacturer_id', ctrlMfgs.mfgReadOne);
+router.get(    '/manufacturers', ctrlMfgs.mfgList);
+router.post(   '/manufacturers', ctrlMfgs.mfgCreate);
+router.get(    '/manufacturers/:manufacturer_id', ctrlMfgs.mfgReadOne);
+router.put(    '/manufacturers/:manufacturer_id', ctrlMfgs.mfgUpdateOne);
+router.delete( '/manufacturers/:manufacturer_id', ctrlMfgs.mfgDeleteOne);
 
 // Locations
-router.get('/locations', ctrlLocations.locationList);
-router.get('/locations/:location_id', ctrlLocations.locationReadOne);
+router.get(    '/locations', ctrlLocations.locationList);
+router.post(   '/locations', ctrlLocations.locationCreate);
+router.get(    '/locations/:location_id', ctrlLocations.locationReadOne);
+router.put(    '/locations/:location_id', ctrlLocations.locationUpdateOne);
+router.delete( '/locations/:location_id', ctrlLocations.locationDeleteOne);
 
 // Groups
 router.get('/groups', ctrlGroups.groupList);

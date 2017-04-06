@@ -17,7 +17,7 @@ var
     mongoose = require('mongoose'),
     Sku = mongoose.model('Sku'),
 
-    sendJsonResponse, skuList, skuReadOne;
+    sendJsonResponse, skuList, skuReadOne, skuCreate, skuUpdateOne, skuDeleteOne;
 //----------------- END MODULE SCOPE VARIABLES ---------------
 
 //---------------- BEGIN UTILITY METHODS --------------
@@ -59,7 +59,7 @@ skuReadOne = function (req, res) {
                     return;
                 } else if (err) {
                     console.log(err);
-                    sendJsonResponse(res, 404, err);
+                    sendJsonResponse(res, 404, err); // Status code 404 -> not found
                     return;
                 }
                 console.log(sku);
@@ -73,8 +73,80 @@ skuReadOne = function (req, res) {
     }
 };
 
+skuCreate = function (req, res) {
+    // Uniqueness for <name> is insured in the model
+    Sku.create({
+        name: req.body.name,
+        notes: req.body.notes
+    }, function (err, sku) {
+        if (err) {
+            sendJsonResponse(res, 400, err); // Status code 400 -> bad request
+        } else {
+            sendJsonResponse(res, 201, sku); // Status code 201 -> resource created
+        }
+    });
+};
+
+skuUpdateOne = function (req, res) {
+    if (!req.params.sku_id) {
+        sendJsonResponse(res, 404, {
+            "message": "No sku_id"
+        });
+        return;
+    }
+    Sku
+        .findById(req.params.sku_id)
+        .exec(
+            function (err, sku) {
+                if (!sku) {
+                    sendJsonResponse(res, 404, {
+                        "message": "SKU not found"
+                    });
+                    return;
+                } else if (err) {
+                    sendJsonResponse(res, 400, err);
+                    return;
+                }
+                sku.name = req.body.name;
+                sku.notes = req.body.notes;
+
+                sku.save(function (err, sku) {
+                    if (err) {
+                        sendJsonResponse(res, 404, err);
+                    } else {
+                        sendJsonResponse(res, 200, sku);
+                    }
+                });
+            }
+        );
+};
+
+skuDeleteOne = function (req, res) {
+    var sku_id = req.params.sku_id;
+    if (sku_id) {
+        Sku
+            .findByIdAndRemove(sku_id)
+            .exec(
+                function (err, sku) {
+                    if (err) {
+                        sendJsonResponse(res, 404, err); // Status code 404 -> not found
+                        return;
+                    }
+                    sendJsonResponse(res, 204, null); // Status code 204 -> no content
+                }
+            );
+    } else {
+        sendJsonResponse(res, 404, {
+            "message": "No sku_id"
+        });
+    }
+};
+
 module.exports = {
-    skuList    : skuList,
-    skuReadOne : skuReadOne
+    skuList      : skuList,
+    skuReadOne   : skuReadOne,
+    skuCreate    : skuCreate,
+    skuUpdateOne : skuUpdateOne,
+    skuDeleteOne : skuDeleteOne
 };
 //----------------  END PUBLIC METHODS  --------------

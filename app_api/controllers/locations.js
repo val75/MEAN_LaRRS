@@ -17,7 +17,7 @@ var
     mongoose = require('mongoose'),
     Location = mongoose.model('Location'),
 
-    sendJsonResponse, locationList, locationReadOne;
+    sendJsonResponse, locationList, locationReadOne, locationCreate, locationUpdateOne, locationDeleteOne;
 //----------------- END MODULE SCOPE VARIABLES ---------------
 
 //---------------- BEGIN UTILITY METHODS --------------
@@ -73,8 +73,80 @@ locationReadOne = function (req, res) {
     }
 };
 
+locationCreate = function (req, res) {
+    // Uniqueness for <name> is insured in the model
+    Location.create({
+        name: req.body.name,
+        notes: req.body.notes
+    }, function (err, location) {
+        if (err) {
+            sendJsonResponse(res, 400, err); // Status code 400 -> bad request
+        } else {
+            sendJsonResponse(res, 201, location); // Status code 201 -> resource created
+        }
+    });
+};
+
+locationUpdateOne = function (req, res) {
+    if (!req.params.location_id) {
+        sendJsonResponse(res, 404, {
+            "message": "No location_id"
+        });
+        return;
+    }
+    Location
+        .findById(req.params.location_id)
+        .exec(
+            function (err, location) {
+                if (!location) {
+                    sendJsonResponse(res, 404, {
+                        "message": "Location not found"
+                    });
+                    return;
+                } else if (err) {
+                    sendJsonResponse(res, 400, err);
+                    return;
+                }
+                location.name = req.body.name;
+                location.notes = req.body.notes;
+
+                location.save(function (err, location) {
+                    if (err) {
+                        sendJsonResponse(res, 404, err);
+                    } else {
+                        sendJsonResponse(res, 200, location);
+                    }
+                });
+            }
+        );
+};
+
+locationDeleteOne = function (req, res) {
+    var location_id = req.params.location_id;
+    if (location_id) {
+        Location
+            .findByIdAndRemove(location_id)
+            .exec(
+                function (err, location) {
+                    if (err) {
+                        sendJsonResponse(res, 404, err); // Status code 404 -> not found
+                        return;
+                    }
+                    sendJsonResponse(res, 204, null); // Status code 204 -> no content
+                }
+            );
+    } else {
+        sendJsonResponse(res, 404, {
+            "message": "No location_id"
+        });
+    }
+};
+
 module.exports = {
-    locationList    : locationList,
-    locationReadOne : locationReadOne
+    locationList      : locationList,
+    locationReadOne   : locationReadOne,
+    locationCreate    : locationCreate,
+    locationUpdateOne : locationUpdateOne,
+    locationDeleteOne : locationDeleteOne
 };
 //----------------  END PUBLIC METHODS  --------------

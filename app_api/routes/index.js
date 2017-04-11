@@ -62,6 +62,13 @@ router.get(    '/hStatus/:hstat_id', ctrlHealthStatus.statReadOne);
 router.put(    '/hStatus/:hstat_id', ctrlHealthStatus.statUpdateOne);
 router.delete( '/hStatus/:hstat_id', ctrlHealthStatus.statDeleteOne);
 
+// Hardware Model
+router.get(    '/hwmodels', ctrlHwModels.hwModelList);
+router.post(   '/hwmodels', ctrlHwModels.hwModelCreate);
+router.get(    '/hwmodels/:hwmodel_id', ctrlHwModels.hwModelReadOne);
+router.put(    '/hwmodels/:hwmodel_id', ctrlHwModels.hwModelUpdateOne);
+router.delete( '/hwmodels/:hwmodel_id', ctrlHwModels.hwModelDeleteOne);
+
 // Assets
 router.get(    '/assets',           ctrlAssets.assetList      );
 router.post(   '/assets',           ctrlAssets.assetCreate    );

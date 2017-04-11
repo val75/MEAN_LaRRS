@@ -15,4 +15,139 @@
 
 var
     mongoose = require('mongoose'),
-    HwModel = mongoose.model('HwModel');
+    HwModel = mongoose.model('HwModel'),
+
+    sendJsonResponse, hwModelList, hwModelReadOne, hwModelCreate, hwModelUpdateOne, hwModelDeleteOne;
+//----------------- END MODULE SCOPE VARIABLES ---------------
+
+//---------------- BEGIN UTILITY METHODS --------------
+sendJsonResponse = function (res, status, content) {
+    res.status(status);
+    res.json(content);
+};
+//----------------  END UTILITY METHODS  --------------
+
+//---------------- BEGIN PUBLIC METHODS --------------
+hwModelList = function (req, res) {
+    HwModel
+        .find()
+        .exec(function (err, hwmodels) {
+            if (!hwmodels) {
+                sendJsonResponse(res, 404, {
+                    "message": "No hardware models found"
+                });
+                return;
+            } else if (err) {
+                console.log(err);
+                sendJsonResponse(res, 404, err);
+                return;
+            }
+            console.log(hwmodels);
+            sendJsonResponse(res, 200, hwmodels);
+        });
+};
+
+hwModelReadOne = function (req, res) {
+    if (req.params && req.params.hwmodel_id) {
+        HwModel
+            .findById(req.params.hwmodel_id)
+            .exec(function (err, hwmodel) {
+                if (!hwmodel) {
+                    sendJsonResponse(res, 404, {
+                        "message": "Hardware model not found"
+                    });
+                    return;
+                } else if (err) {
+                    console.log(err);
+                    sendJsonResponse(res, 404, err); // Status code 404 -> not found
+                    return;
+                }
+                console.log(hwmodel);
+                sendJsonResponse(res, 200, hwmodel);
+            });
+    } else {
+        console.log('No hwmodel_id specified');
+        sendJsonResponse(res, 404, {
+            "message": "No hwmodel_id in request"
+        });
+    }
+};
+
+hwModelCreate = function (req, res) {
+    // Uniqueness for <name> is insured in the model
+    HwModel.create({
+        name: req.body.name,
+        notes: req.body.notes
+    }, function (err, hwmodel) {
+        if (err) {
+            sendJsonResponse(res, 400, err); // Status code 400 -> bad request
+        } else {
+            sendJsonResponse(res, 201, hwmodel); // Status code 201 -> resource created
+        }
+    });
+};
+
+hwModelUpdateOne = function (req, res) {
+    if (!req.params.hwmodel_id) {
+        sendJsonResponse(res, 404, {
+            "message": "No hwmodel_id"
+        });
+        return;
+    }
+    HwModel
+        .findById(req.params.hwmodel_id)
+        .exec(
+            function (err, hwmodel) {
+                if (!hwmodel) {
+                    sendJsonResponse(res, 404, {
+                        "message": "Hardware model not found"
+                    });
+                    return;
+                } else if (err) {
+                    sendJsonResponse(res, 400, err);
+                    return;
+                }
+                hwmodel.name = req.body.name;
+                hwmodel.notes = req.body.notes;
+
+                hwmodel.save(function (err, hwmodel) {
+                    if (err) {
+                        sendJsonResponse(res, 404, err);
+                    } else {
+                        sendJsonResponse(res, 200, hwmodel);
+                    }
+                });
+            }
+        );
+};
+
+hwModelDeleteOne = function (req, res) {
+    var hwmodel_id = req.params.hwmodel_id;
+    if (hwmodel_id) {
+        HwModel
+            .findByIdAndRemove(hwmodel_id)
+            .exec(
+                function (err, hwmodel) {
+                    if (err) {
+                        sendJsonResponse(res, 404, err); // Status code 404 -> not found
+                        return;
+                    }
+                    sendJsonResponse(res, 204, null); // Status code 204 -> no content
+                }
+            );
+    } else {
+        sendJsonResponse(res, 404, {
+            "message": "No hwmodel_id"
+        });
+    }
+};
+
+module.exports = {
+    hwModelList      : hwModelList,
+    hwModelReadOne   : hwModelReadOne,
+    hwModelCreate    : hwModelCreate,
+    hwModelUpdateOne : hwModelUpdateOne,
+    hwModelDeleteOne : hwModelDeleteOne
+};
+
+//----------------  END PUBLIC METHODS  --------------

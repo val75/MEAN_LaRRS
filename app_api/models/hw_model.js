@@ -15,11 +15,11 @@
 
 var
     mongoose = require( 'mongoose' ),
-    Schema = mongoose.Schema,
+    Schema   = mongoose.Schema,
 
     HwModelSchema = new Schema({
-        name: { type: String, required: true},
-        notes: { type: String }
+        name:  { type: String, required: true, unique: true },
+        notes: { type: String                               }
     });
 //----------------- END MODULE SCOPE VARIABLES ---------------
 

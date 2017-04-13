@@ -17,7 +17,8 @@ var
     mongoose = require('mongoose'),
     Asset = mongoose.model('Asset'),
 
-    sendJsonResponse, assetList, assetReadOne, assetCreate, assetUpdateOne, assetDeleteOne;
+    sendJsonResponse,
+    assetList, assetReadOne, assetCreate, assetUpdateOne, assetDeleteOne;
 //----------------- END MODULE SCOPE VARIABLES ---------------
 
 //---------------- BEGIN UTILITY METHODS --------------

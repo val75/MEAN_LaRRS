@@ -8,11 +8,12 @@ block content
                     small &nbsp; #{pageHeader.strapline}
         .row
             .col-xs-12.col-sm-8
+                .error= message
                 .row.list-group
                     each asset in assets
                         .col-xs-12.list-group-item
                             h4
-                                a(href="/asset")= asset.hostname
+                                a(href="/assets/#{asset._id}")= asset.hostname
                                 span.badge.pull-right= asset.assetStatus
                             p.assetTag= asset.assetTag
                             p

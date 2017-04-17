@@ -4,6 +4,24 @@ var apiOptions = {
     server : "http://localhost:3000"
 };
 
+var _showError = function (req, res, status) {
+    var title, content;
+
+    if (status === 404) {
+        title = "404, page not found";
+        content = "Looks like we can't find this page, sorry!";
+    } else {
+        title = status + ", something's gone wrong";
+        content = "Something, somewhere, has just gone a little wrong";
+    }
+
+    res.status(status);
+    res.render('generic-text', {
+        title : title,
+        content : content
+    });
+};
+
 var renderAssetHome = function (req, res, responseBody) {
     var message;
     if (!(responseBody instanceof Array)) {
@@ -25,21 +43,23 @@ var renderAssetHome = function (req, res, responseBody) {
     });
 };
 
-var renderAssetInfo = function (req, res) {
+var renderAssetInfo = function (req, res, assetDetail) {
+    //console.log(assetDetail);
+    //console.log(assetDetail.hostname);
     res.render('asset-info', {
-        title: 'Server1',
+        title: assetDetail.hostname,
         pageHeader: {
-            title: 'Server1'
+            title: assetDetail.hostname
         },
         asset: {
-            hostname: 'Server1',
-            assetTag: 'ASSET12345678',
-            skuModel: 'P1-G4',
-            mfgName: 'Dell',
-            locName: 'LVS02',
-            groupName: 'Default Group',
-            healthStatus: 'Maintenance',
-            resStatus: 'Not Available'
+            hostname: assetDetail.hostname,
+            assetTag: assetDetail.assetTag,
+            skuModel: assetDetail.skuModel,
+            mfgName: assetDetail.mfgName,
+            locName: assetDetail.locName,
+            groupName: assetDetail.groupName,
+            healthStatus: assetDetail.assetStatus,
+            resStatus: assetDetail.resStatus
         }
     });
 };
@@ -89,7 +109,41 @@ module.exports.assetList = function (req, res) {
 
 /* GET asset info page */
 module.exports.assetInfo = function (req, res) {
-    renderAssetInfo(req, res);
+    var
+        requestOptions, path;
+
+    path = "/api/assets/" + req.params.assetId;
+    requestOptions = {
+        url : apiOptions.server + path,
+        method : "GET",
+        json : {}
+    };
+    request(
+        requestOptions,
+        function (err, response, body) {
+            var
+                doc = body,
+                assetInfo = [];
+
+            //console.log(doc);
+            if ( response.statusCode === 200 ) {
+                assetInfo = {
+                    _id: doc._id,
+                    hostname: doc.hostname,
+                    assetTag: doc.tag,
+                    skuModel: doc.sku.map(function (mysku) { return mysku.name } ),
+                    mfgName: doc.manufacturer.map(function (mymfg) { return mymfg.name } ),
+                    locName: doc.location.map(function (myloc) { return myloc.name } ),
+                    groupName: doc.group.map(function (mygroup) { return mygroup.name } ),
+                    assetStatus: doc.healthStatus.map(function (myhstat) { return myhstat.name } ),
+                    resStatus: 'Not Available'
+                };
+                renderAssetInfo(req, res, assetInfo);
+            } else {
+                _showError(req, res, response.statusCode);
+            }
+        }
+    );
 };
 
 /* GET edit asset page */

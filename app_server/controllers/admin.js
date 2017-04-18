@@ -75,6 +75,7 @@ skuList = function (req, res) {
                 data.forEach(function (doc) {
                     skuList.push({
                         _id: doc._id,
+                        type: 'skus',
                         name: doc.name,
                         notes: doc.notes
                     });
@@ -112,6 +113,7 @@ manufacturerList = function (req, res) {
                     //console.log(doc);
                     mfgList.push({
                         _id: doc._id,
+                        type: 'manufacturers',
                         name: doc.name,
                         notes: doc.notes
                     });
@@ -149,6 +151,7 @@ locationList = function (req, res) {
                     //console.log(doc);
                     locList.push({
                         _id: doc._id,
+                        type: 'locations',
                         name: doc.name,
                         notes: doc.notes
                     });
@@ -186,6 +189,7 @@ groupList = function (req, res) {
                     //console.log(doc);
                     groupList.push({
                         _id: doc._id,
+                        type: 'groups',
                         name: doc.name,
                         notes: doc.notes
                     });
@@ -223,6 +227,7 @@ hstatList = function (req, res) {
                     //console.log(doc);
                     hstatList.push({
                         _id: doc._id,
+                        type: 'hStatus',
                         name: doc.name,
                         notes: doc.notes
                     });

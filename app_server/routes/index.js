@@ -12,6 +12,12 @@ router.get('/asset-edit', ctrlAssets.assetEdit);
 /* Admin pages */
 router.get('/admin', ctrlAdmin.taskList);
 
+router.get('/admin/skus', ctrlAdmin.skuList);
+router.get('/admin/mfg', ctrlAdmin.manufacturerList);
+router.get('/admin/locations', ctrlAdmin.locationList);
+router.get('/admin/groups', ctrlAdmin.groupList);
+router.get('/admin/hstats', ctrlAdmin.hstatList);
+
 /* API Help page */
 router.get('/api_help', ctrlApiHelp.show);
 

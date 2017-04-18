@@ -23,9 +23,24 @@ html
           ul.nav.navbar-nav
             li
               a(href='/api_help/') API Help
+            li.dropdown
+              a.dropdown-toggle(data-toggle='dropdown' href='/admin/') Admin
+                span.caret
+              ul.dropdown-menu
+                li
+                  a(href='/admin/skus') SKUs
+                li
+                  a(href='/admin/mfg') Manufacturers
+                li
+                  a(href='/admin/locations') Locations
+                li
+                  a(href='/admin/groups') Groups
+                li
+                  a(href='/admin/hstats') Health Status
           ul.nav.navbar-nav.navbar-right
             li
-              a(href='/admin/') Admin
+              a(href='/login')
+                  span.glyphicon.glyphicon-log-in  Login
 
     .container
       block content

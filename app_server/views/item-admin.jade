@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    .row.page-header
+        .col-lg-12
+            h1= pageHeader.title
+                small &nbsp; #{pageHeader.strapline}
+    .row
+        .col-xs-12.col-sm-8
+            .error= message
+            .row.list-group
+                each item in items
+                    .col-xs-12.list-group-item
+                        h4
+                            a(href="/skus")= item.name
+                        p= item.notes

@@ -1,0 +1,20 @@
+extends layout
+
+block content
+    .row.page-header
+        .col-lg-12
+            h1= pageHeader.title
+                small &nbsp; #{pageHeader.strapline}
+    .row
+        .col-xs-12.col-md-6
+            form.form-horizontal(action="/admin/#{type}", method="post", role="form")
+                .form-group
+                    label.col-xs-10.col-sm-3.control-label(for="itemName") #{itemCapName} Name:
+                    .col-xs-12.col-sm-9
+                        input#itemName.form-control(name="itemName")
+                .form-group
+                    label.col-sm-3.control-label(for="itemNotes") Notes:
+                    .col-sm-9
+                        textarea#itemNotes.form-control(name="itemNotes", rows="5")
+                button.btn.btn-default #{title}
+        .col-xs-12.col-md-4

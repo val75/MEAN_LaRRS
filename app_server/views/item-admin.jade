@@ -12,7 +12,7 @@ block content
                 each item in items
                     .col-xs-12.list-group-item
                         h4
-                            a(href="/#{item.type}/#{item._id}")= item.name
+                            a(href="/admin/#{item.type}/#{item._id}")= item.name
                             a.btn.btn-default.pull-right(href="/admin/#{item.type}/#{item._id}/delete")
                                 | Delete
                             | &nbsp &nbsp

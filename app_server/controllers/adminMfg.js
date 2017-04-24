@@ -18,8 +18,8 @@ var
         server : "http://localhost:3000"
     },
 
-    _showError, renderMfgList, renderMfgAddForm,
-    mfgList, addMfg, doAddMfg, deleteMfg;
+    _showError, renderMfgList, renderMfgAddForm, renderMfgInfo,
+    mfgList, mfgInfo, addMfg, doAddMfg, deleteMfg;
 //----------------- END MODULE SCOPE VARIABLES ---------------
 
 //---------------- BEGIN UTILITY METHODS --------------
@@ -74,6 +74,19 @@ renderMfgAddForm = function (req, res) {
         itemCapName : "Manufacturer"
     });
 };
+
+renderMfgInfo = function (req, res, itemDetail) {
+    res.render('item-info', {
+        title : itemDetail.name,
+        pageHeader : {
+            title : itemDetail.name
+        },
+        item: {
+            name: itemDetail.name,
+            notes: itemDetail.notes
+        }
+    });
+};
 //----------------  END UTILITY METHODS  --------------
 
 //---------------- BEGIN PUBLIC METHODS --------------
@@ -107,6 +120,38 @@ mfgList = function (req, res) {
                 renderMfgList(req, res, mfgList);
             } else {
                 renderMfgList(req, res, data);
+            }
+        }
+    );
+};
+
+mfgInfo = function (req, res) {
+    var
+        requestOptions, path;
+
+    path = '/api/manufacturers/' + req.params.mfg_id;
+    requestOptions = {
+        url    : apiOptions.server + path,
+        method : "GET",
+        json   : {}
+    };
+
+    request(
+        requestOptions,
+        function (err, response, body) {
+            var
+                doc = body,
+                itemInfo = [];
+
+            if (response.statusCode === 200) {
+                itemInfo = {
+                    _id: doc._id,
+                    name: doc.name,
+                    notes: doc.notes
+                };
+                renderMfgInfo(req, res, itemInfo);
+            } else {
+                _showError(req, res, response.statusCode);
             }
         }
     );
@@ -169,6 +214,7 @@ deleteMfg = function (req, res) {
 
 module.exports = {
     mfgList   : mfgList,
+    mfgInfo   : mfgInfo,
     addMfg    : addMfg,
     doAddMfg  : doAddMfg,
     deleteMfg : deleteMfg

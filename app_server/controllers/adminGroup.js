@@ -1,5 +1,5 @@
 /*
- * app_server/controllers/adminSku.js - Server controller for SKU admin
+ * app_server/controllers/adminGroup.js - Server controller for group admin
  */
 
 /*jslint        node    : true, continue : true,
@@ -18,8 +18,8 @@ var
         server : "http://localhost:3000"
     },
 
-    _showError, renderSkuList, renderSkuAddForm, renderSkuInfo,
-    skuList, skuInfo, addSku, doAddSku, deleteSku;
+    _showError, renderGroupList, renderGroupAddForm, renderGroupInfo,
+    groupList, groupInfo, addGroup, doAddGroup, deleteGroup;
 //----------------- END MODULE SCOPE VARIABLES ---------------
 
 //---------------- BEGIN UTILITY METHODS --------------
@@ -41,7 +41,7 @@ _showError = function (req, res, status) {
     });
 };
 
-renderSkuList = function (req, res, responseBody) {
+renderGroupList = function (req, res, responseBody) {
     var message;
     if (!(responseBody instanceof Array)) {
         message = "API lookup error";
@@ -52,30 +52,30 @@ renderSkuList = function (req, res, responseBody) {
         }
     }
     res.render('item-admin', {
-        title      : 'SKUs',
+        title      : 'Groups',
         pageHeader : {
-            title     : 'SKUs',
-            strapline : 'List of defined SKUs'
+            title     : 'Groups',
+            strapline : 'List of defined asset groups'
         },
         items   : responseBody,
-        type    : 'skus',
+        type    : 'groups',
         message : message
     });
 };
 
-renderSkuAddForm = function (req, res) {
+renderGroupAddForm = function (req, res) {
     res.render('item-add-form', {
-        title      : 'Add SKU',
+        title      : 'Add Group',
         pageHeader : {
-            title     : 'Add SKU',
-            strapline : 'Define new SKU'
+            title     : 'Add Group',
+            strapline : 'Define new asset group'
         },
-        type        : 'skus',
-        itemCapName : "SKU"
+        type        : 'groups',
+        itemCapName : "Group"
     });
 };
 
-renderSkuInfo = function (req, res, itemDetail) {
+renderGroupInfo = function (req, res, itemDetail) {
     res.render('item-info', {
         title : itemDetail.name,
         pageHeader : {
@@ -90,11 +90,11 @@ renderSkuInfo = function (req, res, itemDetail) {
 //----------------  END UTILITY METHODS  --------------
 
 //---------------- BEGIN PUBLIC METHODS --------------
-skuList = function (req, res) {
+groupList = function (req, res) {
     var
         requestOptions, path;
 
-    path = '/api/skus';
+    path = '/api/groups';
     requestOptions = {
         url    : apiOptions.server + path,
         method : "GET",
@@ -106,30 +106,30 @@ skuList = function (req, res) {
         function (err, response, body) {
             var
                 data,
-                skuList  = [];
+                groupList  = [];
             data = body;
             if (response.statusCode === 200 && data.length) {
                 data.forEach(function (doc) {
-                    skuList.push({
+                    groupList.push({
                         _id   : doc._id,
-                        type  : 'skus',
+                        type  : 'groups',
                         name  : doc.name,
                         notes : doc.notes
                     });
                 });
-                renderSkuList(req, res, skuList);
+                renderGroupList(req, res, groupList);
             } else {
-                renderSkuList(req, res, data);
+                renderGroupList(req, res, data);
             }
         }
     );
 };
 
-skuInfo = function (req, res) {
+groupInfo = function (req, res) {
     var
         requestOptions, path;
 
-    path = '/api/skus/' + req.params.sku_id;
+    path = '/api/groups/' + req.params.group_id;
     requestOptions = {
         url    : apiOptions.server + path,
         method : "GET",
@@ -149,7 +149,7 @@ skuInfo = function (req, res) {
                     name: doc.name,
                     notes: doc.notes
                 };
-                renderSkuInfo(req, res, itemInfo);
+                renderGroupInfo(req, res, itemInfo);
             } else {
                 _showError(req, res, response.statusCode);
             }
@@ -157,15 +157,15 @@ skuInfo = function (req, res) {
     );
 };
 
-addSku = function (req, res) {
-    renderSkuAddForm(req, res);
+addGroup = function (req, res) {
+    renderGroupAddForm(req, res);
 };
 
-doAddSku = function (req, res) {
+doAddGroup = function (req, res) {
     var
         requestOptions, path, postData;
 
-    path     = '/api/skus';
+    path     = '/api/groups';
     postData = {
         name  : req.body.itemName,
         notes : req.body.itemNotes
@@ -180,7 +180,7 @@ doAddSku = function (req, res) {
         requestOptions,
         function (err, response, body) {
             if (response.statusCode === 201) {
-                res.redirect('/admin/skus');
+                res.redirect('/admin/groups');
             } else {
                 _showError(req, res, response.statusCode);
             }
@@ -188,12 +188,12 @@ doAddSku = function (req, res) {
     );
 };
 
-deleteSku = function (req, res) {
+deleteGroup = function (req, res) {
     var
-        requestOptions, path, skuId;
+        requestOptions, path, groupId;
 
-    skuId = req.params.sku_id;
-    path  = '/api/skus/' + skuId;
+    groupId = req.params.group_id;
+    path  = '/api/groups/' + groupId;
     requestOptions = {
         url    : apiOptions.server + path,
         method : "DELETE",
@@ -204,7 +204,7 @@ deleteSku = function (req, res) {
         requestOptions,
         function (err, response, body) {
             if (response.statusCode === 204) {
-                res.redirect('/admin/skus');
+                res.redirect('/admin/groups');
             } else {
                 _showError(req, res, response.statusCode);
             }
@@ -213,10 +213,10 @@ deleteSku = function (req, res) {
 };
 
 module.exports = {
-    skuList   : skuList,
-    skuInfo   : skuInfo,
-    addSku    : addSku,
-    doAddSku  : doAddSku,
-    deleteSku : deleteSku
+    groupList   : groupList,
+    groupInfo   : groupInfo,
+    addGroup    : addGroup,
+    doAddGroup  : doAddGroup,
+    deleteGroup : deleteGroup
 };
 //----------------  END PUBLIC METHODS  --------------

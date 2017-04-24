@@ -1,0 +1,11 @@
+extends layout
+
+block content
+    .row.page-header
+        .col-lg-12
+            h1= pageHeader.title
+                a.btn.btn-default.pull-right(type="button", href="/admin/edit") Edit Item
+    .row
+        .col-xs-12.col-md-9
+            p Item Name: #{item.name}
+            p Notes: #{item.notes}

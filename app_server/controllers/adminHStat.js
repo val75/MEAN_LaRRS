@@ -1,5 +1,5 @@
 /*
- * app_server/controllers/adminSku.js - Server controller for SKU admin
+ * app_server/controllers/adminHStat.js - Server controller for health status admin
  */
 
 /*jslint        node    : true, continue : true,
@@ -18,8 +18,8 @@ var
         server : "http://localhost:3000"
     },
 
-    _showError, renderSkuList, renderSkuAddForm, renderSkuInfo,
-    skuList, skuInfo, addSku, doAddSku, deleteSku;
+    _showError, renderHstatList, renderHstatAddForm, renderHstatInfo,
+    hstatList, hstatInfo, addHStat, doAddHStat, deleteHStat;
 //----------------- END MODULE SCOPE VARIABLES ---------------
 
 //---------------- BEGIN UTILITY METHODS --------------
@@ -41,7 +41,7 @@ _showError = function (req, res, status) {
     });
 };
 
-renderSkuList = function (req, res, responseBody) {
+renderHstatList = function (req, res, responseBody) {
     var message;
     if (!(responseBody instanceof Array)) {
         message = "API lookup error";
@@ -52,30 +52,30 @@ renderSkuList = function (req, res, responseBody) {
         }
     }
     res.render('item-admin', {
-        title      : 'SKUs',
+        title      : 'Health Stats',
         pageHeader : {
-            title     : 'SKUs',
-            strapline : 'List of defined SKUs'
+            title     : 'Health Stats',
+            strapline : 'List of defined health stats'
         },
         items   : responseBody,
-        type    : 'skus',
+        type    : 'hstats',
         message : message
     });
 };
 
-renderSkuAddForm = function (req, res) {
+renderHstatAddForm = function (req, res) {
     res.render('item-add-form', {
-        title      : 'Add SKU',
+        title      : 'Add health stat',
         pageHeader : {
-            title     : 'Add SKU',
-            strapline : 'Define new SKU'
+            title     : 'Add health stat',
+            strapline : 'Define new health status'
         },
-        type        : 'skus',
-        itemCapName : "SKU"
+        type        : 'hstats',
+        itemCapName : "Health Status"
     });
 };
 
-renderSkuInfo = function (req, res, itemDetail) {
+renderHstatInfo = function (req, res, itemDetail) {
     res.render('item-info', {
         title : itemDetail.name,
         pageHeader : {
@@ -90,11 +90,11 @@ renderSkuInfo = function (req, res, itemDetail) {
 //----------------  END UTILITY METHODS  --------------
 
 //---------------- BEGIN PUBLIC METHODS --------------
-skuList = function (req, res) {
+hstatList = function (req, res) {
     var
         requestOptions, path;
 
-    path = '/api/skus';
+    path = '/api/hStatus';
     requestOptions = {
         url    : apiOptions.server + path,
         method : "GET",
@@ -106,30 +106,30 @@ skuList = function (req, res) {
         function (err, response, body) {
             var
                 data,
-                skuList  = [];
+                hstatList  = [];
             data = body;
             if (response.statusCode === 200 && data.length) {
                 data.forEach(function (doc) {
-                    skuList.push({
+                    hstatList.push({
                         _id   : doc._id,
-                        type  : 'skus',
+                        type  : 'hstats',
                         name  : doc.name,
                         notes : doc.notes
                     });
                 });
-                renderSkuList(req, res, skuList);
+                renderHstatList(req, res, hstatList);
             } else {
-                renderSkuList(req, res, data);
+                renderHstatList(req, res, data);
             }
         }
     );
 };
 
-skuInfo = function (req, res) {
+hstatInfo = function (req, res) {
     var
         requestOptions, path;
 
-    path = '/api/skus/' + req.params.sku_id;
+    path = '/api/hStatus/' + req.params.hstat_id;
     requestOptions = {
         url    : apiOptions.server + path,
         method : "GET",
@@ -149,7 +149,7 @@ skuInfo = function (req, res) {
                     name: doc.name,
                     notes: doc.notes
                 };
-                renderSkuInfo(req, res, itemInfo);
+                renderHstatInfo(req, res, itemInfo);
             } else {
                 _showError(req, res, response.statusCode);
             }
@@ -157,15 +157,15 @@ skuInfo = function (req, res) {
     );
 };
 
-addSku = function (req, res) {
-    renderSkuAddForm(req, res);
+addHStat = function (req, res) {
+    renderHstatAddForm(req, res);
 };
 
-doAddSku = function (req, res) {
+doAddHStat = function (req, res) {
     var
         requestOptions, path, postData;
 
-    path     = '/api/skus';
+    path     = '/api/hStatus';
     postData = {
         name  : req.body.itemName,
         notes : req.body.itemNotes
@@ -180,7 +180,7 @@ doAddSku = function (req, res) {
         requestOptions,
         function (err, response, body) {
             if (response.statusCode === 201) {
-                res.redirect('/admin/skus');
+                res.redirect('/admin/hstats');
             } else {
                 _showError(req, res, response.statusCode);
             }
@@ -188,12 +188,12 @@ doAddSku = function (req, res) {
     );
 };
 
-deleteSku = function (req, res) {
+deleteHStat = function (req, res) {
     var
-        requestOptions, path, skuId;
+        requestOptions, path, hstatId;
 
-    skuId = req.params.sku_id;
-    path  = '/api/skus/' + skuId;
+    hstatId = req.params.hstat_id;
+    path  = '/api/hStatus/' + hstatId;
     requestOptions = {
         url    : apiOptions.server + path,
         method : "DELETE",
@@ -204,7 +204,7 @@ deleteSku = function (req, res) {
         requestOptions,
         function (err, response, body) {
             if (response.statusCode === 204) {
-                res.redirect('/admin/skus');
+                res.redirect('/admin/hstats');
             } else {
                 _showError(req, res, response.statusCode);
             }
@@ -213,10 +213,10 @@ deleteSku = function (req, res) {
 };
 
 module.exports = {
-    skuList   : skuList,
-    skuInfo   : skuInfo,
-    addSku    : addSku,
-    doAddSku  : doAddSku,
-    deleteSku : deleteSku
+    hstatList   : hstatList,
+    hstatInfo   : hstatInfo,
+    addHStat    : addHStat,
+    doAddHStat  : doAddHStat,
+    deleteHStat : deleteHStat
 };
 //----------------  END PUBLIC METHODS  --------------

@@ -12,6 +12,7 @@ var ctrlApiHelp = require('../controllers/api_help');
 /* Assets pages */
 router.get('/', ctrlAssets.assetList);
 router.get('/assets/:assetId', ctrlAssets.assetInfo);
+router.get('/admin/assets/new', ctrlAssets.addAsset);
 router.get('/asset-edit', ctrlAssets.assetEdit);
 
 /* Admin pages */

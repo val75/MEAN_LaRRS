@@ -1,0 +1,49 @@
+extends layout
+
+block content
+    .row.page-header
+        .col-lg-12
+            h1= pageHeader.title
+                small &nbsp; #{pageHeader.strapline}
+    .row
+        .col-xs-12.col-md-6
+            form.form-horizontal(action="/assets", method="post", role="form")
+                .form-group
+                    label.col-xs-10.col-sm-2.control-label(for="assetTag") Asset Tag:
+                    .col-xs-12.col-sm-8
+                        input#assetTag.form-control(name="assetTag")
+                .form-group
+                    label.col-xs-10.col-sm-2.control-label(for="hostName") Hostname:
+                    .col-xs-12.col-sm-8
+                        input#hostName.form-control(name="hostName")
+                .form-group
+                    label.col-xs-10.col-sm-2.control-label(for="skuModel") SKU:
+                    .col-xs-12.col-sm-3
+                        select#skuModel.form-control.input-sm(name="skuModel")
+                            each sku in skus
+                                option(id="#{sku._id}") #{sku.name}
+                .form-group
+                    label.col-xs-10.col-sm-2.control-label(for="mfgName") Manufacturer:
+                    .col-xs-12.col-sm-3
+                        select#mfgName.form-control.input-sm(name="mfgName")
+                            each mfg in mfgs
+                                option(id="#{mfg._id}") #{mfg.name}
+                .form-group
+                    label.col-xs-10.col-sm-2.control-label(for="locName") Location:
+                    .col-xs-12.col-sm-3
+                        select#locName.form-control.input-sm(name="locName")
+                            each loc in locs
+                                option(id="#{loc._id}") #{loc.name}
+                .form-group
+                    label.col-xs-10.col-sm-2.control-label(for="groupName") Group:
+                    .col-xs-12.col-sm-3
+                        select#groupName.form-control.input-sm(name="groupName")
+                            each group in groups
+                                option(id="#{group._id}") #{group.name}
+                .form-group
+                    label.col-xs-10.col-sm-2.control-label(for="assetStatus") Asset Status:
+                    .col-xs-12.col-sm-3
+                        select#assetStatus.form-control.input-sm(name="assetStatus")
+                            each hstat in hstats
+                                option(id="#{hstat._id}") #{hstat.name}
+                button.btn.btn-default Add Asset

@@ -11,8 +11,9 @@ var ctrlApiHelp = require('../controllers/api_help');
 
 /* Assets pages */
 router.get('/', ctrlAssets.assetList);
-router.get('/assets/:assetId', ctrlAssets.assetInfo);
 router.get('/admin/assets/new', ctrlAssets.addAsset);
+router.get('/assets/:assetId', ctrlAssets.assetInfo);
+router.post('/assets', ctrlAssets.doAddAsset);
 router.get('/asset-edit', ctrlAssets.assetEdit);
 
 /* Admin pages */
@@ -20,36 +21,36 @@ router.get('/admin', ctrlAdmin.taskList);
 
 /* SKU Admin */
 router.get('/admin/skus', ctrlAdminSku.skuList);
-router.get('/admin/skus/:sku_id', ctrlAdminSku.skuInfo);
 router.get('/admin/skus/new', ctrlAdminSku.addSku);
+router.get('/admin/skus/:sku_id', ctrlAdminSku.skuInfo);
 router.post('/admin/skus', ctrlAdminSku.doAddSku);
 router.get('/admin/skus/:sku_id/delete', ctrlAdminSku.deleteSku);
 
 /* Manufacturer Admin */
 router.get('/admin/mfgs', ctrlAdminMfg.mfgList);
-router.get('/admin/mfgs/:mfg_id', ctrlAdminMfg.mfgInfo);
 router.get('/admin/mfgs/new', ctrlAdminMfg.addMfg);
+router.get('/admin/mfgs/:mfg_id', ctrlAdminMfg.mfgInfo);
 router.post('/admin/mfgs', ctrlAdminMfg.doAddMfg);
 router.get('/admin/mfgs/:mfg_id/delete', ctrlAdminMfg.deleteMfg);
 
 /* Location Admin */
 router.get('/admin/locations', ctrlAdminLoc.locationList);
-router.get('/admin/locations/:location_id', ctrlAdminLoc.locationInfo);
 router.get('/admin/locations/new', ctrlAdminLoc.addLocation);
+router.get('/admin/locations/:location_id', ctrlAdminLoc.locationInfo);
 router.post('/admin/locations', ctrlAdminLoc.doAddLocation);
 router.get('/admin/locations/:location_id/delete', ctrlAdminLoc.deleteLocation);
 
 /*Group Admin*/
 router.get('/admin/groups', ctrlAdminGroup.groupList);
-router.get('/admin/groups/:group_id', ctrlAdminGroup.groupInfo);
 router.get('/admin/groups/new', ctrlAdminGroup.addGroup);
+router.get('/admin/groups/:group_id', ctrlAdminGroup.groupInfo);
 router.post('/admin/groups', ctrlAdminGroup.doAddGroup);
 router.get('/admin/groups/:group_id/delete', ctrlAdminGroup.deleteGroup);
 
 /*Health Status Admin*/
 router.get('/admin/hstats', ctrlAdminHStat.hstatList);
-router.get('/admin/hstats/:hstat_id', ctrlAdminHStat.hstatInfo);
 router.get('/admin/hstats/new', ctrlAdminHStat.addHStat);
+router.get('/admin/hstats/:hstat_id', ctrlAdminHStat.hstatInfo);
 router.post('/admin/hstats', ctrlAdminHStat.doAddHStat);
 router.get('/admin/hstats/:hstat_id/delete', ctrlAdminHStat.deleteHStat);
 

@@ -21,29 +21,29 @@ block content
                     .col-xs-12.col-sm-3
                         select#skuModel.form-control.input-sm(name="skuModel")
                             each sku in skus
-                                option(id="#{sku._id}") #{sku.name}
+                                option(value='{"id": "#{sku._id}", "name": "#{sku.name}" }') #{sku.name}
                 .form-group
                     label.col-xs-10.col-sm-2.control-label(for="mfgName") Manufacturer:
                     .col-xs-12.col-sm-3
                         select#mfgName.form-control.input-sm(name="mfgName")
                             each mfg in mfgs
-                                option(id="#{mfg._id}") #{mfg.name}
+                                option(value='{"id": "#{mfg._id}", "name": "#{mfg.name}"}') #{mfg.name}
                 .form-group
                     label.col-xs-10.col-sm-2.control-label(for="locName") Location:
                     .col-xs-12.col-sm-3
                         select#locName.form-control.input-sm(name="locName")
                             each loc in locs
-                                option(id="#{loc._id}") #{loc.name}
+                                option(value='{"id": "#{loc._id}", "name": "#{loc.name}"}') #{loc.name}
                 .form-group
                     label.col-xs-10.col-sm-2.control-label(for="groupName") Group:
                     .col-xs-12.col-sm-3
                         select#groupName.form-control.input-sm(name="groupName")
                             each group in groups
-                                option(id="#{group._id}") #{group.name}
+                                option(value='{"id": "#{group._id}", "name": "#{group.name}"}') #{group.name}
                 .form-group
                     label.col-xs-10.col-sm-2.control-label(for="assetStatus") Asset Status:
                     .col-xs-12.col-sm-3
                         select#assetStatus.form-control.input-sm(name="assetStatus")
                             each hstat in hstats
-                                option(id="#{hstat._id}") #{hstat.name}
+                                option(value='{"id": "#{hstat._id}", "name": "#{hstat.name}"}') #{hstat.name}
                 button.btn.btn-default Add Asset

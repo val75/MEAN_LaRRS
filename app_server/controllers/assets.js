@@ -389,6 +389,21 @@ addAsset = function (req, res) {
 };
 
 doAddAsset = function (req, res) {
+    //console.log(req.body);
+    //var x = req.body.skuModel;
+    //var y = JSON.stringify(x);
+    //var z = JSON.parse(x);
+    var
+        skuModel = JSON.parse(req.body.skuModel),
+        mfgName = JSON.parse(req.body.mfgName),
+        locName = JSON.parse(req.body.locName),
+        groupName = JSON.parse(req.body.groupName),
+        assetStatus = JSON.parse(req.body.assetStatus);
+
+    console.log(skuModel.id, mfgName.id, locName.id, groupName.id, assetStatus.id);
+
+    //console.log(typeof z);
+    //console.log(z.id);
     var
         requestOptions, path, postData;
     path = '/api/assets';
@@ -414,9 +429,10 @@ assetEdit = function (req, res) {
 };
 
 module.exports = {
-    assetList : assetList,
-    assetInfo : assetInfo,
-    addAsset  : addAsset,
-    assetEdit : assetEdit
+    assetList  : assetList,
+    assetInfo  : assetInfo,
+    addAsset   : addAsset,
+    doAddAsset : doAddAsset,
+    assetEdit  : assetEdit
 };
 //----------------  END PUBLIC METHODS  --------------

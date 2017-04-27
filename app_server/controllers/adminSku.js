@@ -126,6 +126,7 @@ skuList = function (req, res) {
 };
 
 skuInfo = function (req, res) {
+    console.log('here for some reason');
     var
         requestOptions, path;
 
@@ -158,6 +159,7 @@ skuInfo = function (req, res) {
 };
 
 addSku = function (req, res) {
+    console.log('---------Got here');
     renderSkuAddForm(req, res);
 };
 

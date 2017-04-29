@@ -144,14 +144,13 @@ renderAssetAddForm = function (req, res, skuDetail, mfgDetail, locDetail, groupD
 };
 
 renderAssetInfo = function (req, res, assetDetail) {
-    //console.log(assetDetail);
-    //console.log(assetDetail.hostname);
     res.render('asset-info', {
         title: assetDetail.hostname,
         pageHeader: {
             title: assetDetail.hostname
         },
         asset: {
+            _id: assetDetail._id,
             hostname: assetDetail.hostname,
             assetTag: assetDetail.assetTag,
             skuModel: assetDetail.skuModel,
@@ -389,10 +388,6 @@ addAsset = function (req, res) {
 };
 
 doAddAsset = function (req, res) {
-    //console.log(req.body);
-    //var x = req.body.skuModel;
-    //var y = JSON.stringify(x);
-    //var z = JSON.parse(x);
     var
         skuModel = JSON.parse(req.body.skuModel),
         mfgName = JSON.parse(req.body.mfgName),
@@ -400,22 +395,41 @@ doAddAsset = function (req, res) {
         groupName = JSON.parse(req.body.groupName),
         assetStatus = JSON.parse(req.body.assetStatus);
 
-    console.log(skuModel.id, mfgName.id, locName.id, groupName.id, assetStatus.id);
+    //console.log(skuModel.id, mfgName.id, locName.id, groupName.id, assetStatus.id);
 
-    //console.log(typeof z);
-    //console.log(z.id);
     var
         requestOptions, path, postData;
     path = '/api/assets';
     postData = {
         tag: req.body.assetTag,
-        hostname: req.body.hostName
+        hostname: req.body.hostName,
+        sku_id: skuModel.id,
+        sku_name: skuModel.name,
+        mfg_id: mfgName.id,
+        mfg_name: mfgName.name,
+        location_id: locName.id,
+        location_name: locName.name,
+        group_id: groupName.id,
+        group_name: groupName.name,
+        hstat_id: assetStatus.id,
+        hstat_name: assetStatus.name
     };
     requestOptions = {
         url    : apiOptions.server + path,
         method : "POST",
         json   : postData
     };
+
+    request(
+        requestOptions,
+        function (err, response, body) {
+            if (response.statusCode === 201) {
+                res.redirect('/');
+            } else {
+                _showError(req, res, response.statusCode);
+            }
+        }
+    );
 };
 
 /* GET edit asset page */
@@ -428,11 +442,36 @@ assetEdit = function (req, res) {
     });
 };
 
+deleteAsset = function (req, res) {
+    var
+        requestOptions, path, assetId;
+
+    assetId = req.params.asset_id;
+    path = '/api/assets/' + assetId;
+    requestOptions = {
+        url    : apiOptions.server + path,
+        method : "DELETE",
+        json   : {}
+    };
+
+    request(
+        requestOptions,
+        function (err, response, body) {
+            if (response.statusCode === 204) {
+                res.redirect('/');
+            } else {
+                _showError(req, res, response.statusCode);
+            }
+        }
+    );
+};
+
 module.exports = {
-    assetList  : assetList,
-    assetInfo  : assetInfo,
-    addAsset   : addAsset,
-    doAddAsset : doAddAsset,
-    assetEdit  : assetEdit
+    assetList   : assetList,
+    assetInfo   : assetInfo,
+    addAsset    : addAsset,
+    doAddAsset  : doAddAsset,
+    assetEdit   : assetEdit,
+    deleteAsset : deleteAsset
 };
 //----------------  END PUBLIC METHODS  --------------

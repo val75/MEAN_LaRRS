@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33847026-72b4-416e-a277-8d65c1c00e93" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="Y:/app_server/controllers/adminSku.js" afterPath="Y:/app_server/controllers/adminSku.js" />
+      <change type="MODIFICATION" beforePath="Y:/.idea/workspace.xml" afterPath="Y:/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="Y:/app_server/controllers/assets.js" afterPath="Y:/app_server/controllers/assets.js" />
       <change type="MODIFICATION" beforePath="Y:/app_server/routes/index.js" afterPath="Y:/app_server/routes/index.js" />
-      <change type="MODIFICATION" beforePath="Y:/app_server/views/asset-add.jade" afterPath="Y:/app_server/views/asset-add.jade" />
+      <change type="MODIFICATION" beforePath="Y:/app_server/views/asset-info.jade" afterPath="Y:/app_server/views/asset-info.jade" />
     </list>
     <ignored path="Y:/.tmp/" />
     <ignored path="Y:/temp/" />
@@ -32,27 +32,27 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="item-add-form.jade" pinned="false" current-in-tab="false">
-            <entry file="file://Y:/app_server/views/item-add-form.jade">
+          <file leaf-file-name="assets.js" pinned="false" current-in-tab="false">
+            <entry file="file://Y:/app_api/controllers/assets.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="306">
-                  <caret line="18" column="47" lean-forward="false" selection-start-line="18" selection-start-column="47" selection-end-line="18" selection-end-column="47" />
+                <state relative-caret-position="-646">
+                  <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="asset.js" pinned="false" current-in-tab="false">
-            <entry file="file://Y:/app_api/models/asset.js">
+          <file leaf-file-name="adminSku.js" pinned="false" current-in-tab="true">
+            <entry file="file://Y:/app_server/controllers/adminSku.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="714">
-                  <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+                <state relative-caret-position="833">
+                  <caret line="214" column="2" lean-forward="true" selection-start-line="214" selection-start-column="2" selection-end-line="214" selection-end-column="2" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="asset-add.jade" pinned="false" current-in-tab="true">
+          <file leaf-file-name="asset-add.jade" pinned="false" current-in-tab="false">
             <entry file="file://Y:/app_server/views/asset-add.jade">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="799">
@@ -62,11 +62,21 @@
               </provider>
             </entry>
           </file>
+          <file leaf-file-name="asset-info.jade" pinned="false" current-in-tab="false">
+            <entry file="file://Y:/app_server/views/asset-info.jade">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="102">
+                  <caret line="6" column="92" lean-forward="false" selection-start-line="6" selection-start-column="92" selection-end-line="6" selection-end-column="92" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
           <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
             <entry file="file://Y:/app_server/routes/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="255">
-                  <caret line="15" column="46" lean-forward="false" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
+                <state relative-caret-position="289">
+                  <caret line="17" column="35" lean-forward="false" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
                   <folding />
                 </state>
               </provider>
@@ -79,11 +89,21 @@
           <file leaf-file-name="assets.js" pinned="false" current-in-tab="true">
             <entry file="file://Y:/app_server/controllers/assets.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="731">
-                  <caret line="402" column="83" lean-forward="false" selection-start-line="402" selection-start-column="83" selection-end-line="402" selection-end-column="83" />
+                <state relative-caret-position="595">
+                  <caret line="453" column="14" lean-forward="false" selection-start-line="453" selection-start-column="14" selection-end-line="453" selection-end-column="14" />
                   <folding>
                     <element signature="n#!!doc" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="item-admin.jade" pinned="false" current-in-tab="false">
+            <entry file="file://Y:/app_server/views/item-admin.jade">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="357">
+                  <caret line="21" column="60" lean-forward="false" selection-start-line="21" selection-start-column="60" selection-end-line="21" selection-end-column="60" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -93,16 +113,6 @@
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="629">
                   <caret line="37" column="46" lean-forward="true" selection-start-line="37" selection-start-column="46" selection-end-line="37" selection-end-column="46" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="adminSku.js" pinned="false" current-in-tab="false">
-            <entry file="file://Y:/app_server/controllers/adminSku.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-408">
-                  <caret line="128" column="40" lean-forward="false" selection-start-line="128" selection-start-column="40" selection-end-line="128" selection-end-column="40" />
                   <folding />
                 </state>
               </provider>
@@ -152,7 +162,6 @@
         <option value="Y:/app_server/views/generic-text.jade" />
         <option value="Y:/app_api/routes/index.js" />
         <option value="Y:/app_server/controllers/admin.js" />
-        <option value="Y:/app_server/views/asset-info.jade" />
         <option value="Y:/app_server/views/item-add-form.jade" />
         <option value="Y:/app_server/views/item-info.jade" />
         <option value="Y:/app_server/views/item-admin.jade" />
@@ -165,8 +174,9 @@
         <option value="Y:/package.json" />
         <option value="Y:/app_server/views/layout.jade" />
         <option value="Y:/app_server/controllers/adminSku.js" />
-        <option value="Y:/app_server/routes/index.js" />
         <option value="Y:/app_server/views/asset-add.jade" />
+        <option value="Y:/app_server/routes/index.js" />
+        <option value="Y:/app_server/views/asset-info.jade" />
         <option value="Y:/app_server/controllers/assets.js" />
       </list>
     </option>
@@ -214,6 +224,38 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Y:" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Y" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Y:" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Y" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Y:" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mongodb" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -447,7 +489,11 @@
       <workItem from="1492459680881" duration="23006000" />
       <workItem from="1492639259353" duration="19756000" />
       <workItem from="1493064559243" duration="25592000" />
-      <workItem from="1493234017697" duration="8637000" />
+      <workItem from="1493234017697" duration="8768000" />
+      <workItem from="1493425671848" duration="13000" />
+      <workItem from="1493425696595" duration="29000" />
+      <workItem from="1493425735827" duration="15000" />
+      <workItem from="1493425761246" duration="5507000" />
     </task>
     <task id="LOCAL-00001" summary="Adding some API routes and controllers (some for SKU, some for Assets).&#10;Short script with mongodb manual data population.&#10;Moved models to /app_api dir.">
       <created>1491270225384</created>
@@ -547,11 +593,18 @@
       <option name="project" value="LOCAL" />
       <updated>1493096804371</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Fix issue with routes in app_server index where /new was interpreted as /:id, by putting the /new first.&#10;Starting to implement the doAddAsset, with some changes to the asset-add.jade, to include both the _id and name of stuff.">
+      <created>1493266103257</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1493266103257</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="128044000" />
+    <option name="totallyTimeSpent" value="133739000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1142" y="99" width="1966" height="1249" extended-state="0" />
@@ -561,8 +614,8 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32885304" sideWeight="0.5021552" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32885304" sideWeight="0.49784482" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -624,20 +677,14 @@
     <MESSAGE value="SKU and manufacturers now have separate server controllers, added add and delete features for each.&#10;Also added jade template for item add form." />
     <MESSAGE value="Locations, groups and health stats now have separate server controllers.&#10;Added item info for all admin categories, as well as jade template for it.&#10;Fix link in item-admin.jade." />
     <MESSAGE value="Add addAsset function, using async to get skus, mfgs, etc.&#10;Add template for add asset form." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add addAsset function, using async to get skus, mfgs, etc.&#10;Add template for add asset form." />
+    <MESSAGE value="Fix issue with routes in app_server index where /new was interpreted as /:id, by putting the /new first.&#10;Starting to implement the doAddAsset, with some changes to the asset-add.jade, to include both the _id and name of stuff." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix issue with routes in app_server index where /new was interpreted as /:id, by putting the /new first.&#10;Starting to implement the doAddAsset, with some changes to the asset-add.jade, to include both the _id and name of stuff." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://Y:/app_server/routes/users.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://Y:/app_api/controllers/skus.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1258">
@@ -727,13 +774,6 @@
         <state relative-caret-position="442">
           <caret line="26" column="39" lean-forward="false" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://Y:/public/mongodb/script1">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="134" lean-forward="false" selection-start-line="18" selection-start-column="134" selection-end-line="18" selection-end-column="134" />
         </state>
       </provider>
     </entry>
@@ -835,13 +875,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://Y:/app_api/controllers/assets.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://Y:/app_api/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -860,14 +893,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2346">
           <caret line="138" column="36" lean-forward="false" selection-start-line="138" selection-start-column="36" selection-end-line="138" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://Y:/app_server/views/asset-info.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" lean-forward="true" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -925,15 +950,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="22" column="39" lean-forward="false" selection-start-line="22" selection-start-column="39" selection-end-line="22" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://Y:/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="32" column="35" lean-forward="false" selection-start-line="32" selection-start-column="35" selection-end-line="32" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -941,22 +957,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
           <caret line="32" column="44" lean-forward="true" selection-start-line="32" selection-start-column="44" selection-end-line="32" selection-end-column="44" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://Y:/app_server/views/item-admin.jade">
+    <entry file="file://Y:/bin/www">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="60" lean-forward="false" selection-start-line="21" selection-start-column="60" selection-end-line="21" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://Y:/app_server/controllers/adminSku.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-408">
-          <caret line="128" column="40" lean-forward="false" selection-start-line="128" selection-start-column="40" selection-end-line="128" selection-end-column="40" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -969,6 +976,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://Y:/app_api/controllers/assets.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-646">
+          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://Y:/app_server/views/item-add-form.jade">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -977,18 +992,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://Y:/app_server/views/asset-edit.jade">
+    <entry file="file://Y:/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="37" column="46" lean-forward="true" selection-start-line="37" selection-start-column="46" selection-end-line="37" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://Y:/app_server/routes/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="46" lean-forward="false" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
+        <state relative-caret-position="544">
+          <caret line="32" column="35" lean-forward="false" selection-start-line="32" selection-start-column="35" selection-end-line="32" selection-end-column="35" />
           <folding />
         </state>
       </provider>
@@ -1001,13 +1008,61 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://Y:/public/mongodb/script1">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="134" lean-forward="false" selection-start-line="18" selection-start-column="134" selection-end-line="18" selection-end-column="134" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://Y:/app_server/views/asset-edit.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="37" column="46" lean-forward="true" selection-start-line="37" selection-start-column="46" selection-end-line="37" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://Y:/app_server/views/item-admin.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="60" lean-forward="false" selection-start-line="21" selection-start-column="60" selection-end-line="21" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://Y:/app_server/views/asset-info.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="92" lean-forward="false" selection-start-line="6" selection-start-column="92" selection-end-line="6" selection-end-column="92" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://Y:/app_server/routes/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="35" lean-forward="false" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://Y:/app_server/controllers/assets.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="402" column="83" lean-forward="false" selection-start-line="402" selection-start-column="83" selection-end-line="402" selection-end-column="83" />
+        <state relative-caret-position="595">
+          <caret line="453" column="14" lean-forward="false" selection-start-line="453" selection-start-column="14" selection-end-line="453" selection-end-column="14" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://Y:/app_server/controllers/adminSku.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="833">
+          <caret line="214" column="2" lean-forward="true" selection-start-line="214" selection-start-column="2" selection-end-line="214" selection-end-column="2" />
+          <folding />
         </state>
       </provider>
     </entry>

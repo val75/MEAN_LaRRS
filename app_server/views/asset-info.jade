@@ -4,7 +4,8 @@ block content
     .row.page-header
         .col-lg-12
             h1= pageHeader.title
-                a.btn.btn-default.pull-right(type="button", href="/asset-edit") Edit Asset
+                a.btn.btn-default.pull-right(type="button", href="/admin/asset/#{asset._id}/delete") Delete
+                a.btn.btn-default.pull-right(type="button", href="/asset-edit") Edit
     .row
         .col-xs-12.col-md-9
             p Asset Tag: #{asset.assetTag}

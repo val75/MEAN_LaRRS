@@ -15,6 +15,7 @@ router.get('/admin/assets/new', ctrlAssets.addAsset);
 router.get('/assets/:assetId', ctrlAssets.assetInfo);
 router.post('/assets', ctrlAssets.doAddAsset);
 router.get('/asset-edit', ctrlAssets.assetEdit);
+router.get('/admin/asset/:asset_id/delete', ctrlAssets.deleteAsset);
 
 /* Admin pages */
 router.get('/admin', ctrlAdmin.taskList);

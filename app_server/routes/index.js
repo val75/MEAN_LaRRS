@@ -3,6 +3,7 @@ var router = express.Router();
 var ctrlAssets = require('../controllers/assets');
 var ctrlAdmin = require('../controllers/admin');
 var ctrlAdminSku = require('../controllers/adminSku');
+var ctrlAdminHwModel = require('../controllers/adminHwModel');
 var ctrlAdminMfg = require('../controllers/adminMfg');
 var ctrlAdminLoc = require('../controllers/adminLoc');
 var ctrlAdminGroup = require('../controllers/adminGroup');
@@ -26,6 +27,13 @@ router.get('/admin/skus/new', ctrlAdminSku.addSku);
 router.get('/admin/skus/:sku_id', ctrlAdminSku.skuInfo);
 router.post('/admin/skus', ctrlAdminSku.doAddSku);
 router.get('/admin/skus/:sku_id/delete', ctrlAdminSku.deleteSku);
+
+/* Hardware Model Admin */
+router.get('/admin/hwmodels', ctrlAdminHwModel.hwModelList);
+router.get('/admin/hwmodels/new', ctrlAdminHwModel.addHwModel);
+router.get('/admin/hwmodels/:hwmodel_id', ctrlAdminHwModel.hwModelInfo);
+router.post('/admin/hwmodels', ctrlAdminHwModel.doAddHwModel);
+router.get('/admin/hwmodels/:hwmodel_id/delete', ctrlAdminHwModel.deleteHwModel);
 
 /* Manufacturer Admin */
 router.get('/admin/mfgs', ctrlAdminMfg.mfgList);

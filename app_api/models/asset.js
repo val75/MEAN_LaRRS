@@ -25,6 +25,10 @@ var
             id:   { type: Schema.Types.ObjectId, ref: 'Sku',          required: true },
             name: { type: String,                                     required: true }
         }],
+        hwModel: [{
+            id:   { type: Schema.Types.ObjectId, ref: 'HwModel',      required: true },
+            name: { type: String,                                     required: true }
+        }],
         manufacturer: [{
             id:   { type: Schema.Types.ObjectId, ref: 'Manufacturer', required: true },
             name: { type: String,                                     required: true }

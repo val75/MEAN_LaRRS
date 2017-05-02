@@ -75,6 +75,7 @@ assetReadOne = function (req, res) {
 };
 
 assetCreate = function (req, res) {
+    console.log('---' + req.body.hwmodel_id);
     // Uniqueness for <name> is insured in the model
     Asset.create({
         tag: req.body.tag,
@@ -82,6 +83,10 @@ assetCreate = function (req, res) {
         sku: [{
             id: req.body.sku_id,
             name: req.body.sku_name
+        }],
+        hwModel: [{
+            id: req.body.hwmodel_id,
+            name: req.body.hwmodel_name
         }],
         manufacturer: [{
             id: req.body.mfg_id,

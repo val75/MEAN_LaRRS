@@ -128,7 +128,7 @@ renderAssetHome = function (req, res, responseBody) {
     });
 };
 
-renderAssetAddForm = function (req, res, skuDetail, mfgDetail, locDetail, groupDetail, hstatDetail) {
+renderAssetAddForm = function (req, res, skuDetail, hwModelDetail, mfgDetail, locDetail, groupDetail, hstatDetail) {
     res.render('asset-add', {
         title : 'Add Asset',
         pageHeader : {
@@ -136,6 +136,7 @@ renderAssetAddForm = function (req, res, skuDetail, mfgDetail, locDetail, groupD
             strapline : 'Register new asset'
         },
         skus: skuDetail,
+        hwmodels: hwModelDetail,
         mfgs: mfgDetail,
         locs: locDetail,
         groups: groupDetail,
@@ -154,6 +155,7 @@ renderAssetInfo = function (req, res, assetDetail) {
             hostname: assetDetail.hostname,
             assetTag: assetDetail.assetTag,
             skuModel: assetDetail.skuModel,
+            hwModel: assetDetail.hwModel,
             mfgName: assetDetail.mfgName,
             locName: assetDetail.locName,
             groupName: assetDetail.groupName,
@@ -187,12 +189,13 @@ assetList = function (req, res) {
             data = body;
             if (response.statusCode === 200 && data.length ) {
                 data.forEach(function (doc) {
-                    //console.log(doc);
+                    console.log(doc);
                     assetList.push({
                         _id: doc._id,
                         hostname: doc.hostname,
                         assetTag: doc.tag,
                         skuModel: doc.sku.map(function (mysku) { return mysku.name } ),
+                        hwModel: doc.hwModel.map(function (myhwm) { return myhwm.name } ),
                         mfgName: doc.manufacturer.map(function (mymfg) { return mymfg.name } ),
                         locName: doc.location.map(function (myloc) { return myloc.name } ),
                         groupName: doc.group.map(function (mygroup) { return mygroup.name } ),
@@ -233,6 +236,7 @@ assetInfo = function (req, res) {
                     hostname: doc.hostname,
                     assetTag: doc.tag,
                     skuModel: doc.sku.map(function (mysku) { return mysku.name } ),
+                    hwModel: doc.hwModel.map(function (myhwm) { return myhwm.name } ),
                     mfgName: doc.manufacturer.map(function (mymfg) { return mymfg.name } ),
                     locName: doc.location.map(function (myloc) { return myloc.name } ),
                     groupName: doc.group.map(function (mygroup) { return mygroup.name } ),
@@ -250,6 +254,7 @@ assetInfo = function (req, res) {
 addAsset = function (req, res) {
     var
         skuList = [],
+        hwmList = [],
         mfgList = [],
         locList = [],
         groupList = [],
@@ -270,6 +275,31 @@ addAsset = function (req, res) {
                     if (response.statusCode === 200 && body.length) {
                         body.forEach(function (doc) {
                             skuList.push({
+                                _id   : doc._id,
+                                name  : doc.name
+                            });
+                        });
+                        callback();
+                    } else {
+                        return callback(err);
+                    }
+                }
+            )
+        },
+        function (callback) {
+            var requestOptions, path;
+            path = '/api/hwmodels';
+            requestOptions = {
+                url    : apiOptions.server + path,
+                method : "GET",
+                json   : {}
+            };
+            request(
+                requestOptions,
+                function (err, response, body) {
+                    if (response.statusCode === 200 && body.length) {
+                        body.forEach(function (doc) {
+                            hwmList.push({
                                 _id   : doc._id,
                                 name  : doc.name
                             });
@@ -383,36 +413,41 @@ addAsset = function (req, res) {
         }
     ], function(err) {
         if (err) return next(err);
-        renderAssetAddForm(req, res, skuList, mfgList, locList, groupList, hStatList);
+        renderAssetAddForm(req, res, skuList, hwmList, mfgList, locList, groupList, hStatList);
     })
 };
 
 doAddAsset = function (req, res) {
     var
         skuModel = JSON.parse(req.body.skuModel),
+        hwModel = JSON.parse(req.body.hwModel),
         mfgName = JSON.parse(req.body.mfgName),
         locName = JSON.parse(req.body.locName),
         groupName = JSON.parse(req.body.groupName),
         assetStatus = JSON.parse(req.body.assetStatus);
 
     //console.log(skuModel.id, mfgName.id, locName.id, groupName.id, assetStatus.id);
+    //console.log(hwModel.id);
 
     var
         requestOptions, path, postData;
+
     path = '/api/assets';
     postData = {
-        tag: req.body.assetTag,
-        hostname: req.body.hostName,
-        sku_id: skuModel.id,
-        sku_name: skuModel.name,
-        mfg_id: mfgName.id,
-        mfg_name: mfgName.name,
-        location_id: locName.id,
-        location_name: locName.name,
-        group_id: groupName.id,
-        group_name: groupName.name,
-        hstat_id: assetStatus.id,
-        hstat_name: assetStatus.name
+        tag           : req.body.assetTag,
+        hostname      : req.body.hostName,
+        sku_id        : skuModel.id,
+        sku_name      : skuModel.name,
+        hwmodel_id    : hwModel.id,
+        hwmodel_name  : hwModel.name,
+        mfg_id        : mfgName.id,
+        mfg_name      : mfgName.name,
+        location_id   : locName.id,
+        location_name : locName.name,
+        group_id      : groupName.id,
+        group_name    : groupName.name,
+        hstat_id      : assetStatus.id,
+        hstat_name    : assetStatus.name
     };
     requestOptions = {
         url    : apiOptions.server + path,

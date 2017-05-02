@@ -23,6 +23,12 @@ block content
                             each sku in skus
                                 option(value='{"id": "#{sku._id}", "name": "#{sku.name}" }') #{sku.name}
                 .form-group
+                    label.col-xs-10.col-sm-2.control-label(for="hwModel") Hardware Model:
+                    .col-xs-12.col-sm-3
+                        select#hwModel.form-control.input-sm(name="hwModel")
+                            each hwmodel in hwmodels
+                                option(value='{"id": "#{hwmodel._id}", "name": "#{hwmodel.name}" }') #{hwmodel.name}
+                .form-group
                     label.col-xs-10.col-sm-2.control-label(for="mfgName") Manufacturer:
                     .col-xs-12.col-sm-3
                         select#mfgName.form-control.input-sm(name="mfgName")

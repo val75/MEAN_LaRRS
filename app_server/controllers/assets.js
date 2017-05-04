@@ -241,7 +241,7 @@ assetInfo = function (req, res) {
                     locName: doc.location.map(function (myloc) { return myloc.name } ),
                     groupName: doc.group.map(function (mygroup) { return mygroup.name } ),
                     assetStatus: doc.healthStatus.map(function (myhstat) { return myhstat.name } ),
-                    resStatus: 'Not Available'
+                    resStatus: doc.reserved
                 };
                 renderAssetInfo(req, res, assetInfo);
             } else {

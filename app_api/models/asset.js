@@ -44,7 +44,9 @@ var
         healthStatus: [{
             id:   { type: Schema.Types.ObjectId, ref: 'HealthStatus', required: true },
             name: { type: String,                                     required: true }
-        }]
+        }],
+
+        reserved: { type: Boolean, default: false,                    required: true }
 });
 
 //----------------- END MODULE SCOPE VARIABLES ---------------

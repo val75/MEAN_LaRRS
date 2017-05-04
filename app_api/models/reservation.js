@@ -21,6 +21,7 @@ var
     ReservationSchema = new Schema ({
         assetId:    { type: Schema.Types.ObjectId, ref: 'Asset', required: true },
         user:       { type: String,                              required: true },
+        notes:      { type: String                                              },
 
         start_time: { type: Date, default: Date.now                             },
         end_time:   { type: Date                                                }

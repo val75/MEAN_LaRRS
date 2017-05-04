@@ -17,13 +17,14 @@ var
     express = require('express'),
     router = express.Router(),
 
-    ctrlSkus = require('../controllers/skus'),
-    ctrlMfgs = require('../controllers/manufacturers'),
-    ctrlLocations = require('../controllers/locations'),
-    ctrlGroups = require('../controllers/groups'),
+    ctrlSkus         = require('../controllers/skus'),
+    ctrlMfgs         = require('../controllers/manufacturers'),
+    ctrlLocations    = require('../controllers/locations'),
+    ctrlGroups       = require('../controllers/groups'),
     ctrlHealthStatus = require('../controllers/health'),
-    ctrlHwModels = require('../controllers/hw_model'),
-    ctrlAssets = require('../controllers/assets');
+    ctrlHwModels     = require('../controllers/hw_model'),
+    ctrlAssets       = require('../controllers/assets'),
+    ctrlReservations = require('../controllers/reservations');
 //----------------- END MODULE SCOPE VARIABLES ---------------
 
 //---------------- BEGIN ROUTES CONFIGURATION --------------
@@ -75,6 +76,11 @@ router.post(   '/assets',           ctrlAssets.assetCreate    );
 router.get(    '/assets/:asset_id', ctrlAssets.assetReadOne   );
 router.put(    '/assets/:asset_id', ctrlAssets.assetUpdateOne );
 router.delete( '/assets/:asset_id', ctrlAssets.assetDeleteOne );
+
+// Reservations
+router.get( '/reservations', ctrlReservations.reservationList);
+router.post( '/reservations', ctrlReservations.reservationCreate);
+router.get(  '/reservations/:reservation_id', ctrlReservations.reservationReadOne);
 
 //----------------  END ROUTES CONFIGURATION  --------------
 

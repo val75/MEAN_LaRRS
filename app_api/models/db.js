@@ -54,3 +54,4 @@ require( './group'         );
 require( './health_status' );
 require( './hw_model'      );
 require( './asset'         );
+require( './reservation'   );

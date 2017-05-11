@@ -81,8 +81,8 @@ router.delete( '/assets/:asset_id', ctrlAssets.assetDeleteOne );
 router.get(    '/reservations',                 ctrlReservations.reservationList);
 router.post(   '/reservations',                 ctrlReservations.reservationCreate);
 router.get(    '/reservations/:reservation_id', ctrlReservations.reservationReadOne);
-//router.delete( '/reservations/:reservation_id', ctrlReservations.reservationDeleteUpdate);
-router.delete( '/reservations/:reservation_id', ctrlReservations.reservationDeleteOne);
+router.delete( '/reservations/:reservation_id', ctrlReservations.reservationDeleteUpdate);
+//router.delete( '/reservations/:reservation_id', ctrlReservations.reservationDeleteOne);
 
 //----------------  END ROUTES CONFIGURATION  --------------
 

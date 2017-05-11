@@ -1,0 +1,27 @@
+extends layout
+
+block content
+    .row.page-header
+        .col-lg-12
+            h1= pageHeader.title
+                small &nbsp; #{pageHeader.strapline}
+    .row
+        .col-xs-12.col-md-6
+            form.form-horizontal(action="/reservations", method="post", role="form")
+                .form-group
+                    label.col-sm-3.control-label(for="assetTag") Asset Tag:
+                    .col-sm-9
+                        input#assetTag.form-control(type="text", value="#{asset.assetTag}", disabled)
+                .form-group
+                    label.col-sm-3.control-label(for="hostName") Hostname:
+                    .col-sm-9
+                        input#hostName.form-control(type="text", value="#{asset.hostname}", disabled)
+                .form-group
+                    label.col-xs-10.col-sm-3.control-label(for="userName") User Name:
+                    .col-xs-12.col-sm-9
+                        input#userName.form-control(name="userName")
+                .form-group
+                    label.col-sm-3.control-label(for="reservationNotes") Notes:
+                    .col-sm-9
+                        textarea#reservationNotes.form-control(name="reservationNotes", rows="5")
+                button.btn.btn-default Add Asset

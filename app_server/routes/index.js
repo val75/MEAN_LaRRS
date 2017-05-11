@@ -1,14 +1,16 @@
 var express = require('express');
 var router = express.Router();
-var ctrlAssets = require('../controllers/assets');
-var ctrlAdmin = require('../controllers/admin');
-var ctrlAdminSku = require('../controllers/adminSku');
-var ctrlAdminHwModel = require('../controllers/adminHwModel');
-var ctrlAdminMfg = require('../controllers/adminMfg');
-var ctrlAdminLoc = require('../controllers/adminLoc');
-var ctrlAdminGroup = require('../controllers/adminGroup');
-var ctrlAdminHStat = require('../controllers/adminHStat');
-var ctrlApiHelp = require('../controllers/api_help');
+
+var ctrlAssets       = require( '../controllers/assets'       );
+var ctrlAdmin        = require( '../controllers/admin'        );
+var ctrlAdminSku     = require( '../controllers/adminSku'     );
+var ctrlAdminHwModel = require( '../controllers/adminHwModel' );
+var ctrlAdminMfg     = require( '../controllers/adminMfg'     );
+var ctrlAdminLoc     = require( '../controllers/adminLoc'     );
+var ctrlAdminGroup   = require( '../controllers/adminGroup'   );
+var ctrlAdminHStat   = require( '../controllers/adminHStat'   );
+var ctrlReservations = require( '../controllers/reservations' );
+var ctrlApiHelp      = require( '../controllers/api_help'     );
 
 /* Assets pages */
 router.get('/', ctrlAssets.assetList);
@@ -49,19 +51,22 @@ router.get('/admin/locations/:location_id', ctrlAdminLoc.locationInfo);
 router.post('/admin/locations', ctrlAdminLoc.doAddLocation);
 router.get('/admin/locations/:location_id/delete', ctrlAdminLoc.deleteLocation);
 
-/*Group Admin*/
+/* Group Admin */
 router.get('/admin/groups', ctrlAdminGroup.groupList);
 router.get('/admin/groups/new', ctrlAdminGroup.addGroup);
 router.get('/admin/groups/:group_id', ctrlAdminGroup.groupInfo);
 router.post('/admin/groups', ctrlAdminGroup.doAddGroup);
 router.get('/admin/groups/:group_id/delete', ctrlAdminGroup.deleteGroup);
 
-/*Health Status Admin*/
+/* Health Status Admin */
 router.get('/admin/hstats', ctrlAdminHStat.hstatList);
 router.get('/admin/hstats/new', ctrlAdminHStat.addHStat);
 router.get('/admin/hstats/:hstat_id', ctrlAdminHStat.hstatInfo);
 router.post('/admin/hstats', ctrlAdminHStat.doAddHStat);
 router.get('/admin/hstats/:hstat_id/delete', ctrlAdminHStat.deleteHStat);
+
+/* Reservations */
+router.get('/reservations/create/:assetId', ctrlReservations.createReservation);
 
 /* API Help page */
 router.get('/api_help', ctrlApiHelp.show);

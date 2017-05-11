@@ -16,9 +16,11 @@
 var
     mongoose = require('mongoose'),
     Reservation = mongoose.model('Reservation'),
+    Asset = mongoose.model('Asset'),
 
-    sendJsonResponse, reservationList, reservationReadOne,
-    reservationCreate, reservationUpdateOne, reservationDeleteOne;
+    sendJsonResponse,
+    reservationList, reservationReadOne,
+    reservationCreate, reservationUpdateOne, reservationDeleteOne, reservationDeleteUpdate;
 //----------------- END MODULE SCOPE VARIABLES ---------------
 
 //---------------- BEGIN UTILITY METHODS --------------
@@ -75,16 +77,139 @@ reservationReadOne = function (req, res) {
 };
 
 reservationCreate = function (req, res) {
-    Reservation.create({
-        assetId: req.body.asset_id,
-        user: req.body.user
-    }, function (err, reservation) {
-        if (err) {
-            sendJsonResponse(res, 400, err); // Status code 400 -> bad request
-        } else {
-            sendJsonResponse(res, 201, reservation); // Status code 201 -> resource created
-        }
-    });
+    var
+        assetId = req.body.asset_id;
+
+    Asset
+        .findById(assetId)
+        .exec(function (err, asset) {
+            if (!asset) {
+                sendJsonResponse(res, 404, {
+                    "message": "Asset not found"
+                });
+                return;
+            } else if (err) {
+                console.log(err);
+                sendJsonResponse(res, 400, err); // Status code 400 -> bad request
+                return;
+            }
+            asset.reserved = true;
+
+            asset.save(function (err, asset) {
+                if (err) {
+                    sendJsonResponse(res, 404, err);
+                } else {
+                    //sendJsonResponse(res, 200, asset);
+
+                    Reservation.create({
+                        assetId: assetId,
+                        user: req.body.user
+                    }, function (err, reservation) {
+                        if (err) {
+                            sendJsonResponse(res, 400, err); // Status code 400 -> bad request
+                        } else {
+                            sendJsonResponse(res, 201, reservation); // Status code 201 -> resource created
+                        }
+                    });
+                }
+            })
+        });
+};
+
+reservationUpdateOne = function (req, res) {
+    if (!req.params.reservation_id) {
+        sendJsonResponse(res, 404, {
+            "message": "No reservation_id"
+        });
+        return;
+    }
+    Reservation
+        .findById(req.params.reservation_id)
+        .exec(
+            function (err, reservation) {
+                if (!reservation) {
+                    sendJsonResponse(res, 404, {
+                        "message": "Reservation not found"
+                    });
+                    return;
+                } else if (err) {
+                    sendJsonResponse(res, 400, err);
+                    return;
+                }
+                reservation.end_time = req.body.end_time;
+                reservation.notes = req.body.notes;
+
+                reservation.save(function (err, reservation) {
+                    if (err) {
+                        sendJsonResponse(res, 404, err);
+                    } else {
+                        sendJsonResponse(res, 200, reservation);
+                    }
+                });
+            }
+        );
+};
+
+reservationDeleteUpdate = function (req, res) {
+    var
+        reservation_id, asset_id;
+
+    reservation_id = req.params.reservation_id;
+    
+    if (reservation_id) {
+        Reservation
+            .findById(reservation_id)
+            .exec(function (err, reservation) {
+                if (!reservation) {
+                    sendJsonResponse(res, 404, {
+                        "message": "Reservation not found"
+                    });
+                    return;
+                } else if (err) {
+                    console.log(err);
+                    sendJsonResponse(res, 404, err);
+                    return;
+                }
+                console.log(reservation);
+                asset_id = reservation.assetId;
+
+                Asset
+                    .findById(asset_id)
+                    .exec(function (err, asset) {
+                        if (!asset) {
+                            sendJsonResponse(res, 404, {
+                                "message": "Asset not found"
+                            });
+                            return;
+                        } else if (err) {
+                            console.log(err);
+                            sendJsonResponse(res, 400, err); // Status code 400 -> bad request
+                            return;
+                        }
+                        asset.reserved = false;
+
+                        asset.save(function (err, asset) {
+                            if (err) {
+                                sendJsonResponse(res, 404, err);
+                            } else {
+                                reservation.remove(function (err, reservation) {
+                                    if (err) {
+                                        console.log(err);
+                                        sendJsonResponse(res, 404, err)
+                                    } else {
+                                        sendJsonResponse(res, 204, null)
+                                    }
+                                })
+                            }
+                        })
+                    })
+            })
+    } else {
+        console.log('No reservation_id specified');
+        sendJsonResponse(res, 404, {
+            "message": "No reservation_id in request"
+        });
+    }
 };
 
 reservationDeleteOne = function (req, res) {
@@ -112,6 +237,8 @@ module.exports = {
     reservationList      : reservationList,
     reservationReadOne   : reservationReadOne,
     reservationCreate    : reservationCreate,
+    reservationUpdateOne : reservationUpdateOne,
+    reservationDeleteUpdate : reservationDeleteUpdate,
     reservationDeleteOne : reservationDeleteOne
 };
 

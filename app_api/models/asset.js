@@ -46,7 +46,8 @@ var
             name: { type: String,                                     required: true }
         }],
 
-        reserved: { type: Boolean, default: false,                    required: true }
+        reserved: { type: Boolean, default: false,                    required: true },
+        res_id:   { type: Schema.Types.ObjectId, ref: 'Reservation'                  }
 });
 
 //----------------- END MODULE SCOPE VARIABLES ---------------

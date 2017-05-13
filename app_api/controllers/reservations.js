@@ -103,12 +103,22 @@ reservationCreate = function (req, res) {
 
                     Reservation.create({
                         assetId: assetId,
-                        user: req.body.user
+                        user: req.body.user,
+                        notes: req.body.notes
                     }, function (err, reservation) {
                         if (err) {
                             sendJsonResponse(res, 400, err); // Status code 400 -> bad request
                         } else {
-                            sendJsonResponse(res, 201, reservation); // Status code 201 -> resource created
+                            //sendJsonResponse(res, 201, reservation); // Status code 201 -> resource created
+                            asset.res_id = reservation._id;
+
+                            asset.save(function (err, asset) {
+                                if (err) {
+                                    sendJsonResponse(res, 404, err);
+                                } else {
+                                    sendJsonResponse(res, 201, reservation);
+                                }
+                            })
                         }
                     });
                 }
@@ -187,6 +197,7 @@ reservationDeleteUpdate = function (req, res) {
                             return;
                         }
                         asset.reserved = false;
+                        asset.res_id = undefined;
 
                         asset.save(function (err, asset) {
                             if (err) {

@@ -155,6 +155,10 @@ assetUpdateOne = function (req, res) {
                     name: req.body.hstat_name
                 }];
 
+                // We do not update the "reserved" and "res_id" fields
+                // this way, the reservation API is the only one updating
+                // these fields
+
                 asset.save(function (err, asset) {
                     if (err) {
                         sendJsonResponse(res, 404, err);

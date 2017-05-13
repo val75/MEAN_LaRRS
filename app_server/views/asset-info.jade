@@ -17,3 +17,7 @@ block content
             p Group: #{asset.groupName}
             p Health Status: #{asset.healthStatus}
             P Reserved: #{asset.resStatus}
+            if (asset.resStatus == true)
+              p Current Reservation: #{asset.currentResId}
+                  | &nbsp
+                  a.btn.btn-default(type="button", href="/reservations/delete/#{asset.currentResId}") Release Reservation

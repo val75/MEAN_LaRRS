@@ -160,7 +160,8 @@ renderAssetInfo = function (req, res, assetDetail) {
             locName: assetDetail.locName,
             groupName: assetDetail.groupName,
             healthStatus: assetDetail.assetStatus,
-            resStatus: assetDetail.resStatus
+            resStatus: assetDetail.resStatus,
+            currentResId: assetDetail.currentResId
         }
     });
 };
@@ -241,7 +242,8 @@ assetInfo = function (req, res) {
                     locName: doc.location.map(function (myloc) { return myloc.name } ),
                     groupName: doc.group.map(function (mygroup) { return mygroup.name } ),
                     assetStatus: doc.healthStatus.map(function (myhstat) { return myhstat.name } ),
-                    resStatus: doc.reserved
+                    resStatus: doc.reserved,
+                    currentResId: doc.res_id
                 };
                 renderAssetInfo(req, res, assetInfo);
             } else {

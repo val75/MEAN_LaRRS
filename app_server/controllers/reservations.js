@@ -96,7 +96,62 @@ createReservation = function (req, res) {
     );
 };
 
+doCreateReservation = function (req, res) {
+    console.log(req.body);
+    var
+        requestOptions, path, postData;
+
+    path = '/api/reservations';
+    postData = {
+        asset_id : req.body.assetId,
+        user : req.body.userName,
+        notes : req.body.reservationNotes
+    };
+    requestOptions = {
+        url    : apiOptions.server + path,
+        method : "POST",
+        json   : postData
+    };
+
+    request(
+        requestOptions,
+        function (err, response, body) {
+            if (response.statusCode === 201) {
+                res.redirect('/')
+            } else {
+                _showError(req, res, response.statusCode);
+            }
+        }
+    )
+};
+
+deleteReservation = function (req, res) {
+    var
+        requestOptions, path, reservationId;
+
+    reservationId = req.params.reservation_id;
+    path = '/api/reservations/' + reservationId;
+    requestOptions = {
+        url    : apiOptions.server + path,
+        method : "DELETE",
+        json   : {}
+    };
+
+    request(
+        requestOptions,
+        function (err, response, body) {
+            if (response.statusCode === 204) {
+                res.redirect('/');
+            } else {
+                _showError(req, res, response.statusCode);
+            }
+        }
+    );
+};
+
 module.exports = {
-    createReservation : createReservation
+    createReservation   : createReservation,
+    doCreateReservation : doCreateReservation,
+    deleteReservation   : deleteReservation
 };
 //----------------  END PUBLIC METHODS  --------------

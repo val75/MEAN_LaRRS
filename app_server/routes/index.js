@@ -67,6 +67,7 @@ router.get('/admin/hstats/:hstat_id/delete', ctrlAdminHStat.deleteHStat);
 
 /* Reservations */
 router.get('/reservations/create/:assetId', ctrlReservations.createReservation);
+router.get('/reservations/:reservation_id', ctrlReservations.reservationInfo);
 router.post('/reservations', ctrlReservations.doCreateReservation);
 router.get('/reservations/delete/:reservation_id', ctrlReservations.deleteReservation);
 

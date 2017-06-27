@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    .row.page-header
+        .col-lg-12
+            h1= pageHeader.title
+    .row
+        .col-xs-12.col-md-9
+            p Asset Id: #{reservation.assetId}
+            p User: #{reservation.user}
+            p Notes: #{reservation.notes}
+            p Start Time: #{reservation.startTime}
+            p End Time: #{reservation.endTime}
+    .row
+        .col-xs-12.col-md-9
+            a.btn.btn-default(type="button", href="/reservations/delete/#{reservation._id}") Release Reservation

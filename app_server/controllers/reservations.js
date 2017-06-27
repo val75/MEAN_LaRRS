@@ -55,6 +55,17 @@ renderCreateReservationForm = function (req, res, assetDetail) {
         }
     });
 };
+
+renderInfoReservation = function (req, res, reservationDetail) {
+    res.render('reservation-info', {
+        title: 'Reservation Info',
+        pageHeader : {
+            title : 'Reservation Info',
+            strapline : 'reservation details'
+        },
+        reservation: reservationDetail
+    });
+};
 //----------------  END UTILITY METHODS  --------------
 
 //---------------- BEGIN PUBLIC METHODS --------------
@@ -94,6 +105,41 @@ createReservation = function (req, res) {
             }
         }
     );
+};
+
+reservationInfo = function (req, res) {
+    var
+        requestOptions, path;
+
+    path = "/api/reservations/" + req.params.reservation_id;
+    requestOptions = {
+        url    : apiOptions.server + path,
+        method : "GET",
+        json   : {}
+    };
+
+    request(
+        requestOptions,
+        function (err, response, body) {
+            var
+                doc = body,
+                reservationInfo = [];
+
+            if (response.statusCode === 200) {
+                reservationInfo = {
+                    _id: doc._id,
+                    assetId: doc.assetId,
+                    user: doc.user,
+                    notes: doc.notes,
+                    startTime: doc.start_time,
+                    endTime: doc.end_time
+                };
+                renderInfoReservation(req, res, reservationInfo);
+            } else {
+                _showError(req, res, response.statusCode);
+            }
+        }
+    )
 };
 
 doCreateReservation = function (req, res) {
@@ -151,6 +197,7 @@ deleteReservation = function (req, res) {
 
 module.exports = {
     createReservation   : createReservation,
+    reservationInfo     : reservationInfo,
     doCreateReservation : doCreateReservation,
     deleteReservation   : deleteReservation
 };

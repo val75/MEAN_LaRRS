@@ -27,6 +27,7 @@ block content
                                   span.label.label-success Free
                                   a.btn.btn-success.pull-right(type="button", href="/reservations/create/#{asset._id}") Reserve
                                 else
-                                  span.label.label-danger.pull-right Reserved
+                                  span.label.label-danger Reserved
+                                  a.btn.btn-danger.pull-right(type="button", href="/reservations/#{asset.currentResId}") Reserved
             .col-xs-12.col-sm-4
                 p.lead LaRRS helps you reserve an asset in HWE Labs and takes care of it once it is released.

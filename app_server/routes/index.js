@@ -11,9 +11,11 @@ var ctrlAdminGroup   = require( '../controllers/adminGroup'   );
 var ctrlAdminHStat   = require( '../controllers/adminHStat'   );
 var ctrlReservations = require( '../controllers/reservations' );
 var ctrlApiHelp      = require( '../controllers/api_help'     );
+var ctrlAssets1      = require( '../controllers/assets1'      );
 
 /* Assets pages */
-router.get('/', ctrlAssets.assetList);
+//router.get('/', ctrlAssets.assetList);
+router.get('/', ctrlAssets1.homelist);
 router.get('/admin/assets/new', ctrlAssets.addAsset);
 router.get('/assets/:assetId', ctrlAssets.assetInfo);
 router.post('/assets', ctrlAssets.doAddAsset);

@@ -3,6 +3,26 @@
  */
 angular.module('larrsApp', []);
 
+var reservationStatus = function () {
+    return {
+        scope : {
+            thisStatus : '=status'
+        },
+        //template : "{{ thisStatus }}"
+        templateUrl: '/angular/reservation-status.html'
+    };
+};
+
+var reservationButton = function () {
+    return {
+        scope : {
+            thisStatus  : '=status',
+            thisAssetId : '=id'
+        },
+        templateUrl : '/angular/reservation-button.html'
+    }
+}
+
 var assetListCtrl = function ($scope, larrsData) {
     $scope.message = "Searching for assets...";
     larrsData
@@ -22,7 +42,7 @@ var assetListCtrl = function ($scope, larrsData) {
                         locName: doc.location[0].name,
                         groupName: doc.group[0].name,
                         assetStatus: doc.healthStatus[0].name,
-                        resStatus: doc.reserved,
+                        resStatus: doc.reserved ? "Reserved" : "Free",
                         currentResId: doc.res_id
                     });
                 });
@@ -49,4 +69,6 @@ var larrsData = function ($http) {
 angular
     .module('larrsApp')
     .controller('assetListCtrl', assetListCtrl)
+    .directive('reservationStatus', reservationStatus)
+    .directive('reservationButton', reservationButton)
     .service('larrsData', larrsData);

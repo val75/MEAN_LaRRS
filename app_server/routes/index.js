@@ -13,6 +13,10 @@ var ctrlReservations = require( '../controllers/reservations' );
 var ctrlApiHelp      = require( '../controllers/api_help'     );
 var ctrlAssets1      = require( '../controllers/assets1'      );
 
+var ctrlOthers = require('../controllers/others');
+
+router.get('/', ctrlOthers.angularApp);
+
 /* Assets pages */
 //router.get('/', ctrlAssets.assetList);
 router.get('/', ctrlAssets1.homelist);

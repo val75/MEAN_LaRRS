@@ -1,0 +1,40 @@
+<div id="banner" class="page-header">
+    <div class="row">
+        <div class="col-lg-6">
+            <h1>
+                {{ vm.pageHeader.title }}
+                <small>{{ vm.pageHeader.strapline }}</small>
+            </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-8">
+            <label for="filter">Filter results</label>
+             <input id="filter" type="text", name="filter", ng-model="textFilter">
+           <div class="error">{{ vm.message }}</div>
+           <div class="row list-group">
+               <div class="col-xs-12 list-group-item" ng-repeat="asset in vm.data.assets | filter : textFilter">
+                  <h4>
+                      <a href="/assets/{{ asset._id }}">{{ asset.hostname }}</a>
+                      <span class="badge pull-right">{{ asset.assetStatus }}</span>
+                  </h4>
+                  <p class="assetTag">{{ asset.assetTag }}</p>
+                  <p>
+                      <span class="label label-warning">{{ asset.skuModel }}</span>
+                     &nbsp;
+                     <span class="label label-warning">{{ asset.mfgName }}</span>
+                      &nbsp;
+                      <span class="label label-warning">{{ asset.hwModel }}</span>
+                      &nbsp;
+                      <span class="reservation-status" reservation-status status="asset.resStatus"></span>
+                      <a class="reservation-button", reservation-button status="asset.resStatus", id="asset._id"></a>
+                  </p>
+               </div>
+           </div>
+        </div>
+        <div class="col-xs-12 col-sm-4">
+            <p class="lead">{{ vm.sidebar.content }}</p>
+        </div>
+    </div>
+</div>

@@ -47,7 +47,8 @@ html(ng-app='larrsApp')
                   span.glyphicon.glyphicon-log-in  Login
 
     .container
-      block content
+      div(ng-view)
+        block content
 
     footer
       .row
@@ -57,6 +58,11 @@ html(ng-app='larrsApp')
     script(src='/javascripts/jquery-3.2.0.min.js')
     script(src='/bootstrap/js/bootstrap.min.js'  )
     script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.min.js')
-    script(src='/angular/larrsApp.js')
+    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular-route.js')
+    script(src='/app.js')
+    script(src='/home/home.controller.js')
+    script(src='/common/services/larrsData.service.js')
+    script(src='/common/directives/reservationStatus/reservationStatus.directive.js')
+    script(src='/common/directives/reservationButton/reservationButton.directive.js')
 
 

@@ -16,6 +16,7 @@
         .module('larrsApp')
         .service('larrsData', larrsData);
 
+    larrsData.$inject = ['$http'];
     function larrsData ($http) {
         return $http({
             method: 'GET',

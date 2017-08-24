@@ -16,6 +16,7 @@
         .module('larrsApp')
         .controller('homeCtrl', homeCtrl);
 
+    homeCtrl.$inject = ['$scope', 'larrsData'];
     function homeCtrl ($scope, larrsData) {
         var
             vm = this;

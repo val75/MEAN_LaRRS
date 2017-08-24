@@ -11,18 +11,21 @@
 /*global */
 'use strict';
 
-angular.module('larrsApp', ['ngRoute']);
+(function () {
+    angular.module('larrsApp', ['ngRoute']);
 
-function config ($routeProvider) {
-    $routeProvider
-        .when('/', {
-            templateUrl: 'home/home.view.html',
-            controller: 'homeCtrl',
-            controllerAs: 'vm'
-        })
-        .otherwise({redirectTo: '/'});
-}
+    function config ($routeProvider) {
+        $routeProvider
+            .when('/', {
+                templateUrl: 'home/home.view.html',
+                controller: 'homeCtrl',
+                controllerAs: 'vm'
+            })
+            .otherwise({redirectTo: '/'});
+    }
 
-angular
-    .module('larrsApp')
-    .config(['$routeProvider', config])
+    angular
+        .module('larrsApp')
+        .config(['$routeProvider', config]);
+})();
+

@@ -1,26 +1,18 @@
 <!DOCTYPE html>
 <html ng-app="larrsApp">
-<head>
+  <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LaRRS</title>
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/stylesheets/style.css">
-</head>
-<body>
-  <navigation></navigation>
+  </head>
 
-  <div class="container">
-      <div ng-view>
-      </div>
-  </div>
-
-  <footer-generic></footer-generic>
-
+  <body ng-view>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular-route.js"></script>
   <script src="angular/larrs.min.js"></script>
   <script src="/javascripts/jquery-3.2.0.min.js"></script>
   <script src="/bootstrap/js/bootstrap.min.js"></script>
-</body>
+  </body>
 </html>

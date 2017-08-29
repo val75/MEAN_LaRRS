@@ -21,6 +21,11 @@
                 controller: 'homeCtrl',
                 controllerAs: 'vm'
             })
+            .when('/assets/:assetId', {
+                templateUrl: '/assetDetail/assetDetail.view.html',
+                controller: 'assetDetailCtrl',
+                controllerAs: 'vm'
+            })
             .otherwise({redirectTo: '/'});
 
         $locationProvider.html5Mode(true);

@@ -31,7 +31,7 @@
 
         //vm.message = "Checking for lab assets...";
 
-        larrsData
+        larrsData.lData()
             .success(function (data) {
                 vm.message = data.length > 0 ? "" : "No assets found";
                 var

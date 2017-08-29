@@ -11,7 +11,7 @@
            <div class="row list-group">
                <div class="col-xs-12 list-group-item" ng-repeat="asset in vm.data.assets | filter : textFilter">
                   <h4>
-                      <a href="/assets/{{ asset._id }}">{{ asset.hostname }}</a>
+                      <a href="/#/assets/{{ asset._id }}">{{ asset.hostname }}</a>
                       <span class="badge pull-right">{{ asset.assetStatus }}</span>
                   </h4>
                   <p class="assetTag">{{ asset.assetTag }}</p>

@@ -18,10 +18,21 @@
 
     larrsData.$inject = ['$http'];
     function larrsData ($http) {
-        return $http({
-            method: 'GET',
-            url: '/api/assets',
-            transformResponse: $http.defaults.transformResponse
-        });
+        var lData = function () {
+            return $http({
+                method: 'GET',
+                url: '/api/assets',
+                transformResponse: $http.defaults.transformResponse
+            });
+        };
+
+        var assetById = function (assetId) {
+            return $http.get('/api/assets/' + assetId);
+        };
+
+        return {
+            lData: lData,
+            assetById: assetById
+        };
     }
 })();

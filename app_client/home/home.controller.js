@@ -16,8 +16,8 @@
         .module('larrsApp')
         .controller('homeCtrl', homeCtrl);
 
-    homeCtrl.$inject = ['$scope', 'larrsData'];
-    function homeCtrl ($scope, larrsData) {
+    homeCtrl.$inject = ['$scope', '$modal', 'larrsData'];
+    function homeCtrl ($scope, $modal, larrsData) {
         var
             vm = this;
 
@@ -59,6 +59,36 @@
                 $scope.message = "Sorry, something's gone wrong";
                 console.log(e);
             });
+
+        larrsData.getSkus()
+            .success(function (data) {
+                var
+                    skuList = [];
+                if (data.length) {
+                    data.forEach(function (sku) {
+                        skuList.push({
+                            _id: sku._id,
+                            name: sku.name
+                        });
+                    });
+                }
+                vm.skudata = { skus: skuList };
+            });
+
+        vm.popupAssetAddForm = function () {
+            var
+                modalInstance = $modal.open({
+                    templateUrl: '/assetAddModal/assetAddModal.view.html',
+                    controller: 'assetAddModalCtrl as vm',
+                    resolve : {
+                        skuData : function () {
+                            return {
+                                skuList : vm.skudata.skus
+                            };
+                        }
+                    }
+                });
+        };
 
         vm.showError = function (error) {
             $scope.$apply(function () {

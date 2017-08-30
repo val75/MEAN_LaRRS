@@ -29,7 +29,8 @@ var appClientFiles = [
     'app_client/common/directives/footerGeneric/footerGeneric.directive.js',
     'app_client/common/directives/navigation/navigation.directive.js',
     'app_client/common/directives/pageHeader/pageHeader.directive.js',
-    'app_client/common/directives/headerInfo/headerInfo.directive.js'
+    'app_client/common/directives/headerInfo/headerInfo.directive.js',
+    'app_client/assetAddModal/assetAddModal.controller.js'
 ];
 
 var uglified = uglifyJs.minify(appClientFiles, { compress : false });

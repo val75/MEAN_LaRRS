@@ -30,9 +30,14 @@
             return $http.get('/api/assets/' + assetId);
         };
 
+        var getSkus = function () {
+            return $http.get('/api/skus')
+        };
+
         return {
             lData: lData,
-            assetById: assetById
+            assetById: assetById,
+            getSkus: getSkus
         };
     }
 })();

@@ -24,7 +24,21 @@
 
         larrsData.assetById(vm.assetId)
             .success(function (data) {
-                vm.data = { asset : data };
+                var assetInfo = [];
+                assetInfo = {
+                    _id: data._id,
+                    hostname: data.hostname,
+                    tag: data.tag,
+                    skuModel: data.sku[0].name,
+                    hwModel: data.hwModel[0].name,
+                    mfgName: data.manufacturer[0].name,
+                    locName: data.location[0].name,
+                    groupName: data.group[0].name,
+                    hStatus: data.healthStatus[0].name,
+                    resStatus: data.reserved,
+                    currentResId: data.res_id
+                };
+                vm.data = { asset : assetInfo };
                 vm.pageHeader = {
                     title: vm.data.asset.hostname
                 };

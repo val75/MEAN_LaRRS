@@ -1,14 +1,22 @@
 <navigation></navigation>
 
 <div class="container">
-    <page-header content="vm.pageHeader"></page-header>
-    <h1>
-        <a class="btn btn-default pull-right" type="button" href="/admin/asset/{{ asset._id }}/delete">Delete</a>
-    </h1>
+    <header-info content="vm.pageHeader" asset="vm.data.asset"></header-info>
 
     <div class="row">
         <div class="col-xs-12 col-md-9">
             <p>Asset Tag: {{ vm.data.asset.tag }}</p>
+            <p>Hostname: {{ vm.data.asset.hostname }}</p>
+            <p>SKU: {{ vm.data.asset.skuModel }}</p>
+            <p>Hardware Model: {{ vm.data.asset.hwModel }}</p>
+            <p>Manufacturer: {{ vm.data.asset.mfgName }}</p>
+            <p>Location: {{ vm.data.asset.locName }}</p>
+            <p>Asset Group: {{ vm.data.asset.groupName }}</p>
+            <p>Health Status: {{ vm.data.asset.hStatus }}</p>
+            <p>Reserved: {{ vm.data.asset.resStatus }}</p>
+            <div ng-if="vm.data.asset.resStatus">
+                <p class="reservation-info" reservation-info id="vm.data.asset.currentResId"></p>
+            </div>
         </div>
     </div>
 

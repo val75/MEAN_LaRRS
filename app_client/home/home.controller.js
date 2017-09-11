@@ -75,6 +75,81 @@
                 vm.skudata = { skus: skuList };
             });
 
+        larrsData.getMfgs()
+            .success(function (data) {
+                var
+                    mfgList = [];
+                if (data.length) {
+                    data.forEach(function (mfg) {
+                        mfgList.push({
+                            _id: mfg._id,
+                            name: mfg.name
+                        });
+                    });
+                }
+                vm.mfgdata = { mfgs : mfgList };
+            });
+
+        larrsData.getHwModel()
+            .success(function (data) {
+                var
+                    hwmList = [];
+                if (data.length) {
+                    data.forEach(function (hwm) {
+                        hwmList.push({
+                            _id: hwm._id,
+                            name: hwm.name
+                        });
+                    });
+                }
+                vm.hwmdata = { hwms : hwmList };
+            });
+
+        larrsData.getLocation()
+            .success(function (data) {
+                var
+                    locList = [];
+                if (data.length) {
+                    data.forEach(function (loc) {
+                        locList.push({
+                            _id: loc._id,
+                            name: loc.name
+                        });
+                    });
+                }
+                vm.locdata = { locs : locList };
+            });
+
+        larrsData.getGroup()
+            .success(function (data) {
+                var
+                    groupList = [];
+                if (data.length) {
+                    data.forEach(function (grp) {
+                        groupList.push({
+                            _id: grp._id,
+                            name: grp.name
+                        });
+                    });
+                }
+                vm.groupdata = { grps : groupList };
+            });
+
+        larrsData.getHealthStatus()
+            .success(function (data) {
+                var
+                    hStatList = [];
+                if (data.length) {
+                    data.forEach(function (hstat) {
+                        hStatList.push({
+                            _id: hstat._id,
+                            name: hstat.name
+                        });
+                    });
+                }
+                vm.hstatdata = { hstats : hStatList };
+            });
+
         vm.popupAssetAddForm = function () {
             var
                 modalInstance = $modal.open({
@@ -84,6 +159,31 @@
                         skuData : function () {
                             return {
                                 skuList : vm.skudata.skus
+                            };
+                        },
+                        mfgData : function () {
+                            return {
+                                mfgList : vm.mfgdata.mfgs
+                            };
+                        },
+                        hwmData : function () {
+                            return {
+                                hwmList : vm.hwmdata.hwms
+                            };
+                        },
+                        locData : function () {
+                            return {
+                                locList : vm.locdata.locs
+                            };
+                        },
+                        grpData : function () {
+                            return {
+                                groupList : vm.groupdata.grps
+                            };
+                        },
+                        hstatData : function () {
+                            return {
+                                hstatList : vm.hstatdata.hstats
                             };
                         }
                     }

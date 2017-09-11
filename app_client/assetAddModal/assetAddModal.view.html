@@ -36,7 +36,7 @@
                 <label for="hwModel" class="col-xs-10 col-sm-3 control-label">Hardware Model:</label>
                 <div class="col-xs-12 col-sm-3">
                     <select id="hwModel" name="hwModel" ng-model="vm.formData.hwModel" class="form-control">
-                        <option>model1</option>
+                        <option ng-repeat="hwm in vm.hwmData">{{ hwm.name }}</option>
                     </select>
                 </div>
             </div>
@@ -45,8 +45,7 @@
                 <label for="mfgName" class="col-xs-10 col-sm-3 control-label">Manufacturer:</label>
                 <div class="col-xs-12 col-sm-3">
                     <select id="mfgName" name="mfgName" ng-model="vm.formData.mfgName" class="form-control">
-                        <option>Dell</option>
-                        <option>Hyve</option>
+                        <option ng-repeat="mfg in vm.mfgData">{{ mfg.name }}</option>
                     </select>
                 </div>
             </div>
@@ -55,8 +54,7 @@
                 <label for="locName" class="col-xs-10 col-sm-3 control-label">Location:</label>
                 <div class="col-xs-12 col-sm-3">
                     <select id="locName" name="locName" ng-model="vm.formData.locName" class="form-control">
-                        <option>LVS Qual</option>
-                        <option>SJC B-Lab</option>
+                        <option ng-repeat="loc in vm.locData">{{ loc.name }}</option>
                     </select>
                 </div>
             </div>
@@ -65,7 +63,7 @@
                 <label for="groupName" class="col-xs-10 col-sm-3 control-label">Asset Group:</label>
                 <div class="col-xs-12 col-sm-3">
                     <select id="groupName" name="groupName" ng-model="vm.formData.groupName" class="form-control">
-                        <option>DefaultGroup</option>
+                        <option ng-repeat="grp in vm.grpData">{{ grp.name }}</option>
                     </select>
                 </div>
             </div>
@@ -74,8 +72,7 @@
                 <label for="assetStatus" class="col-xs-10 col-sm-3 control-label">Asset Status</label>
                 <div class="col-xs-12 col-sm-3">
                     <select id="assetStatus" name="assetStatus" ng-model="vm.formData.assetStatus" class="form-control">
-                        <option>Healthy</option>
-                        <option>Maintenance</option>
+                        <option ng-repeat="hstat in vm.hstatData">{{ hstat.name }}</option>
                     </select>
                 </div>
             </div>

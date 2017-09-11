@@ -17,11 +17,16 @@
         .module('larrsApp')
         .controller('assetAddModalCtrl', assetAddModalCtrl);
 
-    assetAddModalCtrl.$inject = ['$modalInstance', 'skuData'];
-    function assetAddModalCtrl ($modalInstance, skuData) {
+    assetAddModalCtrl.$inject = ['$modalInstance', 'skuData', 'mfgData', 'hwmData', 'locData', 'grpData', 'hstatData'];
+    function assetAddModalCtrl ($modalInstance, skuData, mfgData, hwmData, locData, grpData, hstatData) {
         var
             vm = this;
         vm.skuData = skuData.skuList;
+        vm.mfgData = mfgData.mfgList;
+        vm.hwmData = hwmData.hwmList;
+        vm.locData = locData.locList;
+        vm.grpData = grpData.groupList;
+        vm.hstatData = hstatData.hstatList;
 
         vm.modal = {
             cancel : function () {

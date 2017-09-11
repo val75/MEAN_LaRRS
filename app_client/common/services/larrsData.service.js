@@ -34,10 +34,35 @@
             return $http.get('/api/skus')
         };
 
+        var getMfgs = function () {
+            return $http.get('/api/manufacturers')
+        };
+
+        var getHwModel = function () {
+            return $http.get('/api/hwmodels')
+        };
+
+        var getLocation = function () {
+            return $http.get('/api/locations')
+        };
+
+        var getGroup = function () {
+            return $http.get('/api/groups')
+        };
+
+        var getHealthStatus = function () {
+            return $http.get('/api/hStatus')
+        };
+
         return {
             lData: lData,
             assetById: assetById,
-            getSkus: getSkus
+            getSkus: getSkus,
+            getMfgs: getMfgs,
+            getHwModel: getHwModel,
+            getLocation : getLocation,
+            getGroup: getGroup,
+            getHealthStatus: getHealthStatus
         };
     }
 })();

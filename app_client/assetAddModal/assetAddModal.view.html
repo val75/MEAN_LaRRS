@@ -1,5 +1,5 @@
 <div class="modal-content">
-    <form id="addAsset" name="addAsset" role="form" class="form-horizontal">
+    <form id="addAsset" name="addAsset" role="form" ng-submit="vm.onSubmit()" class="form-horizontal">
         <div class="modal-header">
             <button type="button" ng-click="vm.modal.cancel()" class="close">
                 <span aria-hidden="true">x</span>
@@ -9,6 +9,7 @@
         </div>
 
         <div class="modal-body">
+            <div role="alert" ng-show="vm.formError" class="alert alert-danger">{{ vm.formError }}</div>
             <div class="form-group">
                 <label for="assetTag" class="col-xs-2 col-sm-3 control-label">Asset Tag:</label>
                 <div class="col-xs-10 col-sm-9">
@@ -26,8 +27,10 @@
             <div class="form-group">
                 <label for="skuModel" class="col-xs-10 col-sm-3 control-label">SKU:</label>
                 <div class="col-xs-12 col-sm-3">
-                    <select id="skuModel" name="skuModel" ng-model="vm.formData.skuModel" class="form-control">
-                        <option ng-repeat="sku in vm.skuData">{{ sku.name }}</option>
+                    <select id="skuModel" name="skuModel" ng-model="vm.formData.skuObj" class="form-control">
+                        <option ng-repeat="sku in vm.skuData" value='{"id": "{{sku._id}}", "name": "{{sku.name}}"}'>
+                            {{ sku.name }}
+                        </option>
                     </select>
                 </div>
             </div>
@@ -35,8 +38,10 @@
             <div class="form-group">
                 <label for="hwModel" class="col-xs-10 col-sm-3 control-label">Hardware Model:</label>
                 <div class="col-xs-12 col-sm-3">
-                    <select id="hwModel" name="hwModel" ng-model="vm.formData.hwModel" class="form-control">
-                        <option ng-repeat="hwm in vm.hwmData">{{ hwm.name }}</option>
+                    <select id="hwModel" name="hwModel" ng-model="vm.formData.hwModelObj" class="form-control">
+                        <option ng-repeat="hwm in vm.hwmData" value='{"id": "{{hwm._id}}", "name": "{{hwm.name}}"}'>
+                            {{ hwm.name }}
+                        </option>
                     </select>
                 </div>
             </div>
@@ -44,8 +49,10 @@
             <div class="form-group">
                 <label for="mfgName" class="col-xs-10 col-sm-3 control-label">Manufacturer:</label>
                 <div class="col-xs-12 col-sm-3">
-                    <select id="mfgName" name="mfgName" ng-model="vm.formData.mfgName" class="form-control">
-                        <option ng-repeat="mfg in vm.mfgData">{{ mfg.name }}</option>
+                    <select id="mfgName" name="mfgName" ng-model="vm.formData.mfgObj" class="form-control">
+                        <option ng-repeat="mfg in vm.mfgData" value='{"id": "{{mfg._id}}", "name": "{{mfg.name}}"}'>
+                            {{ mfg.name }}
+                        </option>
                     </select>
                 </div>
             </div>
@@ -53,8 +60,10 @@
             <div class="form-group">
                 <label for="locName" class="col-xs-10 col-sm-3 control-label">Location:</label>
                 <div class="col-xs-12 col-sm-3">
-                    <select id="locName" name="locName" ng-model="vm.formData.locName" class="form-control">
-                        <option ng-repeat="loc in vm.locData">{{ loc.name }}</option>
+                    <select id="locName" name="locName" ng-model="vm.formData.locObj" class="form-control">
+                        <option ng-repeat="loc in vm.locData" value='{"id": "{{loc._id}}", "name": "{{loc.name}}"}'>
+                            {{ loc.name }}
+                        </option>
                     </select>
                 </div>
             </div>
@@ -62,8 +71,10 @@
             <div class="form-group">
                 <label for="groupName" class="col-xs-10 col-sm-3 control-label">Asset Group:</label>
                 <div class="col-xs-12 col-sm-3">
-                    <select id="groupName" name="groupName" ng-model="vm.formData.groupName" class="form-control">
-                        <option ng-repeat="grp in vm.grpData">{{ grp.name }}</option>
+                    <select id="groupName" name="groupName" ng-model="vm.formData.groupObj" class="form-control">
+                        <option ng-repeat="grp in vm.grpData" value='{"id": "{{grp._id}}", "name": "{{grp.name}}"}'>
+                            {{ grp.name }}
+                        </option>
                     </select>
                 </div>
             </div>
@@ -71,8 +82,10 @@
             <div class="form-group">
                 <label for="assetStatus" class="col-xs-10 col-sm-3 control-label">Asset Status</label>
                 <div class="col-xs-12 col-sm-3">
-                    <select id="assetStatus" name="assetStatus" ng-model="vm.formData.assetStatus" class="form-control">
-                        <option ng-repeat="hstat in vm.hstatData">{{ hstat.name }}</option>
+                    <select id="assetStatus" name="assetStatus" ng-model="vm.formData.hstatObj" class="form-control">
+                        <option ng-repeat="hstat in vm.hstatData" value='{"id": "{{hstat._id}}", "name": "{{hstat.name}}"}'>
+                            {{ hstat.name }}
+                        </option>
                     </select>
                 </div>
             </div>

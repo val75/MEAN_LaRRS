@@ -188,6 +188,10 @@
                         }
                     }
                 });
+
+            modalInstance.result.then(function (data) {
+                vm.data.assets.push(data)
+            });
         };
 
         vm.showError = function (error) {

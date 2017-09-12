@@ -30,6 +30,10 @@
             return $http.get('/api/assets/' + assetId);
         };
 
+        var addAsset = function (data) {
+            return $http.post('/api/assets', data);
+        };
+
         var getSkus = function () {
             return $http.get('/api/skus')
         };
@@ -57,6 +61,7 @@
         return {
             lData: lData,
             assetById: assetById,
+            addAsset: addAsset,
             getSkus: getSkus,
             getMfgs: getMfgs,
             getHwModel: getHwModel,

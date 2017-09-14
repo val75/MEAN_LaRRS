@@ -30,6 +30,10 @@
             return $http.get('/api/assets/' + assetId);
         };
 
+        var assetDelete = function (assetId) {
+            return $http.delete('/api/assets/' + assetId);
+        };
+
         var addAsset = function (data) {
             return $http.post('/api/assets', data);
         };
@@ -61,6 +65,7 @@
         return {
             lData: lData,
             assetById: assetById,
+            assetDelete: assetDelete,
             addAsset: addAsset,
             getSkus: getSkus,
             getMfgs: getMfgs,

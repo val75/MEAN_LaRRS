@@ -38,6 +38,10 @@
             return $http.post('/api/assets', data);
         };
 
+        var updateAsset = function (assetId, data) {
+            return $http.put('/api/assets/' + assetId, data);
+        };
+
         var getSkus = function () {
             return $http.get('/api/skus')
         };
@@ -67,6 +71,7 @@
             assetById: assetById,
             assetDelete: assetDelete,
             addAsset: addAsset,
+            updateAsset: updateAsset,
             getSkus: getSkus,
             getMfgs: getMfgs,
             getHwModel: getHwModel,

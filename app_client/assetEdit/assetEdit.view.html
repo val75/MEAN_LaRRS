@@ -1,0 +1,93 @@
+<navigation></navigation>
+
+<div class="container">
+    <page-header content="vm.pageHeader"></page-header>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-9">
+            <form id="editAsset" name="editAsset" role="form" ng-submit="vm.onSubmit()" class="form-horizontal">
+
+                <div class="form-group">
+                    <label for="assetTag" class="col-xs-2 col-sm-3 control-label">Asset Tag:</label>
+                    <div class="col-xs-10 col-sm-9">
+                        <input id="assetTag" ng-model="vm.data.asset.tag" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="hostName" class="col-xs-10 col-sm-3 control-label">Hostname:</label>
+                    <div class="col-xs-12 col-sm-9">
+                        <input id="hostName" ng-model="vm.data.asset.hostname" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="skuModel" class="col-xs-10 col-sm-3 control-label">SKU:</label>
+                    <div class="col-xs-12 col-sm-3">
+                        <select id="skuModel" ng-model="vm.data.asset.skuModel"
+                                ng-options="option.name for option in vm.skudata.skus track by option._id"
+                                class="form-control">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="hwModel" class="col-xs-10 col-sm-3 control-label">Hardware Model:</label>
+                    <div class="col-xs-12 col-sm-3">
+                        <select id="hwModel" ng-model="vm.data.asset.hwModel"
+                                ng-options="option.name for option in vm.hwmdata.hwms track by option._id"
+                                class="form-control">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="locName" class="col-xs-10 col-sm-3 control-label">Location:</label>
+                    <div class="col-xs-12 col-sm-3">
+                        <select id="locName" ng-model="vm.data.asset.locName"
+                                ng-options="option.name for option in vm.locdata.locs track by option._id"
+                                class="form-control">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="mfgName" class="col-xs-10 col-sm-3 control-label">Manufacturer:</label>
+                    <div class="col-xs-12 col-sm-3">
+                        <select id="mfgName" ng-model="vm.data.asset.mfgName"
+                                ng-options="option.name for option in vm.mfgdata.mfgs track by option._id"
+                                class="form-control">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="groupName" class="col-xs-10 col-sm-3 control-label">Asset Group:</label>
+                    <div class="col-xs-12 col-sm-3">
+                        <select id="groupName" ng-model="vm.data.asset.groupName"
+                                ng-options="option.name for option in vm.groupdata.grps track by option._id"
+                                class="form-control">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="assetStatus" class="col-xs-10 col-sm-3 control-label">Asset Status</label>
+                    <div class="col-xs-12 col-sm-3">
+                        <select id="assetStatus" ng-model="vm.data.asset.hStatus"
+                                ng-options="option.name for option in vm.hstatdata.hstats track by option._id"
+                                class="form-control">
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Update Asset</button>
+
+            </form>
+        </div>
+    </div>
+
+
+
+    <footer-generic></footer-generic>
+</div>

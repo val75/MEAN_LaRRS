@@ -21,6 +21,11 @@
                 controller: 'homeCtrl',
                 controllerAs: 'vm'
             })
+            .when('/asset/:assetId/edit', {
+                templateUrl: '/assetEdit/assetEdit.view.html',
+                controller: 'assetEditCtrl',
+                controllerAs: 'vm'
+            })
             .when('/assets/:assetId/delete', {
                 templateUrl: '/assetDelete/assetDelete.view.html',
                 controller: 'assetDeleteCtrl',

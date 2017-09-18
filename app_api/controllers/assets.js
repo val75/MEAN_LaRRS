@@ -138,6 +138,10 @@ assetUpdateOne = function (req, res) {
                     id: req.body.sku_id,
                     name: req.body.sku_name
                 }];
+                asset.hwModel = [{
+                    id: req.body.hwmodel_id,
+                    name: req.body.hwmodel_name
+                }];
                 asset.manufacturer = [{
                     id: req.body.mfg_id,
                     name: req.body.mfg_name

@@ -23,6 +23,7 @@ var appClientFiles = [
     'app_client/home/home.controller.js',
     'app_client/assetDetail/assetDetail.controller.js',
     'app_client/assetDelete/assetDelete.controller.js',
+    'app_client/assetEdit/assetEdit.controller.js',
     'app_client/common/services/larrsData.service.js',
     'app_client/common/directives/reservationStatus/reservationStatus.directive.js',
     'app_client/common/directives/reservationButton/reservationButton.directive.js',

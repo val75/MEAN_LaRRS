@@ -28,7 +28,6 @@
         vm.sidebar = {
             content : 'LaRRS helps you reserve an asset in HWE Labs and takes care of it once it is released'
         };
-
         //vm.message = "Checking for lab assets...";
 
         larrsData.lData()

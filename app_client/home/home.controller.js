@@ -47,7 +47,8 @@
                             locName: doc.location[0].name,
                             groupName: doc.group[0].name,
                             assetStatus: doc.healthStatus[0].name,
-                            resStatus: doc.reserved ? "Reserved" : "Free",
+                            //resStatus: doc.reserved ? "Reserved" : "Free",
+                            resStatus: doc.reserved,
                             currentResId: doc.res_id
                         });
                     });
@@ -191,6 +192,23 @@
             modalInstance.result.then(function (data) {
                 vm.data.assets.push(data)
             });
+        };
+
+        vm.popupReservationCreateForm = function (assetId, assetTag, assetHostname) {
+            var
+                modalInstance = $modal.open({
+                    templateUrl: '/reservationCreateModal/reservationCreateModal.view.html',
+                    controller: 'reservationCreateModalCtrl as vm',
+                    resolve : {
+                        assetData : function () {
+                            return {
+                                _id : assetId,
+                                tag : assetTag,
+                                hostname : assetHostname
+                            };
+                        }
+                    }
+                });
         };
 
         vm.showError = function (error) {

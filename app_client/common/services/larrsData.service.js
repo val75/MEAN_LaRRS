@@ -66,6 +66,10 @@
             return $http.get('/api/hStatus')
         };
 
+        var createReservation = function (data) {
+            return $http.post('/api/reservations', data);
+        };
+
         return {
             lData: lData,
             assetById: assetById,
@@ -77,7 +81,8 @@
             getHwModel: getHwModel,
             getLocation : getLocation,
             getGroup: getGroup,
-            getHealthStatus: getHealthStatus
+            getHealthStatus: getHealthStatus,
+            createReservation: createReservation
         };
     }
 })();

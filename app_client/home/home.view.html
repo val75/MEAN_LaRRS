@@ -22,8 +22,12 @@
                       &nbsp;
                       <span class="label label-warning">{{ asset.hwModel }}</span>
                       &nbsp;
-                      <span class="reservation-status" reservation-status status="asset.resStatus"></span>
-                      <a class="reservation-button", reservation-button status="asset.resStatus", id="asset._id"></a>
+                      <span class="reservation-status" reservation-status
+                            status="asset.resStatus == false ? 'Free' : 'Reserved'"></span>
+                      <a ng-if="asset.resStatus == false"
+                         ng-click="vm.popupReservationCreateForm(asset._id, asset.assetTag, asset.hostname)"
+                         class="btn btn-success pull-right">Reserve</a>
+                      <a ng-if="asset.resStatus" class="btn btn-danger pull-right disabled">Reserved</a>
                   </p>
                </div>
            </div>

@@ -30,7 +30,7 @@
                 vm.formError = "All fields are required, please try again";
                 return false;
             } else {
-                console.log(vm.formResData);
+                //console.log(vm.formResData);
                 vm.doCreateReservation(vm.formResData);
             }
         };

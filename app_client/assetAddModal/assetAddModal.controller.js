@@ -65,7 +65,7 @@
             })
                 .success(function (data) {
                     vm.modal.close(data);
-                    console.log("Success! " + data);
+                    console.log("Success! ");
                 })
                 .error(function (data) {
                     vm.formError = "Error " + data;

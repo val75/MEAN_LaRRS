@@ -27,7 +27,9 @@
                       <a ng-if="asset.resStatus == false"
                          ng-click="vm.popupReservationCreateForm(asset._id, asset.assetTag, asset.hostname)"
                          class="btn btn-success pull-right">Reserve</a>
-                      <a ng-if="asset.resStatus" class="btn btn-danger pull-right disabled">Reserved</a>
+                      <a ng-if="asset.resStatus"
+                         ng-click="vm.popupReservationInfo(asset._id, asset.assetTag, asset.hostname, asset.currentResId)"
+                         class="btn btn-danger pull-right">Reserved</a>
                   </p>
                </div>
            </div>

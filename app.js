@@ -33,7 +33,8 @@ var appClientFiles = [
     'app_client/common/directives/pageHeader/pageHeader.directive.js',
     'app_client/common/directives/headerInfo/headerInfo.directive.js',
     'app_client/assetAddModal/assetAddModal.controller.js',
-    'app_client/reservationCreateModal/reservationCreateModal.controller.js'
+    'app_client/reservationCreateModal/reservationCreateModal.controller.js',
+    'app_client/reservationInfoModal/reservationInfoModal.controller.js'
 ];
 
 var uglified = uglifyJs.minify(appClientFiles, { compress : false });

@@ -70,6 +70,14 @@
             return $http.post('/api/reservations', data);
         };
 
+        var reservationById = function (reservationId) {
+            return $http.get('/api/reservations/' + reservationId)
+        };
+
+        var deleteReservation = function (reservationId) {
+            return $http.delete('/api/reservations/' + reservationId)
+        };
+
         return {
             lData: lData,
             assetById: assetById,
@@ -82,7 +90,9 @@
             getLocation : getLocation,
             getGroup: getGroup,
             getHealthStatus: getHealthStatus,
-            createReservation: createReservation
+            createReservation: createReservation,
+            reservationById: reservationById,
+            deleteReservation: deleteReservation
         };
     }
 })();

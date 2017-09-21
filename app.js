@@ -36,7 +36,9 @@ var appClientFiles = [
     'app_client/reservationCreateModal/reservationCreateModal.controller.js',
     'app_client/reservationInfoModal/reservationInfoModal.controller.js',
     'app_client/admin/admin.controller.js',
-    'app_client/skuAddModal/skuAddModal.controller.js'
+    'app_client/skuAddModal/skuAddModal.controller.js',
+    'app_client/hwmodelAddModal/hwmodelAddModal.controller.js',
+    'app_client/mfgAddModal/mfgAddModal.controller.js'
 ];
 
 var uglified = uglifyJs.minify(appClientFiles, { compress : false });

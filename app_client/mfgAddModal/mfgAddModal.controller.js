@@ -1,6 +1,6 @@
 /*
- * app_client/skuAddModal/skuAddModal.controller.js - Angular
- * skuAddModal controller for larrsApp
+ * app_client/mfgAddModal/mfgAddModal.controller.js - Angular
+ * mfgAddModal controller for larrsApp
  */
 
 /*jslint        node    : true, continue : true,
@@ -15,35 +15,35 @@
 (function () {
     angular
         .module('larrsApp')
-        .controller('skuAddModalCtrl', skuAddModalCtrl);
+        .controller('mfgAddModalCtrl', mfgAddModalCtrl);
 
-    skuAddModalCtrl.$inject = ['$modalInstance', 'larrsData'];
-    function skuAddModalCtrl ($modalInstance, larrsData) {
+    mfgAddModalCtrl.$inject = ['$modalInstance', 'larrsData'];
+    function mfgAddModalCtrl ($modalInstance, larrsData) {
         var
             vm = this;
 
         vm.onSubmit = function () {
             vm.formError = "";
-            if (!vm.formData.skuName) {
-                vm.formError = "Field \"SKU Name\" required, please try again";
+            if (!vm.formData.mfgName) {
+                vm.formError = "Field \"Manufacturer Name\" required, please try again";
                 return false;
             } else {
                 //  console.log(vm.formData);
-                vm.doAddSku(vm.formData);
+                vm.doAddMfg(vm.formData);
             }
         };
 
-        vm.doAddSku = function (formData) {
-            larrsData.addSku({
-                name: formData.skuName,
-                notes: formData.skuNotes
+        vm.doAddMfg = function (formData) {
+            larrsData.addMfg({
+                name: formData.mfgName,
+                notes: formData.mfgNotes
             })
                 .success(function (data) {
                     vm.modal.close(data);
-                    console.log("Success adding SKU!");
+                    console.log("Success adding Manufacturer!");
                 })
                 .error(function (data) {
-                    vm.formError = "Error adding SKU: " + data;
+                    vm.formError = "Error adding Manufacturer: " + data;
                 });
             return false;
         };

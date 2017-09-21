@@ -165,5 +165,29 @@
                 vm.skudata.skus.push(data);
             });
         };
+
+        vm.popupHwModelAddForm = function () {
+            var
+                modalInstance = $modal.open({
+                    templateUrl: '/hwmodelAddModal/hwmodelAddModal.view.html',
+                    controller: 'hwmodelAddModalCtrl as vm'
+                });
+
+            modalInstance.result.then(function (data) {
+                vm.hwmdata.hwms.push(data);
+            });
+        };
+
+        vm.popupMfgAddForm = function () {
+            var
+                modalInstance = $modal.open({
+                    templateUrl: '/mfgAddModal/mfgAddModal.view.html',
+                    controller: 'mfgAddModalCtrl as vm'
+                });
+
+            modalInstance.result.then(function (data) {
+                vm.mfgdata.mfgs.push(data);
+            });
+        };
     }
 })();

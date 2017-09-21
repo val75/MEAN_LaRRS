@@ -1,6 +1,6 @@
 /*
- * app_client/skuAddModal/skuAddModal.controller.js - Angular
- * skuAddModal controller for larrsApp
+ * app_client/hwmodelAddModal/hwmodelAddModal.controller.js - Angular
+ * hwmodelAddModal controller for larrsApp
  */
 
 /*jslint        node    : true, continue : true,
@@ -15,35 +15,36 @@
 (function () {
     angular
         .module('larrsApp')
-        .controller('skuAddModalCtrl', skuAddModalCtrl);
+        .controller('hwmodelAddModalCtrl', hwmodelAddModalCtrl);
 
-    skuAddModalCtrl.$inject = ['$modalInstance', 'larrsData'];
-    function skuAddModalCtrl ($modalInstance, larrsData) {
+    hwmodelAddModalCtrl.$inject = ['$modalInstance', 'larrsData'];
+    function hwmodelAddModalCtrl ($modalInstance, larrsData) {
         var
             vm = this;
 
         vm.onSubmit = function () {
             vm.formError = "";
-            if (!vm.formData.skuName) {
-                vm.formError = "Field \"SKU Name\" required, please try again";
+            if (!vm.formData.hwmName) {
+                vm.formError = "Field \"Hardware Model Name\" required, please try again";
                 return false;
             } else {
-                //  console.log(vm.formData);
-                vm.doAddSku(vm.formData);
+                  //console.log(vm.formData);
+                  //return false;
+                vm.doAddHwModel(vm.formData);
             }
         };
 
-        vm.doAddSku = function (formData) {
-            larrsData.addSku({
-                name: formData.skuName,
-                notes: formData.skuNotes
+        vm.doAddHwModel = function (formData) {
+            larrsData.addHwModel({
+                name: formData.hwmName,
+                notes: formData.hwmNotes
             })
                 .success(function (data) {
                     vm.modal.close(data);
-                    console.log("Success adding SKU!");
+                    console.log("Success adding Hardware Model!");
                 })
                 .error(function (data) {
-                    vm.formError = "Error adding SKU: " + data;
+                    vm.formError = "Error adding Hardware Model: " + data;
                 });
             return false;
         };

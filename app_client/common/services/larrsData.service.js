@@ -54,8 +54,16 @@
             return $http.get('/api/manufacturers')
         };
 
+        var addMfg = function (data) {
+            return $http.post('/api/manufacturers', data);
+        };
+
         var getHwModel = function () {
             return $http.get('/api/hwmodels')
+        };
+
+        var addHwModel = function (data) {
+            return $http.post('/api/hwmodels', data);
         };
 
         var getLocation = function () {
@@ -91,7 +99,9 @@
             getSkus: getSkus,
             addSku: addSku,
             getMfgs: getMfgs,
+            addMfg: addMfg,
             getHwModel: getHwModel,
+            addHwModel: addHwModel,
             getLocation : getLocation,
             getGroup: getGroup,
             getHealthStatus: getHealthStatus,

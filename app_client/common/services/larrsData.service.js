@@ -70,12 +70,24 @@
             return $http.get('/api/locations')
         };
 
+        var addLocation = function (data) {
+            return $http.post('/api/locations', data);
+        };
+
         var getGroup = function () {
             return $http.get('/api/groups')
         };
 
+        var addGroup = function (data) {
+            return $http.post('/api/groups', data);
+        };
+
         var getHealthStatus = function () {
             return $http.get('/api/hStatus')
+        };
+
+        var addHealthStatus = function (data) {
+            return $http.post('/api/hStatus', data);
         };
 
         var createReservation = function (data) {
@@ -103,8 +115,11 @@
             getHwModel: getHwModel,
             addHwModel: addHwModel,
             getLocation : getLocation,
+            addLocation: addLocation,
             getGroup: getGroup,
+            addGroup: addGroup,
             getHealthStatus: getHealthStatus,
+            addHealthStatus: addHealthStatus,
             createReservation: createReservation,
             reservationById: reservationById,
             deleteReservation: deleteReservation

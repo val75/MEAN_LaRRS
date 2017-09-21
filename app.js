@@ -38,7 +38,10 @@ var appClientFiles = [
     'app_client/admin/admin.controller.js',
     'app_client/skuAddModal/skuAddModal.controller.js',
     'app_client/hwmodelAddModal/hwmodelAddModal.controller.js',
-    'app_client/mfgAddModal/mfgAddModal.controller.js'
+    'app_client/mfgAddModal/mfgAddModal.controller.js',
+    'app_client/locationAddModal/locationAddModal.controller.js',
+    'app_client/groupAddModal/groupAddModal.controller.js',
+    'app_client/hstatAddModal/hstatAddModal.controller.js'
 ];
 
 var uglified = uglifyJs.minify(appClientFiles, { compress : false });

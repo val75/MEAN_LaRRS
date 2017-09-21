@@ -189,5 +189,41 @@
                 vm.mfgdata.mfgs.push(data);
             });
         };
+
+        vm.popupLocationAddForm = function () {
+            var
+                modalInstance = $modal.open({
+                    templateUrl: '/locationAddModal/locationAddModal.view.html',
+                    controller: 'locationAddModalCtrl as vm'
+                });
+
+            modalInstance.result.then(function (data) {
+                vm.locdata.locs.push(data);
+            });
+        };
+
+        vm.popupGroupAddForm = function () {
+            var
+                modalInstance = $modal.open({
+                    templateUrl: '/groupAddModal/groupAddModal.view.html',
+                    controller: 'groupAddModalCtrl as vm'
+                });
+
+            modalInstance.result.then(function (data) {
+                vm.groupdata.grps.push(data);
+            });
+        };
+
+        vm.popupHstatAddForm = function () {
+            var
+                modalInstance = $modal.open({
+                    templateUrl: '/hstatAddModal/hstatAddModal.view.html',
+                    controller: 'hstatAddModalCtrl as vm'
+                });
+
+            modalInstance.result.then(function (data) {
+                vm.hstatdata.hstats.push(data);
+            });
+        };
     }
 })();

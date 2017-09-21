@@ -1,0 +1,131 @@
+<navigation></navigation>
+
+<div class="container">
+    <page-header content="vm.pageHeader"></page-header>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-9">
+            <div class="row">
+                <h3>
+                    SKUs
+                    <a ng-click="vm.popupSkuAddForm()" class="btn btn-default pull-right">New SKU</a>
+                </h3>
+            </div>
+            <div class="error">{{ vm.message.skus }}</div>
+
+            <div class="row list-group">
+                <div class="col-xs-12 list-group-item" ng-repeat="sku in vm.skudata.skus">
+                    <h4>
+                        <a href="/#/skus/{{ sku._id }}">{{ sku.name }}</a>
+                    </h4>
+                    <p>{{ sku.notes }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-9">
+            <div class="row">
+                <h3>
+                    Hardware Models
+                    <a ng-click="vm.popupHwModelCreateForm()" class="btn btn-default pull-right">New Hardware Model</a>
+                </h3>
+            </div>
+            <div class="error">{{ vm.message.hwms }}</div>
+
+            <div class="row list-group">
+                <div class="col-xs-12 list-group-item" ng-repeat="hwm in vm.hwmdata.hwms">
+                    <h4>
+                        <a href="/#/hwms/{{ hwm._id }}">{{ hwm.name }}</a>
+                    </h4>
+                    <p>{{ hwm.notes }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-9">
+            <div class="row">
+                <h3>
+                    Manufacturers
+                    <a ng-click="vm.popupManufacturerCreateForm()" class="btn btn-default pull-right">New Manufacturer</a>
+                </h3>
+            </div>
+            <div class="error">{{ vm.message.mfgs }}</div>
+
+            <div class="row list-group">
+                <div class="col-xs-12 list-group-item" ng-repeat="mfg in vm.mfgdata.mfgs">
+                    <h4>
+                        <a href="/#/mfgs/{{ mfg._id }}">{{ mfg.name }}</a>
+                    </h4>
+                    <p>{{ mfg.notes }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-9">
+            <div class="row">
+                <h3>
+                    Site Locations
+                    <a ng-click="vm.popupLocationCreateForm()" class="btn btn-default pull-right">New Location</a>
+                </h3>
+            </div>
+            <div class="error">{{ vm.message.locs }}</div>
+
+            <div class="row list-group">
+                <div class="col-xs-12 list-group-item" ng-repeat="loc in vm.locdata.locs">
+                    <h4>
+                        <a href="/#/locs/{{ loc._id }}">{{ loc.name }}</a>
+                    </h4>
+                    <p>{{ loc.notes }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-9">
+            <div class="row">
+                <h3>
+                    Asset Groups
+                    <a ng-click="vm.popupGroupCreateForm()" class="btn btn-default pull-right">New Asset Group</a>
+                </h3>
+            </div>
+            <div class="error">{{ vm.message.grps }}</div>
+
+            <div class="row list-group">
+                <div class="col-xs-12 list-group-item" ng-repeat="grp in vm.groupdata.grps">
+                    <h4>
+                        <a href="/#/grps/{{ grp._id }}">{{ grp.name }}</a>
+                    </h4>
+                    <p>{{ grp.notes }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-9">
+            <div class="row">
+                <h3>
+                    Asset Health Stats
+                    <a ng-click="vm.popupGroupCreateForm()" class="btn btn-default pull-right">New Asset Health Stat</a>
+                </h3>
+            </div>
+            <div class="error">{{ vm.message.hstats }}</div>
+
+            <div class="row list-group">
+                <div class="col-xs-12 list-group-item" ng-repeat="hstat in vm.hstatdata.hstats">
+                    <h4>
+                        <a href="/#/hstats/{{ hstat._id }}">{{ hstat.name }}</a>
+                    </h4>
+                    <p>{{ hstat.notes }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

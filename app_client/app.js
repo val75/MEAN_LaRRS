@@ -21,6 +21,11 @@
                 controller: 'homeCtrl',
                 controllerAs: 'vm'
             })
+            .when('/admin', {
+                templateUrl: 'admin/admin.view.html',
+                controller: 'adminCtrl',
+                controllerAs: 'vm'
+            })
             .when('/asset/:assetId/edit', {
                 templateUrl: '/assetEdit/assetEdit.view.html',
                 controller: 'assetEditCtrl',

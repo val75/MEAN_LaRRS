@@ -46,6 +46,10 @@
             return $http.get('/api/skus')
         };
 
+        var addSku = function (data) {
+            return $http.post('/api/skus', data);
+        };
+
         var getMfgs = function () {
             return $http.get('/api/manufacturers')
         };
@@ -85,6 +89,7 @@
             addAsset: addAsset,
             updateAsset: updateAsset,
             getSkus: getSkus,
+            addSku: addSku,
             getMfgs: getMfgs,
             getHwModel: getHwModel,
             getLocation : getLocation,

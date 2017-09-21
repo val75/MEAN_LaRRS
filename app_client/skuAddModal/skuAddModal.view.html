@@ -1,0 +1,35 @@
+<div class="modal-content">
+    <form id="addSku" name="addSku", role="form" ng-submit="vm.onSubmit()" class="form-horizontal">
+        <div class="modal-header">
+            <button type="button" ng-click="vm.modal.cancel()" class="close">
+                <span aria-hidden="true">x</span>
+                <span class="sr-only">Close</span>
+            </button>
+            <h4 id="myModalLabel" class="modal-title">Add SKU</h4>
+        </div>
+
+        <div class="modal-body">
+            <div role="alert" ng-show="vm.formError" class="alert alert-danger">{{ vm.formError }}</div>
+
+            <div class="form-group">
+                <label for="skuName" class="col-xs-2 col-sm-3 control-label">SKU Name:</label>
+                <div class="col-xs-10 col-sm-9">
+                    <input id="skuName" name="skuName" required="required" ng-model="vm.formData.skuName" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="skuNotes" class="col-xs-10 col-sm-3 control-label">Notes:</label>
+                <div class="col-xs-12 col-sm-9">
+                <textarea id="skuNotes" name="skuNotes" rows="5" required="required" ng-model="vm.formData.skuNotes"
+                          class="form-control"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button ng-click="vm.modal.cancel()" type="button" class="btn btn-default">Cancel</button>
+            <button type="submit" class="btn btn-primary">Add SKU</button>
+        </div>
+    </form>
+</div>

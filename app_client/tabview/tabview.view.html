@@ -1,0 +1,52 @@
+<navigation></navigation>
+
+<div class="container">
+    <page-header content="vm.pageHeader"></page-header>
+
+    <tabset>
+        <tab ng-repeat="labLoc in vm.locdata.locs" heading="{{ labLoc.name }}"
+             select="vm.locationSelected(labLoc)">
+            <div class="row">
+                <div class="col-xs-12 col-sm-8">
+                    <div class="row">
+                        <label for="filter">Filter results</label>
+                        <input id="filter" type="text", name="filter", ng-model="textFilter">
+                    </div>
+
+                    <div class="error">{{ vm.message }}</div>
+
+                    <div class="row list-group">
+                        <div class="col-xs-12 list-group-item"
+                             ng-repeat="asset in vm.location.assets | filter : textFilter">
+                            <h4>
+                                <a href="/#/assets/{{ asset._id }}">{{ asset.hostname }}</a>
+                                <span class="badge pull-right">{{ asset.assetStatus }}</span>
+                            </h4>
+                            <p class="assetTag">{{ asset.assetTag }}</p>
+                            <p>
+                                <span class="label label-warning">{{ asset.skuModel }}</span>
+                                &nbsp;
+                                <span class="label label-warning">{{ asset.mfgName }}</span>
+                                &nbsp;
+                                <span class="label label-warning">{{ asset.hwModel }}</span>
+
+                                <span class="reservation-status" reservation-status
+                                      status="asset.resStatus == false ? 'Free' : 'Reserved'"></span>
+
+                                <a ng-if="asset.resStatus == false"
+                                   ng-click="vm.popupReservationCreateForm(asset._id, asset.assetTag, asset.hostname)"
+                                   class="btn btn-success pull-right">Reserve</a>
+
+                                <a ng-if="asset.resStatus"
+                                   ng-click="vm.popupReservationInfo(asset._id, asset.assetTag, asset.hostname, asset.currentResId)"
+                                   class="btn btn-danger pull-right">Reserved</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </tab>
+    </tabset>
+
+    <footer-generic></footer-generic>
+</div>

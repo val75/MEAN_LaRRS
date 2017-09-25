@@ -108,7 +108,7 @@
                 vm.locdata = { locs : locList };
             })
             .error(function (e) {
-                vm.message.mfgs = "Error retrieving Manufacturers: " + e;
+                vm.message.mfgs = "Error retrieving Locations: " + e;
                 console.log(e);
             });
 

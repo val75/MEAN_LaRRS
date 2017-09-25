@@ -21,6 +21,11 @@
                 controller: 'homeCtrl',
                 controllerAs: 'vm'
             })
+            .when('/tabview', {
+                templateUrl: 'tabview/tabview.view.html',
+                controller: 'tabviewCtrl',
+                controllerAs: 'vm'
+            })
             .when('/admin', {
                 templateUrl: 'admin/admin.view.html',
                 controller: 'adminCtrl',

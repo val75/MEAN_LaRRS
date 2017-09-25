@@ -26,6 +26,10 @@
             });
         };
 
+        var assetsAtLocation = function (locationName) {
+            return $http.get('/api/assets?location.name=' + locationName);
+        };
+
         var assetById = function (assetId) {
             return $http.get('/api/assets/' + assetId);
         };
@@ -104,6 +108,7 @@
 
         return {
             lData: lData,
+            assetsAtLocation: assetsAtLocation,
             assetById: assetById,
             assetDelete: assetDelete,
             addAsset: addAsset,

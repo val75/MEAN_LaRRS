@@ -31,7 +31,7 @@ sendJsonResponse = function (res, status, content) {
 //---------------- BEGIN PUBLIC METHODS --------------
 assetList = function (req, res) {
     Asset
-        .find()
+        .find(req.query)
         .exec(function (err, assets) {
             if (!assets) {
                 sendJsonResponse(res, 404, {

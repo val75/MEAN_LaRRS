@@ -12,7 +12,7 @@
 'use strict';
 
 (function () {
-    angular.module('larrsApp', ['ngRoute', 'ui.bootstrap']);
+    angular.module('larrsApp', ['ngRoute', 'ui.tree', 'ui.bootstrap']);
 
     function config ($routeProvider, $locationProvider) {
         $routeProvider

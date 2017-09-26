@@ -77,6 +77,10 @@ locationCreate = function (req, res) {
     // Uniqueness for <name> is insured in the model
     Location.create({
         name: req.body.name,
+        type: req.body.type,
+        parent_id: req.body.parent_id,
+        parent_name: req.body.parent_name,
+        ancestors: req.body.ancestors,
         notes: req.body.notes
     }, function (err, location) {
         if (err) {

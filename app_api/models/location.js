@@ -15,12 +15,20 @@
 
 var
     mongoose = require( 'mongoose' ),
+    types = ['city', 'lab', 'rack', 'chassis'],
 
     Schema   = mongoose.Schema,
 
     LocationSchema = new Schema({
         name:  { type: String, required: true, unique: true },
-        notes: { type: String                               }
+        notes: { type: String                               },
+        type: { type: String, enum: types },
+        parent_id: { type: Schema.Types.ObjectId, ref: 'Location' },
+        parent_name: { type: String },
+        ancestors: [{
+            id: { type: Schema.Types.ObjectId, ref: 'Location' },
+            name: { type: String }
+        }]
     });
 
 //----------------- END MODULE SCOPE VARIABLES ---------------

@@ -19,6 +19,27 @@
             </div>
 
             <div class="form-group">
+                <label for="locType" class="col-xs-2 col-sm-3 control-label">Location Type:</label>
+                <div class="col-xs-12 col-sm-3">
+                    <select id="locType" name="locType" ng-model="vm.formData.locType" class="form-control">
+                        <option ng-repeat="type in vm.locType">{{ type }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="locParent" class="col-xs-2 col-sm-3 control-label">Location Parent:</label>
+                <div class="col-xs-12 col-sm-3">
+                    <select id="locParent" name="locParent" ng-model="vm.formData.locParentObj" class="form-control">
+                        <option ng-repeat="parent in vm.locdata.locs"
+                                value='{"id": "{{parent._id}}", "name": "{{parent.name}}"}'>
+                            {{ parent.name }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
                 <label for="locNotes" class="col-xs-10 col-sm-3 control-label">Notes:</label>
                 <div class="col-xs-12 col-sm-9">
                 <textarea id="locNotes" name="locNotes" rows="5" required="required" ng-model="vm.formData.locNotes"

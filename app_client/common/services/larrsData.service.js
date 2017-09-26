@@ -74,6 +74,10 @@
             return $http.get('/api/locations')
         };
 
+        var getLocationById = function (locationId) {
+            return $http.get('/api/locations/' + locationId);
+        };
+
         var addLocation = function (data) {
             return $http.post('/api/locations', data);
         };
@@ -120,6 +124,7 @@
             getHwModel: getHwModel,
             addHwModel: addHwModel,
             getLocation : getLocation,
+            getLocationById: getLocationById,
             addLocation: addLocation,
             getGroup: getGroup,
             addGroup: addGroup,

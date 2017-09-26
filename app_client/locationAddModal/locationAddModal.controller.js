@@ -63,7 +63,7 @@
 
             larrsData.getLocationById(myLocParentObj.id)
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     data.ancestors.forEach(function (ancestor) {
                         myLocAncestors.push(ancestor);
                     });

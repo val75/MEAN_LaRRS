@@ -26,24 +26,60 @@
             strapline: 'List of lab assets per lab location'
         };
 
-        larrsData.getLocation()
+        vm.rack_message = "Please select a lab location";
+
+        larrsData.getLocationChildren('Root')
             .success(function (data) {
                 var
                     locList = [];
                 if (data.length) {
                     data.forEach(function (loc) {
+                        var childrenList = [];
+                        larrsData.getLocationChildren(loc.name)
+                            .success(function (cdata) {
+                                if (cdata.length) {
+                                    cdata.forEach(function (child) {
+                                        childrenList.push({
+                                            id: child._id,
+                                            name: child.name
+                                        })
+                                    });
+                                }
+                            });
                         locList.push({
-                            _id: loc._id,
-                            name: loc.name
+                            id: loc._id,
+                            name: loc.name,
+                            nodes: childrenList
                         });
                     });
                 }
-                vm.locdata = { locs : locList };
-            })
-            .error(function (e) {
-                vm.message.mfgs = "Error retrieving Locations: " + e;
-                console.log(e);
+                //console.log(locList);
+                vm.treelocdata = { locs: locList };
             });
+
+        vm.locSelected = function (location) {
+            //console.log(location);
+            larrsData.getLocationChildren(location.name)
+                .success(function (data) {
+                    vm.rack_message = data.length > 0 ? "" : "No racks found at this location";
+                    var
+                        rackList = [];
+                    if (data.length) {
+                        data.forEach(function (rack) {
+                            rackList.push({
+                                _id: rack._id,
+                                name: rack.name
+                            });
+                        });
+                        //console.log(rackList);
+                    }
+                    vm.rackdata = { racks: rackList };
+                })
+                .error(function (e) {
+                    vm.message.mfgs = "Error retrieving rack locations: " + e;
+                    console.log(e);
+                });
+        };
 
         vm.locationSelected = function (location) {
             larrsData.assetsAtLocation(location.name)

@@ -78,6 +78,10 @@
             return $http.get('/api/locations/' + locationId);
         };
 
+        var getLocationChildren = function (parentName) {
+            return $http.get('/api/locations?parent_name=' + parentName);
+        };
+
         var addLocation = function (data) {
             return $http.post('/api/locations', data);
         };
@@ -125,6 +129,7 @@
             addHwModel: addHwModel,
             getLocation : getLocation,
             getLocationById: getLocationById,
+            getLocationChildren: getLocationChildren,
             addLocation: addLocation,
             getGroup: getGroup,
             addGroup: addGroup,

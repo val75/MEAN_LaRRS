@@ -30,7 +30,7 @@ sendJsonResponse = function (res, status, content) {
 //---------------- BEGIN PUBLIC METHODS --------------
 locationList = function (req, res) {
     Location
-        .find()
+        .find(req.query)
         .exec(function (err, locations) {
             if (!locations) {
                 sendJsonResponse(res, 404, {

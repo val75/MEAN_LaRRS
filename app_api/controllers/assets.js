@@ -77,31 +77,55 @@ assetReadOne = function (req, res) {
 assetCreate = function (req, res) {
     // Uniqueness for <name> is insured in the model
     Asset.create({
-        tag: req.body.tag,
-        hostname: req.body.hostname,
-        sku: [{
-            id: req.body.sku_id,
-            name: req.body.sku_name
+        tag      : req.body.tag,
+        hostname : req.body.hostname,
+        type     : req.body.type,
+        serial   : req.body.serial,
+        sku      : [{
+            id   : req.body.sku_id,
+            name : req.body.sku_name
         }],
-        hwModel: [{
-            id: req.body.hwmodel_id,
-            name: req.body.hwmodel_name
+        hwModel  : [{
+            id   : req.body.hwmodel_id,
+            name : req.body.hwmodel_name
         }],
         manufacturer: [{
-            id: req.body.mfg_id,
-            name: req.body.mfg_name
+            id   : req.body.mfg_id,
+            name : req.body.mfg_name
         }],
-        location: [{
-            id: req.body.location_id,
-            name: req.body.location_name
+        location : [{
+            id   : req.body.location_id,
+            name : req.body.location_name
         }],
-        group: [{
-            id: req.body.group_id,
-            name: req.body.group_name
+        group    : [{
+            id   : req.body.group_id,
+            name : req.body.group_name
         }],
         healthStatus: [{
-            id: req.body.hstat_id,
-            name: req.body.hstat_name
+            id   : req.body.hstat_id,
+            name : req.body.hstat_name
+        }],
+        system   : [{
+            cpu_mfg      : [{
+                id   : req.body.cpu_mfg_id,
+                name : req.body.cpu_mfg_name
+            }],
+            cpu_model    : req.body.cpu_model,
+            mem_mfg      : [{
+                id   : req.body.mem_mfg_id,
+                name : req.body.mem_mfg_name
+            }],
+            mem_size     : req.body.mem_size,
+            nic10g_mfg   : [{
+                id   : req.body.nic10g_mfg_id,
+                name : req.body.nic10g_mfg_name
+            }],
+            nic10g_model : req.body.nic10g_model
+        }],
+        network  : [{
+            ip_10g : req.body.ip_10g,
+            ip_1g  : req.body.ip_1g,
+            ip_bmc : req.body.ip_bmc
         }]
     }, function (err, asset) {
         if (err) {

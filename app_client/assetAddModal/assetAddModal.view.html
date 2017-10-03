@@ -13,14 +13,33 @@
             <div class="form-group">
                 <label for="assetTag" class="col-xs-2 col-sm-3 control-label">Asset Tag:</label>
                 <div class="col-xs-10 col-sm-9">
-                    <input id="assetTag" name="assetTag" required="required" ng-model="vm.formData.assetTag" class="form-control">
+                    <input id="assetTag" name="assetTag" required="required" ng-model="vm.formData.assetTag"
+                           class="form-control">
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="hostName" class="col-xs-10 col-sm-3 control-label">Hostname:</label>
                 <div class="col-xs-12 col-sm-9">
-                    <input id="hostName" name="hostName" required="required" ng-model="vm.formData.hostName" class="form-control">
+                    <input id="hostName" name="hostName" required="required" ng-model="vm.formData.hostName"
+                           class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="assetType" class="col-xs-10 col-sm-3 control-label">Asset Type:</label>
+                <div class="col-xs-12 col-sm-3">
+                    <select id="assetType" name="assetType" ng-model="vm.formData.assetType" class="form-control">
+                        <option ng-repeat="type in vm.assetType">{{ type }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="assetSerial" class="col-xs-10 col-sm-3 control-label">Serial Number:</label>
+                <div class="col-xs-12 col-sm-9">
+                    <input id="assetSerial" name="assetSerial" required="required" ng-model="vm.formData.assetSerial"
+                           class="form-control">
                 </div>
             </div>
 
@@ -87,6 +106,72 @@
                             {{ hstat.name }}
                         </option>
                     </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="ip10G" class="col-xs-10 col-sm-3 control-label">10G IP Address:</label>
+                <div class="col-xs-12 col-sm-4">
+                    <input id="ip10G" name="ip10G" ng-model="vm.formData.ip_10g" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="ip1G" class="col-xs-10 col-sm-3 control-label">1G IP Address:</label>
+                <div class="col-xs-12 col-sm-4">
+                    <input id="ip1G" name="ip1G" ng-model="vm.formData.ip_1g" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="ipBmc" class="col-xs-10 col-sm-3 control-label">BMC IP Address:</label>
+                <div class="col-xs-12 col-sm-4">
+                    <input id="ipBmc" name="ipBmc" ng-model="vm.formData.ip_bmc" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="cpuMfg" class="col-xs-10 col-sm-3 control-label">CPU Manufacturer:</label>
+                <div class="col-xs-12 col-sm-3">
+                    <select id="cpuMfg" name="cpuMfg" ng-model="vm.formData.cpuMfgObj" class="form-control">
+                        <option ng-repeat="mfg in vm.mfgData" value='{"id": "{{mfg._id}}", "name": "{{mfg.name}}"}'>
+                            {{ mfg.name }}
+                        </option>
+                    </select>
+                </div>
+                <label for="cpuModel" class="col-xs-10 col-sm-3 control-label">CPU Model:</label>
+                <div class="col-xs-12 col-sm-3">
+                    <input id="cpuModel" name="cpuModel" ng-model="vm.formData.cpuModel" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="memMfg" class="col-xs-10 col-sm-3 control-label">Memory Manufacturer:</label>
+                <div class="col-xs-12 col-sm-3">
+                    <select id="memMfg" name="memMfg" ng-model="vm.formData.memMfgObj" class="form-control">
+                        <option ng-repeat="mfg in vm.mfgData" value='{"id": "{{mfg._id}}", "name": "{{mfg.name}}"}'>
+                            {{ mfg.name }}
+                        </option>
+                    </select>
+                </div>
+                <label for="memSize" class="col-xs-10 col-sm-3 control-label">Memory Size(GB):</label>
+                <div class="col-xs-12 col-sm-3">
+                    <input id="memSize" name="memSize" ng-model="vm.formData.memSize" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="nic10GMfg" class="col-xs-10 col-sm-3 control-label">10G NIC Manufacturer:</label>
+                <div class="col-xs-12 col-sm-3">
+                    <select id="nic10GMfg" name="nic10GMfg" ng-model="vm.formData.nic10gMfgObj" class="form-control">
+                        <option ng-repeat="mfg in vm.mfgData" value='{"id": "{{mfg._id}}", "name": "{{mfg.name}}"}'>
+                            {{ mfg.name }}
+                        </option>
+                    </select>
+                </div>
+                <label for="nic10GModel" class="col-xs-10 col-sm-3 control-label">10G NIC Model:</label>
+                <div class="col-xs-12 col-sm-3">
+                    <input id="nic10GModel" name="nic10GModel" ng-model="vm.formData.nic10GModel" class="form-control">
                 </div>
             </div>
         </div>

@@ -16,11 +16,14 @@
 var
     mongoose = require( 'mongoose' ),
     Schema = mongoose.Schema,
+    types = ['switch', 'server'],
 
     AssetSchema = new Schema({
 
         tag:      { type: String },
         hostname: { type: String },
+        type:     { type: String, enum: types },
+        serial:   { type: String,                                     required: true },
         sku: [{
             id:   { type: Schema.Types.ObjectId, ref: 'Sku',          required: true },
             name: { type: String,                                     required: true }
@@ -44,6 +47,28 @@ var
         healthStatus: [{
             id:   { type: Schema.Types.ObjectId, ref: 'HealthStatus', required: true },
             name: { type: String,                                     required: true }
+        }],
+        system: [{
+            cpu_mfg: [{
+                id: { type: Schema.Types.ObjectId, ref: 'Manufacturer' },
+                name: { type: String }
+            }],
+            cpu_model: { type: String },
+            mem_mfg: [{
+                id: { type: Schema.Types.ObjectId, ref: 'Manufacturer' },
+                name: { type: String }
+            }],
+            mem_size: { type: Number },
+            nic10g_mfg: [{
+                id: { type: Schema.Types.ObjectId, ref: 'Manufacturer' },
+                name: { type: String }
+            }],
+            nic10g_model: { type: String }
+        }],
+        network: [{
+            ip_10g: { type: String },
+            ip_1g:  { type: String },
+            ip_bmc: { type: String }
         }],
 
         reserved: { type: Boolean, default: false,                    required: true },

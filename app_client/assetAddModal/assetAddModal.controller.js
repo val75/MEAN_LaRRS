@@ -21,6 +21,9 @@
     function assetAddModalCtrl ($modalInstance, larrsData, skuData, mfgData, hwmData, locData, grpData, hstatData) {
         var
             vm = this;
+
+        vm.assetType = ['switch', 'server'];
+
         vm.skuData = skuData.skuList;
         vm.mfgData = mfgData.mfgList;
         vm.hwmData = hwmData.hwmList;
@@ -40,16 +43,21 @@
 
         vm.doAddAsset = function (formData) {
             var
-                mySkuObj = JSON.parse(formData.skuObj),
-                myHwModel = JSON.parse(formData.hwModelObj),
-                myMfgObj = JSON.parse(formData.mfgObj),
-                myLocObj = JSON.parse(formData.locObj),
-                myGroupObj = JSON.parse(formData.groupObj),
-                myHstatObj = JSON.parse(formData.hstatObj);
+                mySkuObj     = JSON.parse(formData.skuObj),
+                myHwModel    = JSON.parse(formData.hwModelObj),
+                myMfgObj     = JSON.parse(formData.mfgObj),
+                myLocObj     = JSON.parse(formData.locObj),
+                myGroupObj   = JSON.parse(formData.groupObj),
+                myHstatObj   = JSON.parse(formData.hstatObj),
+                myCpuMfgObj  = JSON.parse(formData.cpuMfgObj),
+                myMemMfgObj  = JSON.parse(formData.memMfgObj),
+                myNic10gMfgObj = JSON.parse(formData.nic10gMfgObj);
 
             larrsData.addAsset({
                 tag: formData.assetTag,
                 hostname: formData.hostName,
+                type: formData.assetType,
+                serial: formData.assetSerial,
                 sku_id: mySkuObj.id,
                 sku_name: mySkuObj.name,
                 hwmodel_id: myHwModel.id,
@@ -61,7 +69,20 @@
                 group_id: myGroupObj.id,
                 group_name: myGroupObj.name,
                 hstat_id: myHstatObj.id,
-                hstat_name: myHstatObj.name
+                hstat_name: myHstatObj.name,
+                cpu_mfg_id: myCpuMfgObj.id,
+                cpu_mfg_name: myCpuMfgObj.name,
+                cpu_model: formData.cpuModel,
+                mem_mfg_id: myMemMfgObj.id,
+                mem_mfg_name: myMemMfgObj.name,
+                mem_size: formData.memSize,
+                nic10g_mfg_id: myNic10gMfgObj.id,
+                nic10g_mfg_name: myNic10gMfgObj.name,
+                nic10g_model: formData.nic10GModel,
+                ip_10g: formData.ip_10g,
+                ip_1g: formData.ip_1g,
+                ip_bmc: formData.ip_bmc
+
             })
                 .success(function (data) {
                     vm.modal.close(data);

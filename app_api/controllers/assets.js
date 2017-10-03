@@ -158,6 +158,8 @@ assetUpdateOne = function (req, res) {
                 }
                 asset.tag = req.body.tag;
                 asset.hostname = req.body.hostname;
+                asset.type = req.body.type;
+                asset.serial = req.body.serial;
                 asset.sku = [{
                     id: req.body.sku_id,
                     name: req.body.sku_name
@@ -181,6 +183,28 @@ assetUpdateOne = function (req, res) {
                 asset.healthStatus = [{
                     id: req.body.hstat_id,
                     name: req.body.hstat_name
+                }];
+                asset.system = [{
+                    cpu_mfg: [{
+                        id   : req.body.cpu_mfg_id,
+                        name : req.body.cpu_mfg_name
+                    }],
+                    cpu_model    : req.body.cpu_model,
+                    mem_mfg      : [{
+                        id   : req.body.mem_mfg_id,
+                        name : req.body.mem_mfg_name
+                    }],
+                    mem_size     : req.body.mem_size,
+                    nic10g_mfg   : [{
+                        id   : req.body.nic10g_mfg_id,
+                        name : req.body.nic10g_mfg_name
+                    }],
+                    nic10g_model : req.body.nic10g_model
+                }];
+                asset.network = [{
+                    ip_10g : req.body.ip_10g,
+                    ip_1g  : req.body.ip_1g,
+                    ip_bmc : req.body.ip_bmc
                 }];
 
                 // We do not update the "reserved" and "res_id" fields

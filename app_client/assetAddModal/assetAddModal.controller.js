@@ -49,11 +49,11 @@
                 myLocObj     = JSON.parse(formData.locObj),
                 myGroupObj   = JSON.parse(formData.groupObj),
                 myHstatObj   = JSON.parse(formData.hstatObj),
-                myCpuMfgObj  = JSON.parse(formData.cpuMfgObj),
-                myMemMfgObj  = JSON.parse(formData.memMfgObj),
-                myNic10gMfgObj = JSON.parse(formData.nic10gMfgObj);
 
-            larrsData.addAsset({
+                myCpuMfgObj, myMemMfgObj, myNic10gMfgObj,
+                myAsset;
+
+            myAsset = {
                 tag: formData.assetTag,
                 hostname: formData.hostName,
                 type: formData.assetType,
@@ -69,21 +69,52 @@
                 group_id: myGroupObj.id,
                 group_name: myGroupObj.name,
                 hstat_id: myHstatObj.id,
-                hstat_name: myHstatObj.name,
-                cpu_mfg_id: myCpuMfgObj.id,
-                cpu_mfg_name: myCpuMfgObj.name,
-                cpu_model: formData.cpuModel,
-                mem_mfg_id: myMemMfgObj.id,
-                mem_mfg_name: myMemMfgObj.name,
-                mem_size: formData.memSize,
-                nic10g_mfg_id: myNic10gMfgObj.id,
-                nic10g_mfg_name: myNic10gMfgObj.name,
-                nic10g_model: formData.nic10GModel,
-                ip_10g: formData.ip_10g,
-                ip_1g: formData.ip_1g,
-                ip_bmc: formData.ip_bmc
+                hstat_name: myHstatObj.name
+            };
 
-            })
+            if (typeof formData.ip_10g != undefined && formData.ip_10g != null) {
+                myAsset.ip_10g = formData.ip_10g
+            }
+
+            if (typeof formData.ip_1g != undefined && formData.ip_1g != null) {
+                myAsset.ip_1g = formData.ip_1g
+            }
+
+            if (typeof formData.ip_bmc != undefined && formData.ip_bmc != null) {
+                myAsset.ip_bmc = formData.ip_bmc
+            }
+
+            if (typeof(formData.cpuMfgObj) != undefined && formData.cpuMfgObj != null) {
+                myCpuMfgObj  = JSON.parse(formData.cpuMfgObj);
+                myAsset.cpu_mfg_id = myCpuMfgObj.id;
+                myAsset.cpu_mfg_name = myCpuMfgObj.name;
+            }
+
+            if (typeof formData.cpuModel != undefined && formData.cpuModel != null) {
+                myAsset.cpu_model = formData.cpuModel;
+            }
+
+            if (typeof(formData.memMfgObj) != undefined && formData.memMfgObj != null) {
+                myMemMfgObj  = JSON.parse(formData.memMfgObj);
+                myAsset.mem_mfg_id = myMemMfgObj.id;
+                myAsset.mem_mfg_name = myMemMfgObj.name;
+            }
+
+            if (typeof formData.memSize != undefined && formData.memSize != null) {
+                myAsset.mem_size = formData.memSize;
+            }
+
+            if (typeof(formData.nic10gMfgObj) != undefined && formData.nic10gMfgObj != null) {
+                myNic10gMfgObj = JSON.parse(formData.nic10gMfgObj);
+                myAsset.nic10g_mfg_id = myNic10gMfgObj.id;
+                myAsset.nic10g_mfg_name = myNic10gMfgObj.name;
+            }
+
+            if (typeof formData.nic10g_model != undefined && formData.nic10g_model != null) {
+                myAsset.nic10g_model = formData.nic10GModel;
+            }
+
+            larrsData.addAsset(myAsset)
                 .success(function (data) {
                     vm.modal.close(data);
                     console.log("Success! ");

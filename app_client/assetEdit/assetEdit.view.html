@@ -24,9 +24,8 @@
                 <div class="form-group">
                     <label for="assetType" class="col-xs-10 col-sm-3 control-label">Asset Type:</label>
                     <div class="col-xs-12 col-sm-3">
-                        <select id="assetType" ng-model="vm.data.asset.type"
-                                ng-options="option for option in vm.assetType track by option"
-                                class="form-control">
+                        <select id="assetType" name="assetType" ng-model="vm.data.asset.type" class="form-control">
+                            <option ng-repeat="type in vm.assetType">{{ type }}</option>
                         </select>
                     </div>
                 </div>
@@ -145,6 +144,21 @@
                     <label for="memSize" class="col-xs-10 col-sm-3 control-label">Memory Size(GB):</label>
                     <div class="col-xs-12 col-sm-3">
                         <input id="memSize" name="memSize" ng-model="vm.data.asset.system.mem_size" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="nic10GMfg" class="col-xs-10 col-sm-3 control-label">10G NIC Manufacturer:</label>
+                    <div class="col-xs-12 col-sm-3">
+                        <select id="nic10GMfg" ng-model="vm.data.asset.system.nic10g_mfg"
+                                ng-options="option.name for option in vm.mfgdata.mfgs track by option._id"
+                                class="form-control">
+                        </select>
+                    </div>
+                    <label for="nic10GModel" class="col-xs-10 col-sm-3 control-label">10G NIC Model:</label>
+                    <div class="col-xs-12 col-sm-3">
+                        <input id="nic10GModel" name="nic10GModel" ng-model="vm.data.asset.system.nic10g_model"
+                               class="form-control">
                     </div>
                 </div>
 

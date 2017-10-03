@@ -27,6 +27,7 @@
             .success(function (data) {
                 var assetInfo = [];
                 //console.log(data.system[0].cpu_mfg[0].id);
+                //console.log(data.type);
                 assetInfo = {
                     _id: data._id,
                     hostname: data.hostname,
@@ -67,7 +68,12 @@
                             _id: data.system[0].mem_mfg[0].id,
                             name: data.system[0].mem_mfg[0].name
                         },
-                        mem_size: data.system[0].mem_size
+                        mem_size: data.system[0].mem_size,
+                        nic10g_mfg: {
+                            _id: data.system[0].nic10g_mfg[0].id,
+                            name: data.system[0].nic10g_mfg[0].name
+                        },
+                        nic10g_model: data.system[0].nic10g_model
                     },
                     network: {
                         ip_10g: data.network[0].ip_10g,
@@ -186,6 +192,8 @@
             larrsData.updateAsset(vm.assetId, {
                 tag: vm.data.asset.tag,
                 hostname: vm.data.asset.hostname,
+                type: vm.data.asset.type,
+                serial: vm.data.asset.serial,
                 sku_id: vm.data.asset.skuModel._id,
                 sku_name: vm.data.asset.skuModel.name,
                 hwmodel_id: vm.data.asset.hwModel._id,
@@ -197,7 +205,19 @@
                 group_id: vm.data.asset.groupName._id,
                 group_name: vm.data.asset.groupName.name,
                 hstat_id: vm.data.asset.hStatus._id,
-                hstat_name: vm.data.asset.hStatus.name
+                hstat_name: vm.data.asset.hStatus.name,
+                ip_10g: vm.data.asset.network.ip_10g,
+                ip_1g: vm.data.asset.network.ip_1g,
+                ip_bmc: vm.data.asset.network.ip_bmc,
+                cpu_mfg_id: vm.data.asset.system.cpu_mfg._id,
+                cpu_mfg_name: vm.data.asset.system.cpu_mfg.name,
+                cpu_model: vm.data.asset.system.cpu_model,
+                mem_mfg_id: vm.data.asset.system.mem_mfg._id,
+                mem_mfg_name: vm.data.asset.system.mem_mfg.name,
+                mem_size: vm.data.asset.system.mem_size,
+                nic10g_mfg_id: vm.data.asset.system.nic10g_mfg._id,
+                nic10g_mfg_name: vm.data.asset.system.nic10g_mfg.name,
+                nic10g_model: vm.data.asset.system.nic10g_model
             })
                 .success(function (data) {
                     console.log("Success!");

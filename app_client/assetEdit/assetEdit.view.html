@@ -22,6 +22,24 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="assetType" class="col-xs-10 col-sm-3 control-label">Asset Type:</label>
+                    <div class="col-xs-12 col-sm-3">
+                        <select id="assetType" ng-model="vm.data.asset.type"
+                                ng-options="option for option in vm.assetType track by option"
+                                class="form-control">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="assetSerial" class="col-xs-10 col-sm-3 control-label">Serial Number:</label>
+                    <div class="col-xs-12 col-sm-9">
+                        <input id="assetSerial" name="assetSerial" required="required" ng-model="vm.data.asset.serial"
+                               class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
                     <label for="skuModel" class="col-xs-10 col-sm-3 control-label">SKU:</label>
                     <div class="col-xs-12 col-sm-3">
                         <select id="skuModel" ng-model="vm.data.asset.skuModel"
@@ -78,6 +96,55 @@
                                 ng-options="option.name for option in vm.hstatdata.hstats track by option._id"
                                 class="form-control">
                         </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="ip10G" class="col-xs-10 col-sm-3 control-label">10G IP Address:</label>
+                    <div class="col-xs-12 col-sm-4">
+                        <input id="ip10G" name="ip10G" ng-model="vm.data.asset.network.ip_10g" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="ip1G" class="col-xs-10 col-sm-3 control-label">1G IP Address:</label>
+                    <div class="col-xs-12 col-sm-4">
+                        <input id="ip1G" name="ip1G" ng-model="vm.data.asset.network.ip_1g" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="ipBmc" class="col-xs-10 col-sm-3 control-label">BMC IP Address:</label>
+                    <div class="col-xs-12 col-sm-4">
+                        <input id="ipBmc" name="ipBmc" ng-model="vm.data.asset.network.ip_bmc" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="cpuMfg" class="col-xs-10 col-sm-3 control-label">CPU Manufacturer:</label>
+                    <div class="col-xs-12 col-sm-3">
+                        <select id="cpuMfg" ng-model="vm.data.asset.system.cpu_mfg"
+                                ng-options="option.name for option in vm.mfgdata.mfgs track by option._id"
+                                class="form-control">
+                        </select>
+                    </div>
+                    <label for="cpuModel" class="col-xs-10 col-sm-3 control-label">CPU Model:</label>
+                    <div class="col-xs-12 col-sm-3">
+                        <input id="cpuModel" name="cpuModel" ng-model="vm.data.asset.system.cpu_model" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="memMfg" class="col-xs-10 col-sm-3 control-label">Memory Manufacturer:</label>
+                    <div class="col-xs-12 col-sm-3">
+                        <select id="memMfg" ng-model="vm.data.asset.system.mem_mfg"
+                                ng-options="option.name for option in vm.mfgdata.mfgs track by option._id"
+                                class="form-control">
+                        </select>
+                    </div>
+                    <label for="memSize" class="col-xs-10 col-sm-3 control-label">Memory Size(GB):</label>
+                    <div class="col-xs-12 col-sm-3">
+                        <input id="memSize" name="memSize" ng-model="vm.data.asset.system.mem_size" class="form-control">
                     </div>
                 </div>
 

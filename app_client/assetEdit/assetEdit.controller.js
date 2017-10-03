@@ -21,14 +21,18 @@
     function assetEditCtrl ($location, $routeParams, larrsData) {
         var vm = this;
         vm.assetId = $routeParams.assetId;
+        vm.assetType = ['switch', 'server'];
 
         larrsData.assetById(vm.assetId)
             .success(function (data) {
                 var assetInfo = [];
+                //console.log(data.system[0].cpu_mfg[0].id);
                 assetInfo = {
                     _id: data._id,
                     hostname: data.hostname,
                     tag: data.tag,
+                    type: data.type,
+                    serial: data.serial,
                     skuModel: {
                         _id: data.sku[0].id,
                         name: data.sku[0].name
@@ -52,6 +56,23 @@
                     hStatus: {
                         _id: data.healthStatus[0].id,
                         name: data.healthStatus[0].name
+                    },
+                    system: {
+                        cpu_mfg: {
+                            _id: data.system[0].cpu_mfg[0].id,
+                            name: data.system[0].cpu_mfg[0].name
+                        },
+                        cpu_model: data.system[0].cpu_model,
+                        mem_mfg: {
+                            _id: data.system[0].mem_mfg[0].id,
+                            name: data.system[0].mem_mfg[0].name
+                        },
+                        mem_size: data.system[0].mem_size
+                    },
+                    network: {
+                        ip_10g: data.network[0].ip_10g,
+                        ip_1g: data.network[0].ip_1g,
+                        ip_bmc: data.network[0].ip_bmc
                     },
                     resStatus: data.reserved,
                     currentResId: data.res_id

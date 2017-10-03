@@ -21,6 +21,11 @@
                 controller: 'homeCtrl',
                 controllerAs: 'vm'
             })
+            .when('/api_help', {
+                templateUrl: '/apiHelp/apiHelp.view.html',
+                controller: 'apiHelpCtrl',
+                controllerAs: 'vm'
+            })
             .when('/tabview', {
                 templateUrl: 'tabview/tabview.view.html',
                 controller: 'tabviewCtrl',

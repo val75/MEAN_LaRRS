@@ -20,6 +20,7 @@ app.set('view engine', 'jade');
 
 var appClientFiles = [
     'app_client/app.js',
+    'app_client/apiHelp/apiHelp.controller.js',
     'app_client/home/home.controller.js',
     'app_client/tabview/tabview.controller.js',
     'app_client/assetDetail/assetDetail.controller.js',

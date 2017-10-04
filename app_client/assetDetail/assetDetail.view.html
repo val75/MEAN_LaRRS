@@ -5,20 +5,143 @@
 
     <div class="row">
         <div class="col-xs-12 col-md-9">
-            <p>Asset Tag: {{ vm.data.asset.tag }}</p>
-            <p>Hostname: {{ vm.data.asset.hostname }}</p>
-            <p>SKU: {{ vm.data.asset.skuModel }}</p>
-            <p>Hardware Model: {{ vm.data.asset.hwModel }}</p>
-            <p>Manufacturer: {{ vm.data.asset.mfgName }}</p>
-            <p>Location: {{ vm.data.asset.locName }}</p>
-            <p>Asset Group: {{ vm.data.asset.groupName }}</p>
-            <p>Health Status: {{ vm.data.asset.hStatus }}</p>
-            <p>Reserved: {{ vm.data.asset.resStatus }}</p>
-            <div ng-if="vm.data.asset.resStatus">
-                <p class="reservation-info" reservation-info id="vm.data.asset.currentResId"></p>
-            </div>
+            <a ng-if="vm.data.asset.resStatus == false"
+               ng-click="vm.popupReservationCreateForm(vm.data.asset._id, vm.data.asset.tag, vm.data.asset.hostname)"
+               class="btn btn-success pull-right">Reserve</a>
+            <a ng-if="vm.data.asset.resStatus"
+               ng-click="vm.popupReservationInfo(vm.data.asset._id, vm.data.asset.tag, vm.data.asset.hostname,
+               vm.data.asset.currentResId)" class="btn btn-danger pull-right">Reserved</a>
         </div>
     </div>
 
-    <footer-generic></footer-generic>
+    <div class="row">
+        <div class="col-xs-12 col-md-9">
+            <table class="table table-hover">
+                <thead class="thead-inverse">
+                    <tr>
+                        <th colspan="2">General</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Asset Tag</td>
+                        <td>{{ vm.data.asset.tag }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Hostname</td>
+                        <td>{{ vm.data.asset.hostname }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Asset Type</td>
+                        <td>{{ vm.data.asset.type }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Serial Number</td>
+                        <td>{{ vm.data.asset.serial }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>SKU</td>
+                        <td>{{ vm.data.asset.skuModel }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Hardware Model</td>
+                        <td>{{ vm.data.asset.hwModel }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Manufacturer</td>
+                        <td>{{ vm.data.asset.mfgName }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Location</td>
+                        <td>{{ vm.data.asset.locName }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Asset Group</td>
+                        <td>{{ vm.data.asset.groupName }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Health Status</td>
+                        <td>{{ vm.data.asset.hStatus }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Reserved</td>
+                        <td>{{ vm.data.asset.resStatus }}</td>
+                    </tr>
+                </tbody>
+
+                <thead class="thead-inverse">
+                    <tr>
+                        <th colspan="2">System Hardware</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>CPU Manufacturer</td>
+                        <td>{{ vm.data.asset.cpu_mfg_name }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>CPU Model</td>
+                        <td>{{ vm.data.asset.cpu_model }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Memory Manufacturer</td>
+                        <td>{{ vm.data.asset.mem_mfg_name }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Memory Size</td>
+                        <td>{{ vm.data.asset.mem_size }} GB</td>
+                    </tr>
+
+                    <tr>
+                        <td>10G NIC Manufacturer</td>
+                        <td>{{ vm.data.asset.nic10g_mfg_name }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>10G NIC Model</td>
+                        <td>{{ vm.data.asset.nic10g_model }}</td>
+                    </tr>
+                </tbody>
+
+                <thead class="thead-inverse">
+                    <tr>
+                        <th colspan="2">Network</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>10G Interface IP Address</td>
+                        <td>{{ vm.data.asset.ip_10g }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>1G Interface IP Address</td>
+                        <td>{{ vm.data.asset.ip_1g }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>BMC IP Address</td>
+                        <td>{{ vm.data.asset.ip_bmc }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!--<footer-generic></footer-generic>-->
 </div>

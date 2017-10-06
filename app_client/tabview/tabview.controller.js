@@ -112,6 +112,36 @@
                 });
         };
 
+        // Function to search for a particular asset in the asset list based on asset_id
+        // and update the asset reservation status with the new value
+        vm.freeAssetReservationStatus = function (assetId) {
+            return function () {
+                //console.log("List: " + JSON.stringify(vm.location.assets));
+                //console.log("Asset ID: " + assetId);
+                for (var i=0; i < vm.location.assets.length; i++) {
+                    if (vm.location.assets[i]._id === assetId) {
+                        //console.log(vm.location.assets[i].resStatus);
+                        vm.location.assets[i].resStatus = false;
+                    }
+                }
+            }
+        };
+
+        // Function to search for a particular asset in the asset list based on asset_id
+        // and update the asset reservation status to true (reserved), and also update
+        // the asset current reservation ID with the new reservation ID
+        vm.setAssetReservationStatus = function (asset_id, res_id) {
+            return function () {
+                for (var i=0; i < vm.location.assets.length; i++) {
+                    if (vm.location.assets[i]._id === asset_id) {
+                        //console.log(vm.location.assets[i].resStatus);
+                        vm.location.assets[i].resStatus = true;
+                        vm.location.assets[i].currentResId = res_id;
+                    }
+                }
+            }
+        };
+
         vm.popupReservationCreateForm = function (assetId, assetTag, assetHostname) {
             var
                 modalInstance = $modal.open({
@@ -129,6 +159,9 @@
                 });
 
             modalInstance.result.then(function (data) {
+                //console.log(data._id);
+                var setAsset = vm.setAssetReservationStatus(data.assetId, data._id);
+                setAsset();
             });
         };
 
@@ -150,6 +183,9 @@
                 });
 
             modalInstance.result.then(function (data) {
+                //console.log(data._id);
+                var freeAsset = vm.freeAssetReservationStatus(data._id);
+                freeAsset();
             });
         };
     }

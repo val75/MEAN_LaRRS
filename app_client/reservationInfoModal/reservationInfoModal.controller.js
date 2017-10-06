@@ -34,6 +34,7 @@
                 }
             })
             .error(function (data) {
+                console.log("Error: " + JSON.stringify(data));
                 vm.formError = "Error: " + data
             });
 
@@ -48,8 +49,8 @@
         vm.doDeleteReservation = function (formData) {
             larrsData.deleteReservation(formData.reservationId)
                 .success(function (data) {
-                    vm.modal.close(data);
-                    console.log("Success!");
+                    vm.modal.close(formData);
+                    console.log("Reservation successfully released");
                 })
                 .error(function (data) {
                     vm.formError = "Error: " + data

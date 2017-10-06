@@ -43,7 +43,7 @@
             })
                 .success(function (data) {
                     vm.modal.close(data);
-                    console.log("Success!");
+                    console.log("Reservation successfully created");
                 })
                 .error(function (data) {
                     vm.formError = "Error: " + data

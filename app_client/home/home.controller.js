@@ -233,6 +233,36 @@
             });
         };
 
+        // Function to search for a particular asset in the asset list based on asset_id
+        // and update the asset reservation status to false (not reserved)
+        vm.freeAssetReservationStatus = function (assetId) {
+            return function () {
+                //console.log("List: " + JSON.stringify(vm.data.assets));
+                //console.log("Asset ID: " + assetId);
+                for (var i=0; i < vm.data.assets.length; i++) {
+                    if (vm.data.assets[i]._id === assetId) {
+                        //console.log(vm.data.assets[i].resStatus);
+                        vm.data.assets[i].resStatus = false;
+                    }
+                }
+            }
+        };
+
+        // Function to search for a particular asset in the asset list based on asset_id
+        // and update the asset reservation status to true (reserved), and also update
+        // the asset current reservation ID with the new reservation ID
+        vm.setAssetReservationStatus = function (asset_id, res_id) {
+            return function () {
+                for (var i=0; i < vm.data.assets.length; i++) {
+                    if (vm.data.assets[i]._id === asset_id) {
+                        //console.log(vm.data.assets[i].resStatus);
+                        vm.data.assets[i].resStatus = true;
+                        vm.data.assets[i].currentResId = res_id;
+                    }
+                }
+            }
+        };
+
         vm.popupReservationCreateForm = function (assetId, assetTag, assetHostname) {
             var
                 modalInstance = $modal.open({
@@ -250,35 +280,9 @@
                 });
 
             modalInstance.result.then(function (data) {
-                larrsData.lData()
-                    .success(function (data) {
-                        vm.message = data.length > 0 ? "" : "No assets found";
-                        var
-                            assetList = [];
-                        if ( data.length ) {
-                            data.forEach(function (doc) {
-                                assetList.push({
-                                    _id: doc._id,
-                                    hostname: doc.hostname,
-                                    assetTag: doc.tag,
-                                    skuModel: doc.sku[0].name,
-                                    hwModel: doc.hwModel[0].name,
-                                    mfgName: doc.manufacturer[0].name,
-                                    locName: doc.location[0].name,
-                                    groupName: doc.group[0].name,
-                                    assetStatus: doc.healthStatus[0].name,
-                                    //resStatus: doc.reserved ? "Reserved" : "Free",
-                                    resStatus: doc.reserved,
-                                    currentResId: doc.res_id
-                                });
-                            });
-                        }
-                        vm.data = { assets: assetList };
-                    })
-                    .error(function (e) {
-                        $scope.message = "Sorry, something's gone wrong";
-                        console.log(e);
-                    });
+                //console.log(JSON.stringify(data));
+                var setAsset = vm.setAssetReservationStatus(data.assetId, data._id);
+                setAsset();
             });
         };
 
@@ -300,35 +304,8 @@
                 });
 
             modalInstance.result.then(function (data) {
-                larrsData.lData()
-                    .success(function (data) {
-                        vm.message = data.length > 0 ? "" : "No assets found";
-                        var
-                            assetList = [];
-                        if ( data.length ) {
-                            data.forEach(function (doc) {
-                                assetList.push({
-                                    _id: doc._id,
-                                    hostname: doc.hostname,
-                                    assetTag: doc.tag,
-                                    skuModel: doc.sku[0].name,
-                                    hwModel: doc.hwModel[0].name,
-                                    mfgName: doc.manufacturer[0].name,
-                                    locName: doc.location[0].name,
-                                    groupName: doc.group[0].name,
-                                    assetStatus: doc.healthStatus[0].name,
-                                    //resStatus: doc.reserved ? "Reserved" : "Free",
-                                    resStatus: doc.reserved,
-                                    currentResId: doc.res_id
-                                });
-                            });
-                        }
-                        vm.data = { assets: assetList };
-                    })
-                    .error(function (e) {
-                        $scope.message = "Sorry, something's gone wrong";
-                        console.log(e);
-                    });
+                var freeAsset = vm.freeAssetReservationStatus(data._id);
+                freeAsset();
             });
         };
 

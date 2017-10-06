@@ -47,7 +47,7 @@
             <table class="table table-hover">
                 <thead>
                   <tr>
-                      <th>Asset Tag</th>
+                      <th>Reservation</th>
                       <th>Hostname</th>
                       <th>Type</th>
                       <th>10G</th>
@@ -59,15 +59,22 @@
                       <th>CPU</th>
                       <th>Memory</th>
                       <th>10G NIC</th>
+                      <th>Asset Tag</th>
                       <th>Serial Number</th>
-                      <!--<th>Reservation</th>-->
                   </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="asset in vm.data.assets | filter : textFilter"
-                        class="{{ asset.resStatus ? 'danger' : 'success' }}">
-                        <td>{{ asset.assetTag        }}</td>
-                        <td>{{ asset.hostname        }}</td>
+                        class="{{ asset.assetStatus != 'Healthy' ? 'danger' : '' }}">
+                        <td>
+                            <a ng-if="asset.resStatus == false"
+                               ng-click="vm.popupReservationCreateForm(asset._id, asset.assetTag, asset.hostname)"
+                               class="btn btn-success">Reserve</a>
+                            <a ng-if="asset.resStatus"
+                               ng-click="vm.popupReservationInfo(asset._id, asset.assetTag, asset.hostname, asset.currentResId)"
+                               class="btn btn-danger">Reserved</a>
+                        </td>
+                        <td><a href="/#/assets/{{ asset._id }}">{{ asset.hostname }}</a></td>
                         <td>{{ asset.assetType       }}</td>
                         <td>{{ asset.ip_10g          }}</td>
                         <td>{{ asset.ip_1g           }}</td>
@@ -78,8 +85,8 @@
                         <td>{{ asset.cpu_mfg_name }} {{ asset.cpu_model }}</td>
                         <td>{{ asset.mem_mfg_name }} {{ asset.mem_size }}GB</td>
                         <td>{{ asset.nic10g_mfg_name }} {{ asset.nic10g_model }}</td>
+                        <td>{{ asset.assetTag        }}</td>
                         <td>{{ asset.serial          }}</td>
-                        <!--<td>{{ asset.resStatus }}</td>-->
                     </tr>
                 </tbody>
             </table>

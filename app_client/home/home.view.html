@@ -5,10 +5,16 @@
 
     <div class="row">
         <div class="col-xs-12 col-sm-8">
-            <div class="row">
-                <label for="filter">Filter results</label>
-                <input id="filter" type="text", name="filter", ng-model="textFilter">
+            <div class="filter-wrap">
+                <div class="input-group search-wrap">
+                    <div class="input-group-addon">
+                        <i class="fa fa-search"></i>
+                    </div>
+                    <input id="filter" class="form-control" type="text" name="filter"
+                           placeholder="Search assets..." ng-model="textFilter">
+                </div>
             </div>
+
             <div class="error">{{ vm.message }}</div>
             <div class="row list-group">
                 <div class="col-xs-12 list-group-item" ng-repeat="asset in vm.data.assets | filter : textFilter">

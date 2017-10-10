@@ -261,6 +261,7 @@
                         ip_bmc          : data.network[0].ip_bmc,
                         cpu_mfg_name    : data.system[0].cpu_mfg[0].name,
                         mem_mfg_name    : data.system[0].mem_mfg[0].name,
+                        mem_size        : data.system[0].mem_size,
                         nic10g_mfg_name : data.system[0].nic10g_mfg[0].name,
                         resStatus       : data.reserved,
                         currentResId    : data.res_id

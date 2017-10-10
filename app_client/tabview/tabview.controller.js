@@ -263,6 +263,7 @@
                         mem_mfg_name    : data.system[0].mem_mfg[0].name,
                         mem_size        : data.system[0].mem_size,
                         nic10g_mfg_name : data.system[0].nic10g_mfg[0].name,
+                        nic10g_model    : data.system[0].nic10g_model,
                         resStatus       : data.reserved,
                         currentResId    : data.res_id
                     };

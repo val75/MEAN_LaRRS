@@ -97,6 +97,7 @@ assetCreate = function (req, res) {
             id   : req.body.location_id,
             name : req.body.location_name
         }],
+        location_ru : req.body.location_ru,
         group    : [{
             id   : req.body.group_id,
             name : req.body.group_name
@@ -176,6 +177,7 @@ assetUpdateOne = function (req, res) {
                     id: req.body.location_id,
                     name: req.body.location_name
                 }];
+                asset.location_ru = req.body.location_ru;
                 asset.group = [{
                     id: req.body.group_id,
                     name: req.body.group_name

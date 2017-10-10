@@ -40,6 +40,7 @@ var
             id:   { type: Schema.Types.ObjectId, ref: 'Location',     required: true },
             name: { type: String,                                     required: true }
         }],
+        location_ru: { type: Number },
         group: [{
             id:   { type: Schema.Types.ObjectId, ref: 'Group',        required: true },
             name: { type: String,                                     required: true }

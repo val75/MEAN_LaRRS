@@ -47,6 +47,7 @@
                             hwModel         : doc.hwModel[0].name,
                             mfgName         : doc.manufacturer[0].name,
                             locName         : doc.location[0].name,
+                            locRU           : doc.location_ru,
                             groupName       : doc.group[0].name,
                             assetStatus     : doc.healthStatus[0].name,
                             ip_10g          : doc.network[0].ip_10g,

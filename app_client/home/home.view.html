@@ -54,6 +54,7 @@
                 <thead>
                   <tr>
                       <th>Reservation</th>
+                      <th>RU</th>
                       <th>Hostname</th>
                       <th>Type</th>
                       <th>10G</th>
@@ -80,6 +81,7 @@
                                ng-click="vm.popupReservationInfo(asset._id, asset.assetTag, asset.hostname, asset.currentResId)"
                                class="btn btn-danger">Reserved</a>
                         </td>
+                        <td>{{ asset.locRU           }}</td>
                         <td><a href="/#/assets/{{ asset._id }}">{{ asset.hostname }}</a></td>
                         <td>{{ asset.assetType       }}</td>
                         <td>{{ asset.ip_10g          }}</td>

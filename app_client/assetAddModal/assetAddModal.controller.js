@@ -74,6 +74,10 @@
                 hstat_name: myHstatObj.name
             };
 
+            if (typeof formData.locRU != undefined && formData.locRU != null) {
+                myAsset.location_ru = formData.locRU
+            }
+
             if (typeof formData.ip_10g != undefined && formData.ip_10g != null) {
                 myAsset.ip_10g = formData.ip_10g
             }

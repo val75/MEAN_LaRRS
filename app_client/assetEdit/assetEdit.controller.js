@@ -29,36 +29,37 @@
                 //console.log(data.system[0].cpu_mfg[0].id);
                 //console.log(data.type);
                 assetInfo = {
-                    _id: data._id,
-                    hostname: data.hostname,
-                    tag: data.tag,
-                    type: data.type,
-                    serial: data.serial,
-                    skuModel: {
+                    _id          : data._id,
+                    hostname     : data.hostname,
+                    tag          : data.tag,
+                    type         : data.type,
+                    serial       : data.serial,
+                    skuModel     : {
                         _id: data.sku[0].id,
                         name: data.sku[0].name
                     },
-                    hwModel: {
+                    hwModel      : {
                         _id: data.hwModel[0].id,
                         name: data.hwModel[0].name
                     },
-                    mfgName: {
+                    mfgName      : {
                         _id: data.manufacturer[0].id,
                         name: data.manufacturer[0].name
                     },
-                    locName: {
+                    locName      : {
                         _id: data.location[0].id,
                         name: data.location[0].name
                     },
-                    groupName: {
+                    locRU        : data.location_ru,
+                    groupName    : {
                         _id: data.group[0].id,
                         name: data.group[0].name
                     },
-                    hStatus: {
+                    hStatus      : {
                         _id: data.healthStatus[0].id,
                         name: data.healthStatus[0].name
                     },
-                    system: {
+                    system       : {
                         cpu_mfg: {
                             _id: data.system[0].cpu_mfg[0].id,
                             name: data.system[0].cpu_mfg[0].name
@@ -75,13 +76,13 @@
                         },
                         nic10g_model: data.system[0].nic10g_model
                     },
-                    network: {
+                    network      : {
                         ip_10g: data.network[0].ip_10g,
                         ip_1g: data.network[0].ip_1g,
                         ip_bmc: data.network[0].ip_bmc
                     },
-                    resStatus: data.reserved,
-                    currentResId: data.res_id
+                    resStatus    : data.reserved,
+                    currentResId : data.res_id
                 };
                 vm.data = { asset : assetInfo };
                 vm.pageHeader = {
@@ -190,34 +191,35 @@
         vm.doUpdateAsset = function () {
 
             larrsData.updateAsset(vm.assetId, {
-                tag: vm.data.asset.tag,
-                hostname: vm.data.asset.hostname,
-                type: vm.data.asset.type,
-                serial: vm.data.asset.serial,
-                sku_id: vm.data.asset.skuModel._id,
-                sku_name: vm.data.asset.skuModel.name,
-                hwmodel_id: vm.data.asset.hwModel._id,
-                hwmodel_name: vm.data.asset.hwModel.name,
-                mfg_id: vm.data.asset.mfgName._id,
-                mfg_name: vm.data.asset.mfgName.name,
-                location_id: vm.data.asset.locName._id,
-                location_name: vm.data.asset.locName.name,
-                group_id: vm.data.asset.groupName._id,
-                group_name: vm.data.asset.groupName.name,
-                hstat_id: vm.data.asset.hStatus._id,
-                hstat_name: vm.data.asset.hStatus.name,
-                ip_10g: vm.data.asset.network.ip_10g,
-                ip_1g: vm.data.asset.network.ip_1g,
-                ip_bmc: vm.data.asset.network.ip_bmc,
-                cpu_mfg_id: vm.data.asset.system.cpu_mfg._id,
-                cpu_mfg_name: vm.data.asset.system.cpu_mfg.name,
-                cpu_model: vm.data.asset.system.cpu_model,
-                mem_mfg_id: vm.data.asset.system.mem_mfg._id,
-                mem_mfg_name: vm.data.asset.system.mem_mfg.name,
-                mem_size: vm.data.asset.system.mem_size,
-                nic10g_mfg_id: vm.data.asset.system.nic10g_mfg._id,
-                nic10g_mfg_name: vm.data.asset.system.nic10g_mfg.name,
-                nic10g_model: vm.data.asset.system.nic10g_model
+                tag             : vm.data.asset.tag,
+                hostname        : vm.data.asset.hostname,
+                type            : vm.data.asset.type,
+                serial          : vm.data.asset.serial,
+                sku_id          : vm.data.asset.skuModel._id,
+                sku_name        : vm.data.asset.skuModel.name,
+                hwmodel_id      : vm.data.asset.hwModel._id,
+                hwmodel_name    : vm.data.asset.hwModel.name,
+                mfg_id          : vm.data.asset.mfgName._id,
+                mfg_name        : vm.data.asset.mfgName.name,
+                location_id     : vm.data.asset.locName._id,
+                location_name   : vm.data.asset.locName.name,
+                location_ru     : vm.data.asset.locRU,
+                group_id        : vm.data.asset.groupName._id,
+                group_name      : vm.data.asset.groupName.name,
+                hstat_id        : vm.data.asset.hStatus._id,
+                hstat_name      : vm.data.asset.hStatus.name,
+                ip_10g          : vm.data.asset.network.ip_10g,
+                ip_1g           : vm.data.asset.network.ip_1g,
+                ip_bmc          : vm.data.asset.network.ip_bmc,
+                cpu_mfg_id      : vm.data.asset.system.cpu_mfg._id,
+                cpu_mfg_name    : vm.data.asset.system.cpu_mfg.name,
+                cpu_model       : vm.data.asset.system.cpu_model,
+                mem_mfg_id      : vm.data.asset.system.mem_mfg._id,
+                mem_mfg_name    : vm.data.asset.system.mem_mfg.name,
+                mem_size        : vm.data.asset.system.mem_size,
+                nic10g_mfg_id   : vm.data.asset.system.nic10g_mfg._id,
+                nic10g_mfg_name : vm.data.asset.system.nic10g_mfg.name,
+                nic10g_model    : vm.data.asset.system.nic10g_model
             })
                 .success(function (data) {
                     console.log("Success!");

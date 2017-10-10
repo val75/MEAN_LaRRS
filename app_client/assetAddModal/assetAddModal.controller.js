@@ -31,6 +31,8 @@
         vm.grpData = grpData.groupList;
         vm.hstatData = hstatData.hstatList;
 
+        //console.log("Locations: " + vm.locData.length);
+
         vm.onSubmit = function () {
             vm.formError = "";
             if (!vm.formData.assetTag || !vm.formData.hostName ) {

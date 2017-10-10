@@ -16,7 +16,7 @@
             </div>
 
             <div class="error">{{ vm.message }}</div>
-            <div class="row list-group">
+            <!--<div class="row list-group">
                 <div class="col-xs-12 list-group-item" ng-repeat="asset in vm.data.assets | filter : textFilter">
                     <h4>
                         <a href="/#/assets/{{ asset._id }}">{{ asset.hostname }}</a>
@@ -40,11 +40,11 @@
                            class="btn btn-danger pull-right">Reserved</a>
                     </p>
                 </div>
-            </div>
+            </div>-->
         </div>
-        <div class="col-xs-12 col-sm-4">
-            <p class="lead">{{ vm.sidebar.content }}</p>
-            <a ng-click="vm.popupAssetAddForm()" class="btn btn-default">Add Asset</a>
+        <div class="col-xs-12 col-sm-4 filter-wrap">
+            <!--<p class="lead">{{ vm.sidebar.content }}</p>-->
+            <a ng-click="vm.popupAssetAddForm()" class="btn btn-primary">Add Asset</a>
         </div>
     </div>
 

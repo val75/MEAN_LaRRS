@@ -16,11 +16,11 @@
 
 <navigation></navigation>
 
-<div class="container">
+<div class="container-fluid">
     <page-header content="vm.pageHeader"></page-header>
 
     <div class="row">
-        <div class="col-xs-12 col-sm-3">
+        <div class="col-md-2">
             <div ui-tree data-drag-enabled="false">
                 <ol ui-tree-nodes="" ng-model="vm.treelocdata.locs">
                     <li ng-repeat="node in vm.treelocdata.locs" ui-tree-node ng-include="'nodes_renderer.html'"></li>
@@ -28,15 +28,15 @@
             </div>
         </div>
 
-        <div class="col-xs-12 col-sm-9">
+        <div class="col-md-10">
             <div class="error">{{ vm.rack_message }}</div>
 
             <tabset>
                 <tab ng-repeat="labLoc in vm.rackdata.racks" heading="{{ labLoc.name }}"
                      select="vm.locationSelected(labLoc)">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-8">
 
+                    <div class="row">
+                        <div class="col-md-5">
                             <div class="filter-wrap">
                                 <div class="input-group search-wrap">
                                     <!-- <label for="filter">Filter results</label>-->
@@ -47,11 +47,68 @@
                                            placeholder="Search assets..." ng-model="textFilter">
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="error">{{ vm.message }}</div>
+                        <div class="col-xs-12 col-sm-4 filter-wrap">
+                            <a ng-click="vm.popupAssetAddForm()" class="btn btn-primary">Add Asset</a>
+                        </div>
+                    </div>
 
+                    <div class="row">
+                        <div class="error">{{ vm.message }}</div>
+
+                        <div>
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>Reservation</th>
+                                    <th>Hostname</th>
+                                    <th>Type</th>
+                                    <th>10G</th>
+                                    <th>1G</th>
+                                    <th>BMC</th>
+                                    <th>Mfg</th>
+                                    <th>Model</th>
+                                    <th>SKU</th>
+                                    <th>CPU</th>
+                                    <th>Memory</th>
+                                    <th>10G NIC</th>
+                                    <th>Asset Tag</th>
+                                    <th>Serial Number</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="asset in vm.location.assets | filter : textFilter"
+                                    class="{{ asset.assetStatus != 'Healthy' ? 'danger' : '' }}">
+                                    <td>
+                                        <a ng-if="asset.resStatus == false"
+                                           ng-click="vm.popupReservationCreateForm(asset._id, asset.assetTag, asset.hostname)"
+                                           class="btn btn-success">Reserve</a>
+                                        <a ng-if="asset.resStatus"
+                                           ng-click="vm.popupReservationInfo(asset._id, asset.assetTag, asset.hostname, asset.currentResId)"
+                                           class="btn btn-danger">Reserved</a>
+                                    </td>
+                                    <td><a href="/#/assets/{{ asset._id }}">{{ asset.hostname }}</a></td>
+                                    <td>{{ asset.assetType       }}</td>
+                                    <td>{{ asset.ip_10g          }}</td>
+                                    <td>{{ asset.ip_1g           }}</td>
+                                    <td>{{ asset.ip_bmc          }}</td>
+                                    <td>{{ asset.mfgName         }}</td>
+                                    <td>{{ asset.hwModel         }}</td>
+                                    <td>{{ asset.skuModel        }}</td>
+                                    <td>{{ asset.cpu_mfg_name }} {{ asset.cpu_model }}</td>
+                                    <td>{{ asset.mem_mfg_name }} {{ asset.mem_size }}GB</td>
+                                    <td>{{ asset.nic10g_mfg_name }} {{ asset.nic10g_model }}</td>
+                                    <td>{{ asset.assetTag        }}</td>
+                                    <td>{{ asset.serial          }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                            <!--
                             <div class="row list-group">
-                                <div class="col-xs-12 list-group-item"
+                                <div class="col-xs-12 col-md-10 list-group-item"
                                      ng-repeat="asset in vm.location.assets | filter : textFilter">
                                     <h4>
                                         <a href="/#/assets/{{ asset._id }}">{{ asset.hostname }}</a>
@@ -78,7 +135,7 @@
                                     </p>
                                 </div>
                             </div>
-                        </div>
+                            -->
                     </div>
                 </tab>
             </tabset>

@@ -246,6 +246,7 @@
             modalInstance.result.then(function (data) {
                 var
                     myAsset = {
+                        _id             : data._id,
                         assetTag        : data.tag,
                         hostname        : data.hostname,
                         assetType       : data.type,

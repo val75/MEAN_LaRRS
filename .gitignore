@@ -38,3 +38,6 @@ jspm_packages
 
 # Project specific settings for Jetbrains (Webstorm) IDE
 .idea
+
+# Environment variables
+.env

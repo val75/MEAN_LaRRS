@@ -115,7 +115,7 @@
                 myAsset.nic10g_mfg_id = myNic10gMfgObj.id;
                 myAsset.nic10g_mfg_name = myNic10gMfgObj.name;
             }
-            
+
             if (typeof formData.nic10GModel != undefined && formData.nic10GModel != null) {
                 myAsset.nic10g_model = formData.nic10GModel;
             }

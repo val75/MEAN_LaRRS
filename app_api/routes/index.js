@@ -24,7 +24,8 @@ var
     ctrlHealthStatus = require('../controllers/health'),
     ctrlHwModels     = require('../controllers/hw_model'),
     ctrlAssets       = require('../controllers/assets'),
-    ctrlReservations = require('../controllers/reservations');
+    ctrlReservations = require('../controllers/reservations'),
+    ctrlAuth         = require('../controllers/authentication');
 //----------------- END MODULE SCOPE VARIABLES ---------------
 
 //---------------- BEGIN ROUTES CONFIGURATION --------------
@@ -83,6 +84,10 @@ router.post(   '/reservations',                 ctrlReservations.reservationCrea
 router.get(    '/reservations/:reservation_id', ctrlReservations.reservationReadOne);
 router.delete( '/reservations/:reservation_id', ctrlReservations.reservationDeleteUpdate);
 //router.delete( '/reservations/:reservation_id', ctrlReservations.reservationDeleteOne);
+
+// Authentication
+router.post(   '/register', ctrlAuth.register );
+router.post(   '/login',    ctrlAuth.login    );
 
 //----------------  END ROUTES CONFIGURATION  --------------
 

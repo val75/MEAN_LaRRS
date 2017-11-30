@@ -16,6 +16,11 @@
 var
     express = require('express'),
     router = express.Router(),
+    jwt = require('express-jwt'),
+    auth = jwt({
+        secret: process.env.JWT_SECRET,
+        userProperty: 'payload'
+    }),
 
     ctrlSkus         = require('../controllers/skus'),
     ctrlMfgs         = require('../controllers/manufacturers'),
@@ -31,7 +36,7 @@ var
 //---------------- BEGIN ROUTES CONFIGURATION --------------
 // SKUs
 router.get(    '/skus', ctrlSkus.skuList);
-router.post(   '/skus', ctrlSkus.skuCreate);
+router.post(   '/skus', auth, ctrlSkus.skuCreate);
 router.get(    '/skus/:sku_id', ctrlSkus.skuReadOne);
 router.put(    '/skus/:sku_id', ctrlSkus.skuUpdateOne);
 router.delete( '/skus/:sku_id', ctrlSkus.skuDeleteOne);

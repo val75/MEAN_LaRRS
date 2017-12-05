@@ -39,7 +39,7 @@ router.get(    '/skus', ctrlSkus.skuList);
 router.post(   '/skus', auth, ctrlSkus.skuCreate);
 router.get(    '/skus/:sku_id', ctrlSkus.skuReadOne);
 router.put(    '/skus/:sku_id', ctrlSkus.skuUpdateOne);
-router.delete( '/skus/:sku_id', ctrlSkus.skuDeleteOne);
+router.delete( '/skus/:sku_id', auth, ctrlSkus.skuDeleteOne);
 
 // Manufacturers
 router.get(    '/manufacturers', ctrlMfgs.mfgList);

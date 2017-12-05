@@ -51,6 +51,11 @@
                 controller: 'assetDetailCtrl',
                 controllerAs: 'vm'
             })
+            .when('/register', {
+                templateUrl: '/auth/register/register.view.html',
+                controller: 'registerCtrl',
+                controllerAs: 'vm'
+            })
             .otherwise({redirectTo: '/'});
 
         $locationProvider.html5Mode(true);

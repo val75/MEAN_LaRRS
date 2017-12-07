@@ -64,6 +64,7 @@
 
         var logout = function () {
             $window.localStorage.removeItem('larrs-token');
+            $window.location.reload();
         };
 
         return {

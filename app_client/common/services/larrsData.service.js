@@ -16,8 +16,8 @@
         .module('larrsApp')
         .service('larrsData', larrsData);
 
-    larrsData.$inject = ['$http'];
-    function larrsData ($http) {
+    larrsData.$inject = ['$http', 'authentication'];
+    function larrsData ($http, authentication) {
         var lData = function () {
             return $http({
                 method: 'GET',
@@ -35,15 +35,27 @@
         };
 
         var assetDelete = function (assetId) {
-            return $http.delete('/api/assets/' + assetId);
+            return $http.delete('/api/assets/' + assetId, {
+                headers: {
+                    Authorization: 'Bearer '+ authentication.getToken()
+                }
+            });
         };
 
         var addAsset = function (data) {
-            return $http.post('/api/assets', data);
+            return $http.post('/api/assets', data, {
+                headers: {
+                    Authorization: 'Bearer '+ authentication.getToken()
+                }
+            });
         };
 
         var updateAsset = function (assetId, data) {
-            return $http.put('/api/assets/' + assetId, data);
+            return $http.put('/api/assets/' + assetId, data, {
+                headers: {
+                    Authorization: 'Bearer '+ authentication.getToken()
+                }
+            });
         };
 
         var getSkus = function () {
@@ -51,7 +63,11 @@
         };
 
         var addSku = function (data) {
-            return $http.post('/api/skus', data);
+            return $http.post('/api/skus', data, {
+                headers: {
+                    Authorization: 'Bearer '+ authentication.getToken()
+                }
+            });
         };
 
         var getMfgs = function () {
@@ -59,7 +75,11 @@
         };
 
         var addMfg = function (data) {
-            return $http.post('/api/manufacturers', data);
+            return $http.post('/api/manufacturers', data, {
+                headers: {
+                    Authorization: 'Bearer '+ authentication.getToken()
+                }
+            });
         };
 
         var getHwModel = function () {
@@ -67,7 +87,11 @@
         };
 
         var addHwModel = function (data) {
-            return $http.post('/api/hwmodels', data);
+            return $http.post('/api/hwmodels', data, {
+                headers: {
+                    Authorization: 'Bearer '+ authentication.getToken()
+                }
+            });
         };
 
         var getLocation = function () {
@@ -83,7 +107,11 @@
         };
 
         var addLocation = function (data) {
-            return $http.post('/api/locations', data);
+            return $http.post('/api/locations', data, {
+                headers: {
+                    Authorization: 'Bearer '+ authentication.getToken()
+                }
+            });
         };
 
         var getGroup = function () {
@@ -91,7 +119,11 @@
         };
 
         var addGroup = function (data) {
-            return $http.post('/api/groups', data);
+            return $http.post('/api/groups', data, {
+                headers: {
+                    Authorization: 'Bearer '+ authentication.getToken()
+                }
+            });
         };
 
         var getHealthStatus = function () {
@@ -99,11 +131,19 @@
         };
 
         var addHealthStatus = function (data) {
-            return $http.post('/api/hStatus', data);
+            return $http.post('/api/hStatus', data, {
+                headers: {
+                    Authorization: 'Bearer '+ authentication.getToken()
+                }
+            });
         };
 
         var createReservation = function (data) {
-            return $http.post('/api/reservations', data);
+            return $http.post('/api/reservations', data, {
+                headers: {
+                    Authorization: 'Bearer '+ authentication.getToken()
+                }
+            });
         };
 
         var reservationById = function (reservationId) {
@@ -111,7 +151,11 @@
         };
 
         var deleteReservation = function (reservationId) {
-            return $http.delete('/api/reservations/' + reservationId)
+            return $http.delete('/api/reservations/' + reservationId, {
+                headers: {
+                    Authorization: 'Bearer '+ authentication.getToken()
+                }
+            })
         };
 
         return {

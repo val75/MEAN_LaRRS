@@ -15,9 +15,9 @@
 
 var
     express = require('express'),
-    router = express.Router(),
-    jwt = require('express-jwt'),
-    auth = jwt({
+    router  = express.Router(),
+    jwt     = require('express-jwt'),
+    auth    = jwt({
         secret: process.env.JWT_SECRET,
         userProperty: 'payload'
     }),
@@ -35,59 +35,59 @@ var
 
 //---------------- BEGIN ROUTES CONFIGURATION --------------
 // SKUs
-router.get(    '/skus', ctrlSkus.skuList);
-router.post(   '/skus', auth, ctrlSkus.skuCreate);
-router.get(    '/skus/:sku_id', ctrlSkus.skuReadOne);
-router.put(    '/skus/:sku_id', ctrlSkus.skuUpdateOne);
-router.delete( '/skus/:sku_id', auth, ctrlSkus.skuDeleteOne);
+router.get(    '/skus',               ctrlSkus.skuList      );
+router.get(    '/skus/:sku_id',       ctrlSkus.skuReadOne   );
+router.post(   '/skus',         auth, ctrlSkus.skuCreate    );
+router.put(    '/skus/:sku_id', auth, ctrlSkus.skuUpdateOne );
+router.delete( '/skus/:sku_id', auth, ctrlSkus.skuDeleteOne );
 
 // Manufacturers
-router.get(    '/manufacturers', ctrlMfgs.mfgList);
-router.post(   '/manufacturers', ctrlMfgs.mfgCreate);
-router.get(    '/manufacturers/:manufacturer_id', ctrlMfgs.mfgReadOne);
-router.put(    '/manufacturers/:manufacturer_id', ctrlMfgs.mfgUpdateOne);
-router.delete( '/manufacturers/:manufacturer_id', ctrlMfgs.mfgDeleteOne);
+router.get(    '/manufacturers',                        ctrlMfgs.mfgList      );
+router.get(    '/manufacturers/:manufacturer_id',       ctrlMfgs.mfgReadOne   );
+router.post(   '/manufacturers',                  auth, ctrlMfgs.mfgCreate    );
+router.put(    '/manufacturers/:manufacturer_id', auth, ctrlMfgs.mfgUpdateOne );
+router.delete( '/manufacturers/:manufacturer_id', auth, ctrlMfgs.mfgDeleteOne );
 
 // Locations
-router.get(    '/locations', ctrlLocations.locationList);
-router.post(   '/locations', ctrlLocations.locationCreate);
-router.get(    '/locations/:location_id', ctrlLocations.locationReadOne);
-router.put(    '/locations/:location_id', ctrlLocations.locationUpdateOne);
-router.delete( '/locations/:location_id', ctrlLocations.locationDeleteOne);
+router.get(    '/locations',                    ctrlLocations.locationList      );
+router.get(    '/locations/:location_id',       ctrlLocations.locationReadOne   );
+router.post(   '/locations',              auth, ctrlLocations.locationCreate    );
+router.put(    '/locations/:location_id', auth, ctrlLocations.locationUpdateOne );
+router.delete( '/locations/:location_id', auth, ctrlLocations.locationDeleteOne );
 
 // Groups
-router.get(    '/groups', ctrlGroups.groupList);
-router.post(   '/groups', ctrlGroups.groupCreate);
-router.get(    '/groups/:group_id', ctrlGroups.groupReadOne);
-router.put(    '/groups/:group_id', ctrlGroups.groupUpdateOne);
-router.delete( '/groups/:group_id', ctrlGroups.groupDeleteOne);
+router.get(    '/groups',                 ctrlGroups.groupList      );
+router.get(    '/groups/:group_id',       ctrlGroups.groupReadOne   );
+router.post(   '/groups',           auth, ctrlGroups.groupCreate    );
+router.put(    '/groups/:group_id', auth, ctrlGroups.groupUpdateOne );
+router.delete( '/groups/:group_id', auth, ctrlGroups.groupDeleteOne );
 
 // Health Status
-router.get(    '/hStatus', ctrlHealthStatus.statList);
-router.post(   '/hStatus', ctrlHealthStatus.statCreate);
-router.get(    '/hStatus/:hstat_id', ctrlHealthStatus.statReadOne);
-router.put(    '/hStatus/:hstat_id', ctrlHealthStatus.statUpdateOne);
-router.delete( '/hStatus/:hstat_id', ctrlHealthStatus.statDeleteOne);
+router.get(    '/hStatus',                 ctrlHealthStatus.statList      );
+router.get(    '/hStatus/:hstat_id',       ctrlHealthStatus.statReadOne   );
+router.post(   '/hStatus',           auth, ctrlHealthStatus.statCreate    );
+router.put(    '/hStatus/:hstat_id', auth, ctrlHealthStatus.statUpdateOne );
+router.delete( '/hStatus/:hstat_id', auth, ctrlHealthStatus.statDeleteOne );
 
 // Hardware Model
-router.get(    '/hwmodels', ctrlHwModels.hwModelList);
-router.post(   '/hwmodels', ctrlHwModels.hwModelCreate);
-router.get(    '/hwmodels/:hwmodel_id', ctrlHwModels.hwModelReadOne);
-router.put(    '/hwmodels/:hwmodel_id', ctrlHwModels.hwModelUpdateOne);
-router.delete( '/hwmodels/:hwmodel_id', ctrlHwModels.hwModelDeleteOne);
+router.get(    '/hwmodels',                   ctrlHwModels.hwModelList      );
+router.get(    '/hwmodels/:hwmodel_id',       ctrlHwModels.hwModelReadOne   );
+router.post(   '/hwmodels',             auth, ctrlHwModels.hwModelCreate    );
+router.put(    '/hwmodels/:hwmodel_id', auth, ctrlHwModels.hwModelUpdateOne );
+router.delete( '/hwmodels/:hwmodel_id', auth, ctrlHwModels.hwModelDeleteOne );
 
 // Assets
-router.get(    '/assets',           ctrlAssets.assetList      );
-router.post(   '/assets',           ctrlAssets.assetCreate    );
-router.get(    '/assets/:asset_id', ctrlAssets.assetReadOne   );
-router.put(    '/assets/:asset_id', ctrlAssets.assetUpdateOne );
-router.delete( '/assets/:asset_id', ctrlAssets.assetDeleteOne );
+router.get(    '/assets',                 ctrlAssets.assetList      );
+router.get(    '/assets/:asset_id',       ctrlAssets.assetReadOne   );
+router.post(   '/assets',           auth, ctrlAssets.assetCreate    );
+router.put(    '/assets/:asset_id', auth, ctrlAssets.assetUpdateOne );
+router.delete( '/assets/:asset_id', auth, ctrlAssets.assetDeleteOne );
 
 // Reservations
-router.get(    '/reservations',                 ctrlReservations.reservationList);
-router.post(   '/reservations',                 ctrlReservations.reservationCreate);
-router.get(    '/reservations/:reservation_id', ctrlReservations.reservationReadOne);
-router.delete( '/reservations/:reservation_id', ctrlReservations.reservationDeleteUpdate);
+router.get(    '/reservations',                       ctrlReservations.reservationList         );
+router.get(    '/reservations/:reservation_id',       ctrlReservations.reservationReadOne      );
+router.post(   '/reservations',                 auth, ctrlReservations.reservationCreate       );
+router.delete( '/reservations/:reservation_id', auth, ctrlReservations.reservationDeleteUpdate );
 //router.delete( '/reservations/:reservation_id', ctrlReservations.reservationDeleteOne);
 
 // Authentication

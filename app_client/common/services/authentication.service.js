@@ -37,6 +37,18 @@
                 return false;
             }
         };
+
+        var isAdmin = function () {
+            if (isLoggedIn()) {
+                var
+                    token, payload;
+
+                token = getToken();
+                payload = JSON.parse($window.atob(token.split('.')[1]));
+
+                return payload.username === "admin";
+            }
+        };
         
         var currentUser = function () {
             if (isLoggedIn()) {
@@ -44,8 +56,8 @@
                 var payload = JSON.parse($window.atob(token.split('.')[1]));
 
                 return {
-                    email : payload.email,
-                    name : payload.name
+                    email    : payload.email,
+                    username : payload.username
                 };
             }
         };
@@ -72,6 +84,7 @@
             saveToken   : saveToken,
             getToken    : getToken,
             isLoggedIn  : isLoggedIn,
+            isAdmin     : isAdmin,
             register    : register,
             login       : login,
             logout      : logout

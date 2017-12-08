@@ -20,10 +20,10 @@ var
     Schema   = mongoose.Schema,
 
     userSchema = new Schema({
-        email: { type: String, required: true, unique: true },
-        name:  { type: String, required: true               },
-        hash:  { type: String                               },
-        salt:  { type: String                               }
+        email:     { type: String, required: true, unique: true },
+        username:  { type: String, required: true, unique: true },
+        hash:      { type: String                               },
+        salt:      { type: String                               }
     });
 
 //----------------- END MODULE SCOPE VARIABLES ---------------
@@ -64,11 +64,10 @@ userSchema.methods.generateJwt = function () {
     //expiry.setMinutes(expiry.getMinutes() + 5);
 
     return jwt.sign({
-        _id: this._id,
-        email: this.email,
-        name: this.name,
-        // getTime() returns miliseconds since Epoch, so divided by 1000 it returns just seconds
-        exp: parseInt(expiry.getTime() / 1000)
+        _id      : this._id,
+        email    : this.email,
+        username : this.username,
+        exp      : parseInt(expiry.getTime() / 1000) //getTime returns miliseconds since Epoch, divided by 1000 it returns seconds
     }, process.env.JWT_SECRET );
 };
 

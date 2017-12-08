@@ -25,6 +25,8 @@
 
         vm.isLoggedIn = authentication.isLoggedIn();
 
+        vm.isAdmin = authentication.isAdmin();
+
         vm.currentUser = authentication.currentUser();
 
         vm.logout = function () {

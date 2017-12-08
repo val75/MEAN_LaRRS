@@ -33,7 +33,7 @@ sendJSONresponse = function (res, status, content) {
 //---------------- BEGIN PUBLIC METHODS --------------
 
 register = function (req, res) {
-    if ( !req.body.name || !req.body.email || !req.body.password ) {
+    if ( !req.body.username || !req.body.email || !req.body.password ) {
         sendJSONresponse(res, 400, {
             "message" : "All fields required"
         });
@@ -42,8 +42,8 @@ register = function (req, res) {
 
     var user = new User();
 
-    user.name = req.body.name;
-    user.email = req.body.email;
+    user.username = req.body.username;
+    user.email    = req.body.email;
 
     user.setPassword(req.body.password);
 
@@ -62,7 +62,7 @@ register = function (req, res) {
 };
 
 login = function (req, res) {
-    if ( !req.body.email || ! req.body.password ) {
+    if ( !req.body.username || ! req.body.password ) {
         sendJSONresponse(res, 400, {
             "message" : "All fields required"
         });

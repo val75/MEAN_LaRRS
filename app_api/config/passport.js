@@ -22,11 +22,9 @@ var
 
 //----------------- END MODULE SCOPE VARIABLES ---------------
 
-passport.use(new LocalStrategy({
-    usernameField: 'email'
-},
+passport.use(new LocalStrategy(
   function (username, password, done) {
-      User.findOne({ email: username }, function (err, user) {
+      User.findOne({ username: username }, function (err, user) {
           if (err) { return done(err) }
           if (!user) {
               return done(null, false, {

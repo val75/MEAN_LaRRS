@@ -30,6 +30,7 @@ var
     ctrlHwModels     = require('../controllers/hw_model'),
     ctrlAssets       = require('../controllers/assets'),
     ctrlReservations = require('../controllers/reservations'),
+    ctrlUsers        = require('../controllers/users'),
     ctrlAuth         = require('../controllers/authentication');
 //----------------- END MODULE SCOPE VARIABLES ---------------
 
@@ -89,6 +90,11 @@ router.get(    '/reservations/:reservation_id',       ctrlReservations.reservati
 router.post(   '/reservations',                 auth, ctrlReservations.reservationCreate       );
 router.delete( '/reservations/:reservation_id', auth, ctrlReservations.reservationDeleteUpdate );
 //router.delete( '/reservations/:reservation_id', ctrlReservations.reservationDeleteOne);
+
+// Users
+router.get(    '/users',          ctrlUsers.userList      );
+router.get(    '/users/:user_id', ctrlUsers.userReadOne   );
+router.delete( '/users/:user_id', ctrlUsers.userDeleteOne );
 
 // Authentication
 router.post(   '/register', ctrlAuth.register );

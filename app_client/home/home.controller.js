@@ -16,8 +16,8 @@
         .module('larrsApp')
         .controller('homeCtrl', homeCtrl);
 
-    homeCtrl.$inject = ['$scope', '$modal', 'larrsData'];
-    function homeCtrl ($scope, $modal, larrsData) {
+    homeCtrl.$inject = ['$scope', '$modal', 'larrsData', 'authentication'];
+    function homeCtrl ($scope, $modal, larrsData, authentication) {
         var
             vm = this;
 
@@ -29,6 +29,8 @@
             content : 'LaRRS helps you reserve an asset in HWE Labs and takes care of it once it is released'
         };
         //vm.message = "Checking for lab assets...";
+
+        vm.isLoggedIn = authentication.isLoggedIn();
 
         larrsData.lData()
             .success(function (data) {

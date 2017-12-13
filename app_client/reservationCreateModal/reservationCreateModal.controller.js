@@ -24,9 +24,10 @@
 
         vm.formResData = assetData;
 
+        // TODO: need to clean this up, reservation notes are not required in the model, so this may go altogether
         vm.onSubmit = function () {
             vm.formError = "";
-            if (!vm.formResData.userName || !vm.formResData.resNotes) {
+            if (!vm.formResData.resNotes) {
                 vm.formError = "All fields are required, please try again";
                 return false;
             } else {
@@ -38,7 +39,7 @@
         vm.doCreateReservation = function (formData) {
             larrsData.createReservation({
                 asset_id : formData._id,
-                user : formData.userName,
+                //user : formData.userName,
                 notes : formData.resNotes
             })
                 .success(function (data) {

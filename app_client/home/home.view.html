@@ -76,10 +76,10 @@
                         <td>
                             <a ng-if="asset.resStatus == false"
                                ng-click="vm.popupReservationCreateForm(asset._id, asset.assetTag, asset.hostname)"
-                               class="btn btn-success">Reserve</a>
+                               class="btn btn-success" ng-disabled="!vm.isLoggedIn">Reserve</a>
                             <a ng-if="asset.resStatus"
                                ng-click="vm.popupReservationInfo(asset._id, asset.assetTag, asset.hostname, asset.currentResId)"
-                               class="btn btn-danger">Reserved</a>
+                               class="btn btn-danger" ng-disabled="!vm.isLoggedIn">Reserved</a>
                         </td>
                         <td>{{ asset.locRU           }}</td>
                         <td><a href="/#/assets/{{ asset._id }}">{{ asset.hostname }}</a></td>

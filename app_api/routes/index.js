@@ -85,11 +85,11 @@ router.put(    '/assets/:asset_id', auth, ctrlAssets.assetUpdateOne );
 router.delete( '/assets/:asset_id', auth, ctrlAssets.assetDeleteOne );
 
 // Reservations
-router.get(    '/reservations',                       ctrlReservations.reservationList         );
-router.get(    '/reservations/:reservation_id',       ctrlReservations.reservationReadOne      );
-router.post(   '/reservations',                 auth, ctrlReservations.reservationCreate       );
-router.delete( '/reservations/:reservation_id', auth, ctrlReservations.reservationDeleteUpdate );
-//router.delete( '/reservations/:reservation_id', ctrlReservations.reservationDeleteOne);
+router.get(    '/reservations',                           ctrlReservations.reservationList         );
+router.get(    '/reservations/:reservation_id',           ctrlReservations.reservationReadOne      );
+router.post(   '/reservations',                     auth, ctrlReservations.reservationCreate       );
+router.delete( '/reservations/:reservation_id',     auth, ctrlReservations.reservationDeleteUpdate );
+router.delete( '/reservations/one/:reservation_id', auth, ctrlReservations.reservationDeleteOne);
 
 // Users
 router.get(    '/users',          ctrlUsers.userList      );

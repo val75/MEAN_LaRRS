@@ -75,10 +75,10 @@
                         class="{{ asset.assetStatus != 'Healthy' ? 'danger' : '' }}">
                         <td>
                             <a ng-if="asset.resStatus == false"
-                               ng-click="vm.popupReservationCreateForm(asset._id, asset.assetTag, asset.hostname)"
+                               ng-click="vm.isLoggedIn && vm.popupReservationCreateForm(asset._id, asset.assetTag, asset.hostname)"
                                class="btn btn-success" ng-disabled="!vm.isLoggedIn">Reserve</a>
                             <a ng-if="asset.resStatus"
-                               ng-click="vm.popupReservationInfo(asset._id, asset.assetTag, asset.hostname, asset.currentResId)"
+                               ng-click="vm.isLoggedIn && vm.popupReservationInfo(asset._id, asset.assetTag, asset.hostname, asset.currentResId)"
                                class="btn btn-danger" ng-disabled="!vm.isLoggedIn">Reserved</a>
                         </td>
                         <td>{{ asset.locRU           }}</td>

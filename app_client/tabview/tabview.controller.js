@@ -16,8 +16,8 @@
         .module('larrsApp')
         .controller('tabviewCtrl', tabviewCtrl);
 
-    tabviewCtrl.$inject = ['$modal', 'larrsData'];
-    function tabviewCtrl ($modal, larrsData) {
+    tabviewCtrl.$inject = ['$modal', 'larrsData', 'authentication'];
+    function tabviewCtrl ($modal, larrsData, authentication) {
         var
             vm = this;
 
@@ -25,6 +25,8 @@
             title : 'LaRRS',
             strapline: 'List of lab assets per lab location'
         };
+
+        vm.isLoggedIn = authentication.isLoggedIn();
 
         vm.rack_message = "Please select a lab location";
 

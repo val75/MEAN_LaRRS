@@ -38,13 +38,11 @@ userSchema.methods.setPassword = function (password) {
     // crypto.pbkdf2Sync(password, salt, iterations, keylen, digest)
     // a synchronous Password-Based Key Derivation Function 2 (PBKDF2) implementation
     // TODO: increase <iterations> to 10,000
-    // TODO: need to specify <digest>, otherwise node complains about deprecation without it
-    this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex');
+    this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, 'sha256').toString('hex');
 };
 
 userSchema.methods.validPassword = function (password) {
-    // TODO: same as for setPassword() method, need to specify <digest>
-    var hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex');
+    var hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, 'sha256').toString('hex');
 
     // Returns true or false
     return this.hash === hash;

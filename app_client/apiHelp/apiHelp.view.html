@@ -1,6 +1,6 @@
 <navigation></navigation>
 
-<div class="container">
+<div class="container-fluid">
     <page-header content="vm.pageHeader"></page-header>
     <h3>Resources</h3>
 
@@ -77,35 +77,54 @@
     </div>
 
     <div class="row">
-        <div class="col-xs-12 col-sm-9">
+        <div class="col-xs-12 col-sm-9 col-lg-12">
             <h4>SKUs</h4>
             <table class="table table-hover">
                 <thead>
                     <tr>
                         <th>Resource</th>
                         <th>Description</th>
+                        <th>Example</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>GET /api/skus</td>
                         <td>List all existing SKUs</td>
+                        <td>curl http://&ltlarrs_server&gt:3000/api/skus</td>
                     </tr>
                     <tr>
                         <td>GET /api/skus/:sku_id</td>
                         <td>Show the SKU with that id</td>
+                        <td>curl http://&ltlarrs_server&gt:3000/api/skus/&ltsku_id&gt</td>
                     </tr>
                     <tr>
                         <td>POST /api/skus</td>
                         <td>Create a new SKU</td>
+                        <td>
+                            curl -H &quotAuthorization: Bearer &ltauth_token&gt&quot
+                            -H &quotContent-Type: application/json&quot
+                            -X POST http://&ltlarrs_server&gt:3000/api/skus
+                            -d &#39{ &quotname&quot: &quot&ltsku_name&gt&quot, &quotnotes&quot: &quot&ltsku_notes&gt&quot }&#39
+                        </td>
                     </tr>
                     <tr>
                         <td>PUT /api/skus/:sku_id</td>
                         <td>Update the SKU with that id</td>
+                        <td>
+                            curl -H &quotAuthorization: Bearer &ltauth_token&gt&quot
+                            -H &quotContent-Type: application/json&quot
+                            -X PUT http://&ltlarrs_server&gt:3000/api/skus/&ltsku_id&gt
+                            -d &#39{ &quotname&quot: &quot&ltmod_sku_name&gt&quot, &quotnotes&quot: &quot&ltmod_sku_notes&gt&quot }&#39
+                        </td>
                     </tr>
                     <tr>
                         <td>DELETE /api/skus/:sku_id</td>
                         <td>Delete the SKU with that id</td>
+                        <td>
+                            curl -H &quotAuthorization: Bearer &ltauth_token&gt&quot
+                            -X DELETE http://&ltlarrs_server&gt:3000/api/skus/&ltsku_id&gt
+                        </td>
                     </tr>
                 </tbody>
             </table>

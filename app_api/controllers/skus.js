@@ -74,72 +74,91 @@ skuReadOne = function (req, res) {
 };
 
 skuCreate = function (req, res) {
-    // Uniqueness for <name> is insured in the model
-    Sku.create({
-        name: req.body.name,
-        notes: req.body.notes
-    }, function (err, sku) {
-        if (err) {
-            sendJsonResponse(res, 400, err); // Status code 400 -> bad request
-        } else {
-            sendJsonResponse(res, 201, sku); // Status code 201 -> resource created
-        }
-    });
+    if (req.payload.username === "admin") {
+        console.log("Admin is creating a new SKU...");
+        // Uniqueness for <name> is insured in the model
+        Sku.create({
+            name: req.body.name,
+            notes: req.body.notes
+        }, function (err, sku) {
+            if (err) {
+                sendJsonResponse(res, 400, err); // Status code 400 -> bad request
+            } else {
+                sendJsonResponse(res, 201, sku); // Status code 201 -> resource created
+            }
+        });
+    } else {
+        sendJsonResponse(res, 401, {
+            "message": "Only admin user can create a new SKU"
+        })
+    }
 };
 
 skuUpdateOne = function (req, res) {
-    if (!req.params.sku_id) {
-        sendJsonResponse(res, 404, {
-            "message": "No sku_id"
-        });
-        return;
-    }
-    Sku
-        .findById(req.params.sku_id)
-        .exec(
-            function (err, sku) {
-                if (!sku) {
-                    sendJsonResponse(res, 404, {
-                        "message": "SKU not found"
-                    });
-                    return;
-                } else if (err) {
-                    sendJsonResponse(res, 400, err);
-                    return;
-                }
-                sku.name = req.body.name;
-                sku.notes = req.body.notes;
-
-                sku.save(function (err, sku) {
-                    if (err) {
-                        sendJsonResponse(res, 404, err);
-                    } else {
-                        sendJsonResponse(res, 200, sku);
-                    }
-                });
-            }
-        );
-};
-
-skuDeleteOne = function (req, res) {
-    var sku_id = req.params.sku_id;
-    if (sku_id) {
+    if (req.payload.username === "admin") {
+        if (!req.params.sku_id) {
+            sendJsonResponse(res, 404, {
+                "message": "No sku_id"
+            });
+            return;
+        }
         Sku
-            .findByIdAndRemove(sku_id)
+            .findById(req.params.sku_id)
             .exec(
                 function (err, sku) {
-                    if (err) {
-                        sendJsonResponse(res, 404, err); // Status code 404 -> not found
+                    if (!sku) {
+                        sendJsonResponse(res, 404, {
+                            "message": "SKU not found"
+                        });
+                        return;
+                    } else if (err) {
+                        sendJsonResponse(res, 400, err);
                         return;
                     }
-                    sendJsonResponse(res, 204, null); // Status code 204 -> no content
+                    sku.name = req.body.name;
+                    sku.notes = req.body.notes;
+
+                    sku.save(function (err, sku) {
+                        if (err) {
+                            sendJsonResponse(res, 404, err);
+                        } else {
+                            sendJsonResponse(res, 200, sku);
+                        }
+                    });
                 }
             );
     } else {
-        sendJsonResponse(res, 404, {
-            "message": "No sku_id"
-        });
+        sendJsonResponse(res, 401, {
+            "message": "Only admin user can modify an existing SKU"
+        })
     }
+};
+
+skuDeleteOne = function (req, res) {
+    if (req.payload.username === "admin") {
+        if (req.params.sku_id) {
+            Sku
+                .findByIdAndRemove(req.params.sku_id)
+                .exec(
+                    function (err, sku) {
+                        if (err) {
+                            sendJsonResponse(res, 404, err); // Status code 404 -> not found
+                            return;
+                        }
+                        sendJsonResponse(res, 204, null); // Status code 204 -> no content
+                    }
+                );
+        } else {
+            sendJsonResponse(res, 404, {
+                "message": "No sku_id"
+            });
+        }
+    } else {
+        sendJsonResponse(res, 401, {
+            "message": "Only admin user can delete an existing SKU"
+        })
+    }
+
 };
 
 module.exports = {

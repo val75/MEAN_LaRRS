@@ -158,7 +158,6 @@ skuDeleteOne = function (req, res) {
             "message": "Only admin user can delete an existing SKU"
         })
     }
-
 };
 
 module.exports = {

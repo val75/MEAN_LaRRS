@@ -74,78 +74,96 @@ statReadOne = function (req, res) {
 };
 
 statCreate = function (req, res) {
-    // Uniqueness for <name> is insured in the model
-    HealthStat.create({
-        name: req.body.name,
-        notes: req.body.notes
-    }, function (err, hstat) {
-        if (err) {
-            sendJsonResponse(res, 400, err); // Status code 400 -> bad request
-        } else {
-            sendJsonResponse(res, 201, hstat); // Status code 201 -> resource created
-        }
-    });
+    if (req.payload.username === "admin") {
+        console.log("Admin is creating a new health status...");
+        // Uniqueness for <name> is insured in the model
+        HealthStat.create({
+            name: req.body.name,
+            notes: req.body.notes
+        }, function (err, hstat) {
+            if (err) {
+                sendJsonResponse(res, 400, err); // Status code 400 -> bad request
+            } else {
+                sendJsonResponse(res, 201, hstat); // Status code 201 -> resource created
+            }
+        });
+    } else {
+        sendJsonResponse(res, 401, {
+            "message": "Only admin user can create a new health status"
+        })
+    }
 };
 
 statUpdateOne = function (req, res) {
-    if (!req.params.hstat_id) {
-        sendJsonResponse(res, 404, {
-            "message": "No hstat_id"
-        });
-        return;
-    }
-    HealthStat
-        .findById(req.params.hstat_id)
-        .exec(
-            function (err, hstat) {
-                if (!hstat) {
-                    sendJsonResponse(res, 404, {
-                        "message": "Health status not found"
-                    });
-                    return;
-                } else if (err) {
-                    sendJsonResponse(res, 400, err);
-                    return;
-                }
-                hstat.name = req.body.name;
-                hstat.notes = req.body.notes;
-
-                hstat.save(function (err, hstat) {
-                    if (err) {
-                        sendJsonResponse(res, 404, err);
-                    } else {
-                        sendJsonResponse(res, 200, hstat);
-                    }
-                });
-            }
-        );
-};
-
-statDeleteOne = function (req, res) {
-    var hstat_id = req.params.hstat_id;
-    if (hstat_id) {
+    if (req.payload.username === "admin") {
+        if (!req.params.hstat_id) {
+            sendJsonResponse(res, 404, {
+                "message": "No hstat_id"
+            });
+            return;
+        }
         HealthStat
-            .findByIdAndRemove(hstat_id)
+            .findById(req.params.hstat_id)
             .exec(
                 function (err, hstat) {
-                    if (err) {
-                        sendJsonResponse(res, 404, err); // Status code 404 -> not found
+                    if (!hstat) {
+                        sendJsonResponse(res, 404, {
+                            "message": "Health status not found"
+                        });
+                        return;
+                    } else if (err) {
+                        sendJsonResponse(res, 400, err);
                         return;
                     }
-                    sendJsonResponse(res, 204, null); // Status code 204 -> no content
+                    hstat.name = req.body.name;
+                    hstat.notes = req.body.notes;
+
+                    hstat.save(function (err, hstat) {
+                        if (err) {
+                            sendJsonResponse(res, 404, err);
+                        } else {
+                            sendJsonResponse(res, 200, hstat);
+                        }
+                    });
                 }
             );
     } else {
-        sendJsonResponse(res, 404, {
-            "message": "No hstat_id"
-        });
+        sendJsonResponse(res, 401, {
+            "message": "Only admin user can modify an existing health status"
+        })
+    }
+};
+
+statDeleteOne = function (req, res) {
+    if (req.payload.username === "admin") {
+        if (req.params.hstat_id) {
+            HealthStat
+                .findByIdAndRemove(req.params.hstat_id)
+                .exec(
+                    function (err, hstat) {
+                        if (err) {
+                            sendJsonResponse(res, 404, err); // Status code 404 -> not found
+                            return;
+                        }
+                        sendJsonResponse(res, 204, null); // Status code 204 -> no content
+                    }
+                );
+        } else {
+            sendJsonResponse(res, 404, {
+                "message": "No hstat_id"
+            });
+        }
+    } else {
+        sendJsonResponse(res, 401, {
+            "message": "Only admin user can delete an existing health status"
+        })
     }
 };
 
 module.exports = {
-    statList    : statList,
-    statReadOne : statReadOne,
-    statCreate : statCreate,
+    statList      : statList,
+    statReadOne   : statReadOne,
+    statCreate    : statCreate,
     statUpdateOne : statUpdateOne,
     statDeleteOne : statDeleteOne
 };

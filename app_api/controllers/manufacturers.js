@@ -74,71 +74,89 @@ mfgReadOne = function (req, res) {
 };
 
 mfgCreate = function (req, res) {
-    // Uniqueness for <name> is insured in the model
-    Manufacturer.create({
-        name: req.body.name,
-        notes: req.body.notes
-    }, function (err, manufacturer) {
-        if (err) {
-            sendJsonResponse(res, 400, err); // Status code 400 -> bad request
-        } else {
-            sendJsonResponse(res, 201, manufacturer); // Status code 201 -> resource created
-        }
-    });
+    if (req.payload.username === "admin") {
+        console.log("Admin is creating a new manufacturer...");
+        // Uniqueness for <name> is insured in the model
+        Manufacturer.create({
+            name: req.body.name,
+            notes: req.body.notes
+        }, function (err, manufacturer) {
+            if (err) {
+                sendJsonResponse(res, 400, err); // Status code 400 -> bad request
+            } else {
+                sendJsonResponse(res, 201, manufacturer); // Status code 201 -> resource created
+            }
+        });
+    } else {
+        sendJsonResponse(res, 401, {
+            "message": "Only admin user can create a new manufacturer"
+        })
+    }
 };
 
 mfgUpdateOne = function (req, res) {
-    if (!req.params.manufacturer_id) {
-        sendJsonResponse(res, 404, {
-            "message": "No manufacturer_id"
-        });
-        return;
-    }
-    Manufacturer
-        .findById(req.params.manufacturer_id)
-        .exec(
-            function (err, manufacturer) {
-                if (!manufacturer) {
-                    sendJsonResponse(res, 404, {
-                        "message": "Manufacturer not found"
-                    });
-                    return;
-                } else if (err) {
-                    sendJsonResponse(res, 400, err);
-                    return;
-                }
-                manufacturer.name = req.body.name;
-                manufacturer.notes = req.body.notes;
-
-                manufacturer.save(function (err, manufacturer) {
-                    if (err) {
-                        sendJsonResponse(res, 404, err);
-                    } else {
-                        sendJsonResponse(res, 200, manufacturer);
-                    }
-                });
-            }
-        );
-};
-
-mfgDeleteOne = function (req, res) {
-    var manufacturer_id = req.params.manufacturer_id;
-    if (manufacturer_id) {
+    if (req.payload.username === "admin") {
+        if (!req.params.manufacturer_id) {
+            sendJsonResponse(res, 404, {
+                "message": "No manufacturer_id"
+            });
+            return;
+        }
         Manufacturer
-            .findByIdAndRemove(manufacturer_id)
+            .findById(req.params.manufacturer_id)
             .exec(
                 function (err, manufacturer) {
-                    if (err) {
-                        sendJsonResponse(res, 404, err); // Status code 404 -> not found
+                    if (!manufacturer) {
+                        sendJsonResponse(res, 404, {
+                            "message": "Manufacturer not found"
+                        });
+                        return;
+                    } else if (err) {
+                        sendJsonResponse(res, 400, err);
                         return;
                     }
-                    sendJsonResponse(res, 204, null); // Status code 204 -> no content
+                    manufacturer.name = req.body.name;
+                    manufacturer.notes = req.body.notes;
+
+                    manufacturer.save(function (err, manufacturer) {
+                        if (err) {
+                            sendJsonResponse(res, 404, err);
+                        } else {
+                            sendJsonResponse(res, 200, manufacturer);
+                        }
+                    });
                 }
             );
     } else {
-        sendJsonResponse(res, 404, {
-            "message": "No manufacturer_id"
-        });
+        sendJsonResponse(res, 401, {
+            "message": "Only admin user can modify an existing manufacturer"
+        })
+    }
+};
+
+mfgDeleteOne = function (req, res) {
+    if (req.payload.username === "admin") {
+        if (req.params.manufacturer_id) {
+            Manufacturer
+                .findByIdAndRemove(req.params.manufacturer_id)
+                .exec(
+                    function (err, manufacturer) {
+                        if (err) {
+                            sendJsonResponse(res, 404, err); // Status code 404 -> not found
+                            return;
+                        }
+                        sendJsonResponse(res, 204, null); // Status code 204 -> no content
+                    }
+                );
+        } else {
+            sendJsonResponse(res, 404, {
+                "message": "No manufacturer_id"
+            });
+        }
+    } else {
+        sendJsonResponse(res, 401, {
+            "message": "Only admin user can delete an existing manufacturer"
+        })
     }
 };
 

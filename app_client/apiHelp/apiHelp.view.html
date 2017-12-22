@@ -41,35 +41,54 @@
     </div>
 
     <div class="row">
-        <div class="col-xs-12 col-sm-9">
+        <div class="col-xs-12 col-sm-9 col-lg-12">
             <h4>Manufacturers</h4>
             <table class="table table-hover">
                 <thead>
                     <tr>
                         <th>Resource</th>
                         <th>Description</th>
+                        <th>Example</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>GET /api/manufacturers</td>
                         <td>List all existing manufacturers</td>
+                        <td>curl http://&ltlarrs_server&gt:3000/api/manufacturers</td>
                     </tr>
                     <tr>
                         <td>GET /api/manufacturers/:mfg_id</td>
                         <td>Show the manufacturer with that id</td>
+                        <td>curl http://&ltlarrs_server&gt:3000/api/manufacturers/&ltmfg_id&gt</td>
                     </tr>
                     <tr>
                         <td>POST /api/manufacturers</td>
                         <td>Create a new manufacturer</td>
+                        <td>
+                            curl -H &quotAuthorization: Bearer &ltauth_token&gt&quot
+                            -H &quotContent-Type: application/json&quot
+                            -X POST http://&ltlarrs_server&gt:3000/api/manufacturers
+                            -d &#39{ &quotname&quot: &quot&ltmfg_name&gt&quot, &quotnotes&quot: &quot&ltmfg_notes&gt&quot }&#39
+                        </td>
                     </tr>
                     <tr>
                         <td>PUT /api/manufacturer/:mfg_id</td>
                         <td>Update the manufacturer with that id</td>
+                        <td>
+                            curl -H &quotAuthorization: Bearer &ltauth_token&gt&quot
+                            -H &quotContent-Type: application/json&quot
+                            -X PUT http://&ltlarrs_server&gt:3000/api/manufacturers/&ltmfg_id&gt
+                            -d &#39{ &quotname&quot: &quot&ltmod_mfg_name&gt&quot, &quotnotes&quot: &quot&ltmod_mfg_notes&gt&quot }&#39
+                        </td>
                     </tr>
                     <tr>
                         <td>DELETE /api/manufacturers/:mfg_id</td>
                         <td>Delete the manufacturer with that id</td>
+                        <td>
+                            curl -H &quotAuthorization: Bearer &ltauth_token&gt&quot
+                            -X DELETE http://&ltlarrs_server&gt:3000/api/manufacturer/&ltmfg_id&gt
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -132,35 +151,54 @@
     </div>
 
     <div class="row">
-        <div class="col-xs-12 col-sm-9">
+        <div class="col-xs-12 col-sm-9 col-lg-12">
             <h4>Hardware Models</h4>
             <table class="table table-hover">
                 <thead>
                     <tr>
                         <th>Resource</th>
                         <th>Description</th>
+                        <th>Example</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>GET /api/hwmodels</td>
                         <td>List all existing hardware models</td>
+                        <td>curl http://&ltlarrs_server&gt:3000/api/hwmodels</td>
                     </tr>
                     <tr>
                         <td>GET /api/hwmodels/:hwmodel_id</td>
                         <td>Show the hardware model with that id</td>
+                        <td>curl http://&ltlarrs_server&gt:3000/api/hwmodels/&lthwmodel_id&gt</td>
                     </tr>
                     <tr>
                         <td>POST /api/hwmodels</td>
                         <td>Create a new hardware model</td>
+                        <td>
+                            curl -H &quotAuthorization: Bearer &ltauth_token&gt&quot
+                            -H &quotContent-Type: application/json&quot
+                            -X POST http://&ltlarrs_server&gt:3000/api/hwmodels
+                            -d &#39{ &quotname&quot: &quot&lthwmodel_name&gt&quot, &quotnotes&quot: &quot&lthwmodel_notes&gt&quot }&#39
+                        </td>
                     </tr>
                     <tr>
                         <td>PUT /api/hwmodels/:hwmodel_id</td>
                         <td>Update the hardware model with that id</td>
+                        <td>
+                            curl -H &quotAuthorization: Bearer &ltauth_token&gt&quot
+                            -H &quotContent-Type: application/json&quot
+                            -X PUT http://&ltlarrs_server&gt:3000/api/hwmodels/&lthwmodel_id&gt
+                            -d &#39{ &quotname&quot: &quot&ltmod_hwmodel_name&gt&quot, &quotnotes&quot: &quot&ltmod_hwmodel_notes&gt&quot }&#39
+                        </td>
                     </tr>
                     <tr>
                         <td>DELETE /api/hwmodels/:hwmode_id</td>
                         <td>Delete the hardware model with that id</td>
+                        <td>
+                            curl -H &quotAuthorization: Bearer &ltauth_token&gt&quot
+                            -X DELETE http://&ltlarrs_server&gt:3000/api/hwmodels/&lthwmodel_id&gt
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -168,35 +206,62 @@
     </div>
 
     <div class="row">
-        <div class="col-xs-12 col-sm-9">
+        <div class="col-xs-12 col-sm-9 col-lg-12">
             <h4>Lab Locations</h4>
             <table class="table table-hover">
                 <thead>
                     <tr>
                         <th>Resource</th>
                         <th>Description</th>
+                        <th>Example</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>GET /api/locations</td>
                         <td>List all existing locations</td>
+                        <td>curl http://&ltlarrs_server&gt:3000/api/locations</td>
                     </tr>
                     <tr>
                         <td>GET /api/locations/:location_id</td>
                         <td>Show the location with that id</td>
+                        <td>curl http://&ltlarrs_server&gt:3000/api/locations/&ltlocation_id&gt</td>
                     </tr>
                     <tr>
                         <td>POST /api/locations</td>
                         <td>Create a new location</td>
+                        <td>
+                            curl -H &quotAuthorization: Bearer &ltauth_token&gt&quot
+                            -H &quotContent-Type: application/json&quot
+                            -X POST http://&ltlarrs_server&gt:3000/api/locations
+                            -d &#39{ &quotname&quot: &quot&ltloc_name&gt&quot, &quottype&quot: &quot&ltloc_type&gt&quot,
+                            &quotparent_id&quot: &quot&ltloc_parent_id&gt&quot,
+                            &quotparent_name&quot: &quot&ltparent_name&gt&quot,
+                            &quotancestors&quot: [{&quotid&quot:&quot&ltancestor_id&gt&quot, &quotname&quot:&quot&ltancestor_name&gt&quot}, {...}],
+                            &quotnotes&quot: &quot&ltloc_notes&gt&quot }&#39
+                        </td>
                     </tr>
                     <tr>
                         <td>PUT /api/locations/:location_id</td>
                         <td>Update the location with that id</td>
+                        <td>
+                            curl -H &quotAuthorization: Bearer &ltauth_token&gt&quot
+                            -H &quotContent-Type: application/json&quot
+                            -X PUT http://&ltlarrs_server&gt:3000/api/locations/&ltlocation_id&gt
+                            -d &#39{ &quotname&quot: &quot&ltmod_loc_name&gt&quot, &quottype&quot: &quot&ltmod_loc_type&gt&quot,
+                            &quotparent_id&quot: &quot&ltmod_loc_parent_id&gt&quot,
+                            &quotparent_name&quot: &quot&ltmod_parent_name&gt&quot,
+                            &quotancestors&quot: [{&quotid&quot:&quot&ltancestor_id&gt&quot, &quotname&quot:&quot&ltancestor_name&gt&quot}, {...}],
+                            &quotnotes&quot: &quot&ltloc_notes&gt&quot }&#39
+                        </td>
                     </tr>
                     <tr>
                         <td>DELETE /api/locations/:location_id</td>
                         <td>Delete the location with that id</td>
+                        <td>
+                            curl -H &quotAuthorization: Bearer &ltauth_token&gt&quot
+                            -X DELETE http://&ltlarrs_server&gt:3000/api/locations/&ltlocation_id&gt
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -204,35 +269,54 @@
     </div>
 
     <div class="row">
-        <div class="col-xs-12 col-sm-9">
+        <div class="col-xs-12 col-sm-9 col-lg-12">
             <h4>Asset Groups</h4>
             <table class="table table-hover">
                 <thead>
                 <tr>
                     <th>Resource</th>
                     <th>Description</th>
+                    <th>Example</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <td>GET /api/groups</td>
                     <td>List all existing groups</td>
+                    <td>curl http://&ltlarrs_server&gt:3000/api/groups</td>
                 </tr>
                 <tr>
                     <td>GET /api/groups/:group_id</td>
                     <td>Show the group with that id</td>
+                    <td>curl http://&ltlarrs_server&gt:3000/api/groups/&ltgroup_id&gt</td>
                 </tr>
                 <tr>
                     <td>POST /api/groups</td>
                     <td>Create a new group</td>
+                    <td>
+                        curl -H &quotAuthorization: Bearer &ltauth_token&gt&quot
+                        -H &quotContent-Type: application/json&quot
+                        -X POST http://&ltlarrs_server&gt:3000/api/groups
+                        -d &#39{ &quotname&quot: &quot&ltgroup_name&gt&quot, &quotnotes&quot: &quot&ltgroup_notes&gt&quot }&#39
+                    </td>
                 </tr>
                 <tr>
                     <td>PUT /api/groups/:group_id</td>
                     <td>Update the group with that id</td>
+                    <td>
+                        curl -H &quotAuthorization: Bearer &ltauth_token&gt&quot
+                        -H &quotContent-Type: application/json&quot
+                        -X PUT http://&ltlarrs_server&gt:3000/api/groups/&ltgroup_id&gt
+                        -d &#39{ &quotname&quot: &quot&ltmod_group_name&gt&quot, &quotnotes&quot: &quot&ltmod_group_notes&gt&quot }&#39
+                    </td>
                 </tr>
                 <tr>
                     <td>DELETE /api/groups/:group_id</td>
                     <td>Delete the group with that id</td>
+                    <td>
+                        curl -H &quotAuthorization: Bearer &ltauth_token&gt&quot
+                        -X DELETE http://&ltlarrs_server&gt:3000/api/groups/&ltgroup_id&gt
+                    </td>
                 </tr>
                 </tbody>
             </table>
@@ -240,35 +324,86 @@
     </div>
 
     <div class="row">
-        <div class="col-xs-12 col-sm-9">
+        <div class="col-xs-12 col-sm-9 col-lg-12">
             <h4>Asset Health Stats</h4>
             <table class="table table-hover">
                 <thead>
                 <tr>
                     <th>Resource</th>
                     <th>Description</th>
+                    <th>Example</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <td>GET /api/hStatus</td>
                     <td>List all existing health stats</td>
+                    <td>curl http://&ltlarrs_server&gt:3000/api/hStatus</td>
                 </tr>
                 <tr>
                     <td>GET /api/hStatus/:hstat_id</td>
                     <td>Show the health stat with that id</td>
+                    <td>curl http://&ltlarrs_server&gt:3000/api/hStatus/&lthstat_id&gt</td>
                 </tr>
                 <tr>
                     <td>POST /api/hStatus</td>
                     <td>Create a new health stat</td>
+                    <td>
+                        curl -H &quotAuthorization: Bearer &ltauth_token&gt&quot
+                        -H &quotContent-Type: application/json&quot
+                        -X POST http://&ltlarrs_server&gt:3000/api/hStatus
+                        -d &#39{ &quotname&quot: &quot&lthstat_name&gt&quot, &quotnotes&quot: &quot&lthstat_notes&gt&quot }&#39
+                    </td>
                 </tr>
                 <tr>
                     <td>PUT /api/hStatus/:hstat_id</td>
                     <td>Update the health stat with that id</td>
+                    <td>
+                        curl -H &quotAuthorization: Bearer &ltauth_token&gt&quot
+                        -H &quotContent-Type: application/json&quot
+                        -X PUT http://&ltlarrs_server&gt:3000/api/hStatus/&lthstat_id&gt
+                        -d &#39{ &quotname&quot: &quot&ltmod_hstat_name&gt&quot, &quotnotes&quot: &quot&ltmod_hstat_notes&gt&quot }&#39
+                    </td>
                 </tr>
                 <tr>
                     <td>DELETE /api/hStatus/:hstat_id</td>
                     <td>Delete the health stat with that id</td>
+                    <td>
+                        curl -H &quotAuthorization: Bearer &ltauth_token&gt&quot
+                        -X DELETE http://&ltlarrs_server&gt:3000/api/hStatus/&lthstat_id&gt
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-9 col-lg-12">
+            <h4>Authentication</h4>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Resource</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>POST /api/register</td>
+                    <td>Register new user to the app</td>
+                    <td>
+                        curl -X POST http://&ltlarrs_server&gt:3000/api/register
+                    </td>
+                </tr>
+                <tr>
+                    <td>POST /api/login</td>
+                    <td>Login to the app to obtain token</td>
+                    <td>
+                        curl -X POST http://&ltlarrs_server&gt:3000/api/login
+                        -d &quotusername=&ltusername&gt&amppassword=&ltpassword&gt&quot
+                    </td>
                 </tr>
                 </tbody>
             </table>

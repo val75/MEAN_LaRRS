@@ -74,78 +74,95 @@ groupReadOne = function (req, res) {
 };
 
 groupCreate = function (req, res) {
-    // Uniqueness for <name> is insured in the model
-    Group.create({
-        name: req.body.name,
-        notes: req.body.notes
-    }, function (err, group) {
-        if (err) {
-            sendJsonResponse(res, 400, err); // Status code 400 -> bad request
-        } else {
-            sendJsonResponse(res, 201, group); // Status code 201 -> resource created
-        }
-    });
+    if (req.payload.username === "admin") {
+        // Uniqueness for <name> is insured in the model
+        Group.create({
+            name: req.body.name,
+            notes: req.body.notes
+        }, function (err, group) {
+            if (err) {
+                sendJsonResponse(res, 400, err); // Status code 400 -> bad request
+            } else {
+                sendJsonResponse(res, 201, group); // Status code 201 -> resource created
+            }
+        });
+    } else {
+        sendJsonResponse(res, 401, {
+            "message": "Only admin user can create a new group"
+        })
+    }
 };
 
 groupUpdateOne = function (req, res) {
-    if (!req.params.group_id) {
-        sendJsonResponse(res, 404, {
-            "message": "No group_id"
-        });
-        return;
-    }
-    Group
-        .findById(req.params.group_id)
-        .exec(
-            function (err, group) {
-                if (!group) {
-                    sendJsonResponse(res, 404, {
-                        "message": "Group not found"
-                    });
-                    return;
-                } else if (err) {
-                    sendJsonResponse(res, 400, err);
-                    return;
-                }
-                group.name = req.body.name;
-                group.notes = req.body.notes;
-
-                group.save(function (err, group) {
-                    if (err) {
-                        sendJsonResponse(res, 404, err);
-                    } else {
-                        sendJsonResponse(res, 200, group);
-                    }
-                });
-            }
-        );
-};
-
-groupDeleteOne = function (req, res) {
-    var group_id = req.params.group_id;
-    if (group_id) {
+    if (req.payload.username === "admin") {
+        if (!req.params.group_id) {
+            sendJsonResponse(res, 404, {
+                "message": "No group_id"
+            });
+            return;
+        }
         Group
-            .findByIdAndRemove(group_id)
+            .findById(req.params.group_id)
             .exec(
                 function (err, group) {
-                    if (err) {
-                        sendJsonResponse(res, 404, err); // Status code 404 -> not found
+                    if (!group) {
+                        sendJsonResponse(res, 404, {
+                            "message": "Group not found"
+                        });
+                        return;
+                    } else if (err) {
+                        sendJsonResponse(res, 400, err);
                         return;
                     }
-                    sendJsonResponse(res, 204, null); // Status code 204 -> no content
+                    group.name = req.body.name;
+                    group.notes = req.body.notes;
+
+                    group.save(function (err, group) {
+                        if (err) {
+                            sendJsonResponse(res, 404, err);
+                        } else {
+                            sendJsonResponse(res, 200, group);
+                        }
+                    });
                 }
             );
     } else {
-        sendJsonResponse(res, 404, {
-            "message": "No group_id"
-        });
+        sendJsonResponse(res, 401, {
+            "message": "Only admin user can modify an existing group"
+        })
+    }
+};
+
+groupDeleteOne = function (req, res) {
+    if (req.payload.username === "admin") {
+        if (req.params.group_id) {
+            Group
+                .findByIdAndRemove(req.params.group_id)
+                .exec(
+                    function (err, group) {
+                        if (err) {
+                            sendJsonResponse(res, 404, err); // Status code 404 -> not found
+                            return;
+                        }
+                        sendJsonResponse(res, 204, null); // Status code 204 -> no content
+                    }
+                );
+        } else {
+            sendJsonResponse(res, 404, {
+                "message": "No group_id"
+            });
+        }
+    } else {
+        sendJsonResponse(res, 401, {
+            "message": "Only admin user can delete an existing group"
+        })
     }
 };
 
 module.exports = {
-    groupList    : groupList,
-    groupReadOne : groupReadOne,
-    groupCreate : groupCreate,
+    groupList      : groupList,
+    groupReadOne   : groupReadOne,
+    groupCreate    : groupCreate,
     groupUpdateOne : groupUpdateOne,
     groupDeleteOne : groupDeleteOne
 };

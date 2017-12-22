@@ -62,6 +62,7 @@ register = function (req, res) {
 };
 
 login = function (req, res) {
+    console.log(JSON.stringify(req.body));
     if ( !req.body.username || ! req.body.password ) {
         sendJSONresponse(res, 400, {
             "message" : "All fields required"

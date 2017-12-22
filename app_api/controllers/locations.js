@@ -74,75 +74,93 @@ locationReadOne = function (req, res) {
 };
 
 locationCreate = function (req, res) {
-    // Uniqueness for <name> is insured in the model
-    Location.create({
-        name: req.body.name,
-        type: req.body.type,
-        parent_id: req.body.parent_id,
-        parent_name: req.body.parent_name,
-        ancestors: req.body.ancestors,
-        notes: req.body.notes
-    }, function (err, location) {
-        if (err) {
-            sendJsonResponse(res, 400, err); // Status code 400 -> bad request
-        } else {
-            sendJsonResponse(res, 201, location); // Status code 201 -> resource created
-        }
-    });
+    if (req.payload.username === "admin") {
+        console.log("Admin is creating a new location...");
+        // Uniqueness for <name> is insured in the model
+        Location.create({
+            name: req.body.name,
+            type: req.body.type,
+            parent_id: req.body.parent_id,
+            parent_name: req.body.parent_name,
+            ancestors: req.body.ancestors,
+            notes: req.body.notes
+        }, function (err, location) {
+            if (err) {
+                sendJsonResponse(res, 400, err); // Status code 400 -> bad request
+            } else {
+                sendJsonResponse(res, 201, location); // Status code 201 -> resource created
+            }
+        });
+    } else {
+        sendJsonResponse(res, 401, {
+            "message": "Only admin user can create a new location"
+        })
+    }
 };
 
 locationUpdateOne = function (req, res) {
-    if (!req.params.location_id) {
-        sendJsonResponse(res, 404, {
-            "message": "No location_id"
-        });
-        return;
-    }
-    Location
-        .findById(req.params.location_id)
-        .exec(
-            function (err, location) {
-                if (!location) {
-                    sendJsonResponse(res, 404, {
-                        "message": "Location not found"
-                    });
-                    return;
-                } else if (err) {
-                    sendJsonResponse(res, 400, err);
-                    return;
-                }
-                location.name = req.body.name;
-                location.notes = req.body.notes;
-
-                location.save(function (err, location) {
-                    if (err) {
-                        sendJsonResponse(res, 404, err);
-                    } else {
-                        sendJsonResponse(res, 200, location);
-                    }
-                });
-            }
-        );
-};
-
-locationDeleteOne = function (req, res) {
-    var location_id = req.params.location_id;
-    if (location_id) {
+    if (req.payload.username === "admin") {
+        if (!req.params.location_id) {
+            sendJsonResponse(res, 404, {
+                "message": "No location_id"
+            });
+            return;
+        }
         Location
-            .findByIdAndRemove(location_id)
+            .findById(req.params.location_id)
             .exec(
                 function (err, location) {
-                    if (err) {
-                        sendJsonResponse(res, 404, err); // Status code 404 -> not found
+                    if (!location) {
+                        sendJsonResponse(res, 404, {
+                            "message": "Location not found"
+                        });
+                        return;
+                    } else if (err) {
+                        sendJsonResponse(res, 400, err);
                         return;
                     }
-                    sendJsonResponse(res, 204, null); // Status code 204 -> no content
+                    location.name = req.body.name;
+                    location.notes = req.body.notes;
+
+                    location.save(function (err, location) {
+                        if (err) {
+                            sendJsonResponse(res, 404, err);
+                        } else {
+                            sendJsonResponse(res, 200, location);
+                        }
+                    });
                 }
             );
     } else {
-        sendJsonResponse(res, 404, {
-            "message": "No location_id"
-        });
+        sendJsonResponse(res, 401, {
+            "message": "Only admin user can modify an existing location"
+        })
+    }
+};
+
+locationDeleteOne = function (req, res) {
+    if (req.payload.username === "admin") {
+        if (req.params.location_id) {
+            Location
+                .findByIdAndRemove(req.params.location_id)
+                .exec(
+                    function (err, location) {
+                        if (err) {
+                            sendJsonResponse(res, 404, err); // Status code 404 -> not found
+                            return;
+                        }
+                        sendJsonResponse(res, 204, null); // Status code 204 -> no content
+                    }
+                );
+        } else {
+            sendJsonResponse(res, 404, {
+                "message": "No location_id"
+            });
+        }
+    } else {
+        sendJsonResponse(res, 401, {
+            "message": "Only admin user can delete an existing location"
+        })
     }
 };
 

@@ -50,7 +50,8 @@
                         </div>
 
                         <div class="col-xs-12 col-sm-4 filter-wrap">
-                            <a ng-click="vm.popupAssetAddForm()" class="btn btn-primary">Add Asset</a>
+                            <a ng-click="vm.isLoggedIn && vm.popupAssetAddForm()" ng-disabled="!vm.isLoggedIn"
+                               class="btn btn-primary">Add Asset</a>
                         </div>
                     </div>
 

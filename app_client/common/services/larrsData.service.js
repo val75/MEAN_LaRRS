@@ -62,8 +62,20 @@
             return $http.get('/api/skus')
         };
 
+        var getSkuById = function (skuId) {
+            return $http.get('/api/skus/' + skuId);
+        };
+
         var addSku = function (data) {
             return $http.post('/api/skus', data, {
+                headers: {
+                    Authorization: 'Bearer '+ authentication.getToken()
+                }
+            });
+        };
+
+        var updateSku = function (skuId, data) {
+            return $http.put('/api/skus/' + skuId, data, {
                 headers: {
                     Authorization: 'Bearer '+ authentication.getToken()
                 }
@@ -160,28 +172,30 @@
 
         return {
             lData: lData,
-            assetsAtLocation: assetsAtLocation,
-            assetById: assetById,
-            assetDelete: assetDelete,
-            addAsset: addAsset,
-            updateAsset: updateAsset,
-            getSkus: getSkus,
-            addSku: addSku,
-            getMfgs: getMfgs,
-            addMfg: addMfg,
-            getHwModel: getHwModel,
-            addHwModel: addHwModel,
-            getLocation : getLocation,
-            getLocationById: getLocationById,
-            getLocationChildren: getLocationChildren,
-            addLocation: addLocation,
-            getGroup: getGroup,
-            addGroup: addGroup,
-            getHealthStatus: getHealthStatus,
-            addHealthStatus: addHealthStatus,
-            createReservation: createReservation,
-            reservationById: reservationById,
-            deleteReservation: deleteReservation
+            assetsAtLocation    : assetsAtLocation,
+            assetById           : assetById,
+            assetDelete         : assetDelete,
+            addAsset            : addAsset,
+            updateAsset         : updateAsset,
+            getSkus             : getSkus,
+            getSkuById          : getSkuById,
+            addSku              : addSku,
+            updateSku           : updateSku,
+            getMfgs             : getMfgs,
+            addMfg              : addMfg,
+            getHwModel          : getHwModel,
+            addHwModel          : addHwModel,
+            getLocation         : getLocation,
+            getLocationById     : getLocationById,
+            getLocationChildren : getLocationChildren,
+            addLocation         : addLocation,
+            getGroup            : getGroup,
+            addGroup            : addGroup,
+            getHealthStatus     : getHealthStatus,
+            addHealthStatus     : addHealthStatus,
+            createReservation   : createReservation,
+            reservationById     : reservationById,
+            deleteReservation   : deleteReservation
         };
     }
 })();

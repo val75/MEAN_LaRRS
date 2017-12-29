@@ -225,5 +225,38 @@
                 vm.hstatdata.hstats.push(data);
             });
         };
+
+        vm.updateSku = function (skuId, skuName, skuNotes) {
+            return function () {
+                for (var i=0; i < vm.skudata.skus.length; i++) {
+                    if (vm.skudata.skus[i]._id === skuId) {
+                        vm.skudata.skus[i].name = skuName;
+                        vm.skudata.skus[i].notes = skuNotes;
+                    }
+                }
+            }
+        };
+
+        vm.popupSkuEditForm = function (itemId, itemName, itemNotes) {
+            var
+                modalInstance = $modal.open({
+                    templateUrl: '/skuEditModal/skuEditModal.view.html',
+                    controller: 'skuEditModalCtrl as vm',
+                    resolve : {
+                        itemData : function () {
+                            return {
+                                _id : itemId,
+                                name : itemName,
+                                notes : itemNotes
+                            };
+                        }
+                    }
+                });
+
+            modalInstance.result.then(function (data) {
+                var updateSku = vm.updateSku(data._id, data.name, data.notes);
+                updateSku();
+            });
+        };
     }
 })();

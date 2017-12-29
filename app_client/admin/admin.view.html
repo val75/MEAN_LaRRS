@@ -16,7 +16,10 @@
             <div class="row list-group">
                 <div class="col-xs-12 list-group-item" ng-repeat="sku in vm.skudata.skus">
                     <h4>
-                        <a href="/#/skus/{{ sku._id }}">{{ sku.name }}</a>
+                        <!--<a href="/#/skus/{{ sku._id }}">{{ sku.name }}</a>-->
+                        <a href ng-click="vm.popupSkuEditForm(sku._id, sku.name, sku.notes)">
+                            {{ sku.name }}
+                        </a>
                     </h4>
                     <p>{{ sku.notes }}</p>
                 </div>

@@ -88,6 +88,7 @@ router.delete( '/assets/:asset_id', auth, ctrlAssets.assetDeleteOne );
 router.get(    '/reservations',                           ctrlReservations.reservationList         );
 router.get(    '/reservations/:reservation_id',           ctrlReservations.reservationReadOne      );
 router.post(   '/reservations',                     auth, ctrlReservations.reservationCreate       );
+router.put(    '/reservations/:reservation_id',     auth, ctrlReservations.reservationUpdateOne    );
 router.delete( '/reservations/:reservation_id',     auth, ctrlReservations.reservationDeleteUpdate );
 router.delete( '/reservations/one/:reservation_id', auth, ctrlReservations.reservationDeleteOne);
 

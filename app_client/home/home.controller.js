@@ -59,6 +59,8 @@
                             cpu_model       : doc.system[0].cpu_model,
                             mem_mfg_name    : doc.system[0].mem_mfg[0].name,
                             mem_size        : doc.system[0].mem_size,
+                            disk_mfg_name   : doc.system[0].disk_mfg[0].name,
+                            disk_model      : doc.system[0].disk_model,
                             nic10g_mfg_name : doc.system[0].nic10g_mfg[0].name,
                             nic10g_model    : doc.system[0].nic10g_model,
                             //resStatus: doc.reserved ? "Reserved" : "Free",

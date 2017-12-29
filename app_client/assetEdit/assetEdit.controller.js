@@ -70,6 +70,11 @@
                             name: data.system[0].mem_mfg[0].name
                         },
                         mem_size: data.system[0].mem_size,
+                        disk_mfg: {
+                            _id: data.system[0].disk_mfg[0].id,
+                            name: data.system[0].disk_mfg[0].name
+                        },
+                        disk_model: data.system[0].disk_model,
                         nic10g_mfg: {
                             _id: data.system[0].nic10g_mfg[0].id,
                             name: data.system[0].nic10g_mfg[0].name
@@ -217,6 +222,9 @@
                 mem_mfg_id      : vm.data.asset.system.mem_mfg._id,
                 mem_mfg_name    : vm.data.asset.system.mem_mfg.name,
                 mem_size        : vm.data.asset.system.mem_size,
+                disk_mfg_id     : vm.data.asset.system.disk_mfg._id,
+                disk_mfg_name   : vm.data.asset.system.disk_mfg.name,
+                disk_model      : vm.data.asset.system.disk_model,
                 nic10g_mfg_id   : vm.data.asset.system.nic10g_mfg._id,
                 nic10g_mfg_name : vm.data.asset.system.nic10g_mfg.name,
                 nic10g_model    : vm.data.asset.system.nic10g_model

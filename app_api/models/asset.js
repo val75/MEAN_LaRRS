@@ -60,6 +60,11 @@ var
                 name: { type: String }
             }],
             mem_size: { type: Number },
+            disk_mfg: [{
+                id: { type: Schema.Types.ObjectId, ref: 'Manufacturer' },
+                name: { type: String }
+            }],
+            disk_model: { type: String },
             nic10g_mfg: [{
                 id: { type: Schema.Types.ObjectId, ref: 'Manufacturer' },
                 name: { type: String }

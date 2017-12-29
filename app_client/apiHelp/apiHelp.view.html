@@ -5,35 +5,90 @@
     <h3>Resources</h3>
 
     <div class="row">
-        <div class="col-xs-12 col-sm-9">
+        <div class="col-xs-12 col-sm-9 col-lg-12">
             <h4>Assets</h4>
             <table class="table table-hover">
                 <thead>
                     <tr>
                         <th>Resource</th>
                         <th>Description</th>
+                        <th>Example</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>GET /api/assets</td>
                         <td>List all existing assets</td>
+                        <td>curl http://&ltlarrs_server&gt:3000/api/assets</td>
                     </tr>
                     <tr>
                         <td>GET /api/assets/:asset_id</td>
                         <td>Show the asset with that id</td>
+                        <td>curl http://&ltlarrs_server&gt:3000/api/assets/&ltasset_id&gt</td>
                     </tr>
                     <tr>
                         <td>POST /api/assets</td>
                         <td>Create a new asset</td>
+                        <td>
+                            curl -H &quotAuthorization: Bearer &ltauth_token&gt&quot
+                            -H &quotContent-Type: application/json&quot
+                            -X POST http://&ltlarrs_server&gt:3000/api/manufacturers
+                            -d &#39{ &quottag&quot: &quot&ltasset_tag&gt&quot, &quothostname&quot: &quot&lthostname&gt&quot,
+                            &quottype&quot: &quot&ltasset_type&gt&quot, &quotserial&quot: &quot&ltasset_serial&gt&quot,
+                            &quotsku_id&quot: &quot&ltsku_id&gt&quot,&quotsku_name&quot: &quot&ltsku_name&gt&quot,
+                            &quothwmodel_id&quot: &quot&lthwmodel_id&gt&quot,&quothwmodel_name&quot: &quot&lthwmodel_name&gt&quot,
+                            &quotmfg_id&quot: &quot&ltmfg_id&gt&quot,&quotmfg_name&quot: &quot&ltmfg_name&gt&quot,
+                            &quotlocation_id&quot: &quot&ltlocation_id&gt&quot,&quotlocation_name&quot: &quot&ltlocation_name&gt&quot,
+                            &quotlocation_ru&quot: &quot&ltlocation_ru&gt&quot,
+                            &quotgroup_id&quot: &quot&ltgroup_id&gt&quot,&quotgroup_name&quot: &quot&ltgroup_name&gt&quot,
+                            &quothstat_id&quot: &quot&lthstat_id&gt&quot,&quothstat_name&quot: &quot&lthstat_name&gt&quot,
+                            &quotcpu_mfg_id&quot: &quot&ltcpu_mfg_id&gt&quot,&quotcpu_mfg_name&quot: &quot&ltcpu_mfg_name&gt&quot,
+                            &quotcpu_model&quot: &quot&ltcpu_model&gt&quot,
+                            &quotmem_mfg_id&quot: &quot&ltmem_mfg_id&gt&quot,&quotmem_mfg_name&quot: &quot&ltmem_mfg_name&gt&quot,
+                            &quotmem_size&quot: &quot&ltmem_size&gt&quot,
+                            &quotdisk_mfg_id&quot: &quot&ltdisk_mfg_id&gt&quot,&quotdisk_mfg_name&quot: &quot&ltdisk_mfg_name&gt&quot,
+                            &quotdisk_model&quot: &quot&ltdisk_model&gt&quot,
+                            &quotnic10g_mfg_id&quot: &quot&ltnic10g_mfg_id&gt&quot,&quotnic10g_mfg_name&quot: &quot&ltnic10g_mfg_name&gt&quot,
+                            &quotnic10g_model&quot: &quot&ltnic10g_model&gt&quot,
+                            &quotip_10g&quot: &quot&ltip_10g&gt&quot,&quotip_1g&quot: &quot&ltip_1g&gt&quot,
+                            &quotip_bmc&quot: &quot&ltip_bmc&gt&quot}&#39
+                        </td>
                     </tr>
                     <tr>
                         <td>PUT /api/assets/:asset_id</td>
                         <td>Update the asset with that id</td>
+                        <td>
+                            curl -H &quotAuthorization: Bearer &ltauth_token&gt&quot
+                            -H &quotContent-Type: application/json&quot
+                            -X PUT http://&ltlarrs_server&gt:3000/api/manufacturers
+                            -d &#39{ &quottag&quot: &quot&ltasset_tag&gt&quot, &quothostname&quot: &quot&lthostname&gt&quot,
+                            &quottype&quot: &quot&ltasset_type&gt&quot, &quotserial&quot: &quot&ltasset_serial&gt&quot,
+                            &quotsku_id&quot: &quot&ltsku_id&gt&quot,&quotsku_name&quot: &quot&ltsku_name&gt&quot,
+                            &quothwmodel_id&quot: &quot&lthwmodel_id&gt&quot,&quothwmodel_name&quot: &quot&lthwmodel_name&gt&quot,
+                            &quotmfg_id&quot: &quot&ltmfg_id&gt&quot,&quotmfg_name&quot: &quot&ltmfg_name&gt&quot,
+                            &quotlocation_id&quot: &quot&ltlocation_id&gt&quot,&quotlocation_name&quot: &quot&ltlocation_name&gt&quot,
+                            &quotlocation_ru&quot: &quot&ltlocation_ru&gt&quot,
+                            &quotgroup_id&quot: &quot&ltgroup_id&gt&quot,&quotgroup_name&quot: &quot&ltgroup_name&gt&quot,
+                            &quothstat_id&quot: &quot&lthstat_id&gt&quot,&quothstat_name&quot: &quot&lthstat_name&gt&quot,
+                            &quotcpu_mfg_id&quot: &quot&ltcpu_mfg_id&gt&quot,&quotcpu_mfg_name&quot: &quot&ltcpu_mfg_name&gt&quot,
+                            &quotcpu_model&quot: &quot&ltcpu_model&gt&quot,
+                            &quotmem_mfg_id&quot: &quot&ltmem_mfg_id&gt&quot,&quotmem_mfg_name&quot: &quot&ltmem_mfg_name&gt&quot,
+                            &quotmem_size&quot: &quot&ltmem_size&gt&quot,
+                            &quotdisk_mfg_id&quot: &quot&ltdisk_mfg_id&gt&quot,&quotdisk_mfg_name&quot: &quot&ltdisk_mfg_name&gt&quot,
+                            &quotdisk_model&quot: &quot&ltdisk_model&gt&quot,
+                            &quotnic10g_mfg_id&quot: &quot&ltnic10g_mfg_id&gt&quot,&quotnic10g_mfg_name&quot: &quot&ltnic10g_mfg_name&gt&quot,
+                            &quotnic10g_model&quot: &quot&ltnic10g_model&gt&quot,
+                            &quotip_10g&quot: &quot&ltip_10g&gt&quot,&quotip_1g&quot: &quot&ltip_1g&gt&quot,
+                            &quotip_bmc&quot: &quot&ltip_bmc&gt&quot}&#39
+                        </td>
                     </tr>
                     <tr>
                         <td>DELETE /api/assets/:asset_id</td>
                         <td>Delete the asset with that id</td>
+                        <td>
+                            curl -H &quotAuthorization: Bearer &ltauth_token&gt&quot
+                            -X DELETE http://&ltlarrs_server&gt:3000/api/assets/&ltasset_id&gt
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -380,6 +435,104 @@
 
     <div class="row">
         <div class="col-xs-12 col-sm-9 col-lg-12">
+            <h4>Asset Reservation</h4>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Resource</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>GET /api/reservations</td>
+                    <td>List all existing asset reservations</td>
+                    <td>curl http://&ltlarrs_server&gt:3000/api/reservations</td>
+                </tr>
+                <tr>
+                    <td>GET /api/reservations/:res_id</td>
+                    <td>Show the reservation with that id</td>
+                    <td>curl http://&ltlarrs_server&gt:3000/api/reservations/&ltres_id&gt</td>
+                </tr>
+                <tr>
+                    <td>POST /api/reservations</td>
+                    <td>Create a new asset reservation</td>
+                    <td>
+                        curl -H &quotAuthorization: Bearer &ltauth_token&gt&quot
+                        -H &quotContent-Type: application/json&quot
+                        -X POST http://&ltlarrs_server&gt:3000/api/reservations
+                        -d &#39{ &quotasset_id&quot: &quot&ltasset_id&gt&quot,
+                        &quotnotes&quot: &quot&ltres_notes&gt&quot }&#39
+                    </td>
+                </tr>
+                <tr>
+                    <td>PUT /api/reservations/:res_id</td>
+                    <td>Update details of asset reservation with that id</td>
+                    <td>
+                        curl -H &quotAuthorization: Bearer &ltauth_token&gt&quot
+                        -H &quotContent-Type: application/json&quot
+                        -X PUT http://&ltlarrs_server&gt:3000/api/reservations/&ltres_id&gt
+                        -d &#39{ &quotnotes&quot: &quot&ltmod_res_notes&gt&quot }&#39
+                    </td>
+                </tr>
+                <tr>
+                    <td>DELETE /api/reservations/:res_id</td>
+                    <td>Delete the reservation with that id, with updating the asset reservation status</td>
+                    <td>
+                        curl -H &quotAuthorization: Bearer &ltauth_token&gt&quot
+                        -X DELETE http://&ltlarrs_server&gt:3000/api/reservations/&ltres_id&gt
+                    </td>
+                </tr>
+                <tr>
+                    <td>DELETE /api/reservations/one/:res_id</td>
+                    <td>Delete the reservation with that id, without updating the asset reservation status</td>
+                    <td>
+                        curl -H &quotAuthorization: Bearer &ltauth_token&gt&quot
+                        -X DELETE http://&ltlarrs_server&gt:3000/api/reservations/one/&ltres_id&gt
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-9 col-lg-12">
+            <h4>User Management</h4>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Resource</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>GET /api/users</td>
+                    <td>List all registered users</td>
+                    <td>curl http://&ltlarrs_server&gt:3000/api/users</td>
+                </tr>
+                <tr>
+                    <td>GET /api/users/:user_id</td>
+                    <td>Show the user with that id</td>
+                    <td>curl http://&ltlarrs_server&gt:3000/api/users/&ltuser_id&gt</td>
+                </tr>
+                <tr>
+                    <td>DELETE /api/users/:user_id</td>
+                    <td>Delete the user with that id</td>
+                    <td>
+                        curl -X DELETE http://&ltlarrs_server&gt:3000/api/users/&ltuser_id&gt
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-9 col-lg-12">
             <h4>Authentication</h4>
             <table class="table table-hover">
                 <thead>
@@ -395,6 +548,9 @@
                     <td>Register new user to the app</td>
                     <td>
                         curl -X POST http://&ltlarrs_server&gt:3000/api/register
+                        -H &quotContent-Type: application/json&quot
+                        -d &#39{ &quotusername&quot: &quot&ltusername&gt&quot,
+                        &quotemail&quot: &quot&ltuser_email&gt&quot,&quotpassword&quot: &quot&ltuser_passwd&gt&quot}&#39
                     </td>
                 </tr>
                 <tr>

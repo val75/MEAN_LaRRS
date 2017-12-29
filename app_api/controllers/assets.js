@@ -117,6 +117,11 @@ assetCreate = function (req, res) {
                 name : req.body.mem_mfg_name
             }],
             mem_size     : req.body.mem_size,
+            disk_mfg      : [{
+                id   : req.body.disk_mfg_id,
+                name : req.body.disk_mfg_name
+            }],
+            disk_model    : req.body.disk_model,
             nic10g_mfg   : [{
                 id   : req.body.nic10g_mfg_id,
                 name : req.body.nic10g_mfg_name
@@ -197,6 +202,11 @@ assetUpdateOne = function (req, res) {
                         name : req.body.mem_mfg_name
                     }],
                     mem_size     : req.body.mem_size,
+                    disk_mfg: [{
+                        id   : req.body.disk_mfg_id,
+                        name : req.body.disk_mfg_name
+                    }],
+                    disk_model    : req.body.disk_model,
                     nic10g_mfg   : [{
                         id   : req.body.nic10g_mfg_id,
                         name : req.body.nic10g_mfg_name

@@ -153,6 +153,20 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="diskMfg" class="col-xs-10 col-sm-3 control-label">Disk Manufacturer:</label>
+                    <div class="col-xs-12 col-sm-3">
+                        <select id="diskMfg" ng-model="vm.data.asset.system.disk_mfg"
+                                ng-options="option.name for option in vm.mfgdata.mfgs track by option._id"
+                                class="form-control">
+                        </select>
+                    </div>
+                    <label for="diskModel" class="col-xs-10 col-sm-3 control-label">Disk Model:</label>
+                    <div class="col-xs-12 col-sm-3">
+                        <input id="diskModel" name="diskModel" ng-model="vm.data.asset.system.disk_model" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
                     <label for="nic10GMfg" class="col-xs-10 col-sm-3 control-label">10G NIC Manufacturer:</label>
                     <div class="col-xs-12 col-sm-3">
                         <select id="nic10GMfg" ng-model="vm.data.asset.system.nic10g_mfg"
@@ -175,5 +189,5 @@
 
 
 
-    <footer-generic></footer-generic>
+    <!--<footer-generic></footer-generic>-->
 </div>

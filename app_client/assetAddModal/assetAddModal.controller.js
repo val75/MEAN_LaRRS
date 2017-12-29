@@ -52,7 +52,7 @@
                 myGroupObj   = JSON.parse(formData.groupObj),
                 myHstatObj   = JSON.parse(formData.hstatObj),
 
-                myCpuMfgObj, myMemMfgObj, myNic10gMfgObj,
+                myCpuMfgObj, myMemMfgObj, myDiskMfgObj, myNic10gMfgObj,
                 myAsset;
 
             myAsset = {
@@ -108,6 +108,16 @@
 
             if (typeof formData.memSize != undefined && formData.memSize != null) {
                 myAsset.mem_size = formData.memSize;
+            }
+
+            if (typeof(formData.diskMfgObj) != undefined && formData.diskMfgObj != null) {
+                myDiskMfgObj  = JSON.parse(formData.diskMfgObj);
+                myAsset.disk_mfg_id = myDiskMfgObj.id;
+                myAsset.disk_mfg_name = myDiskMfgObj.name;
+            }
+
+            if (typeof formData.diskModel != undefined && formData.diskModel != null) {
+                myAsset.disk_model = formData.diskModel;
             }
 
             if (typeof(formData.nic10gMfgObj) != undefined && formData.nic10gMfgObj != null) {

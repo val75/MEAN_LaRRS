@@ -206,36 +206,43 @@
                 });
 
             modalInstance.result.then(function (data) {
-                larrsData.lData()
-                    .success(function (data) {
-                        vm.message = data.length > 0 ? "" : "No assets found";
-                        var
-                            assetList = [];
-                        if ( data.length ) {
-                            data.forEach(function (doc) {
-                                assetList.push({
-                                    _id: doc._id,
-                                    hostname: doc.hostname,
-                                    assetTag: doc.tag,
-                                    skuModel: doc.sku[0].name,
-                                    hwModel: doc.hwModel[0].name,
-                                    mfgName: doc.manufacturer[0].name,
-                                    locName: doc.location[0].name,
-                                    groupName: doc.group[0].name,
-                                    assetStatus: doc.healthStatus[0].name,
-                                    //resStatus: doc.reserved ? "Reserved" : "Free",
-                                    resStatus: doc.reserved,
-                                    currentResId: doc.res_id
-                                });
-                            });
-                        }
-                        vm.data = { assets: assetList };
-                    })
-                    .error(function (e) {
-                        $scope.message = "Sorry, something's gone wrong";
-                        console.log(e);
-                    });
+                var addAssetToHomePage = vm.addAssetToHome(data);
+                addAssetToHomePage();
             });
+        };
+
+        // Function to add newly created asset to home page asset list dynamically
+        // so that refresh is not required
+        vm.addAssetToHome = function (doc) {
+            return function () {
+                vm.data.assets.push({
+                    _id             : doc._id,
+                    hostname        : doc.hostname,
+                    assetTag        : doc.tag,
+                    assetType       : doc.type,
+                    serial          : doc.serial,
+                    ip_10g          : doc.network[0].ip_10g,
+                    ip_1g           : doc.network[0].ip_1g,
+                    ip_bmc          : doc.network[0].ip_bmc,
+                    skuModel        : doc.sku[0].name,
+                    hwModel         : doc.hwModel[0].name,
+                    mfgName         : doc.manufacturer[0].name,
+                    locName         : doc.location[0].name,
+                    groupName       : doc.group[0].name,
+                    assetStatus     : doc.healthStatus[0].name,
+                    cpu_mfg_name    : doc.system[0].cpu_mfg[0].name,
+                    cpu_model       : doc.system[0].cpu_model,
+                    mem_mfg_name    : doc.system[0].mem_mfg[0].name,
+                    mem_size        : doc.system[0].mem_size,
+                    disk_mfg_name   : doc.system[0].disk_mfg[0].name,
+                    disk_model      : doc.system[0].disk_model,
+                    nic10g_mfg_name : doc.system[0].nic10g_mfg[0].name,
+                    nic10g_model    : doc.system[0].nic10g_model,
+                    //resStatus: doc.reserved ? "Reserved" : "Free",
+                    resStatus       : doc.reserved,
+                    currentResId    : doc.res_id
+                })
+            }
         };
 
         // Function to search for a particular asset in the asset list based on asset_id
